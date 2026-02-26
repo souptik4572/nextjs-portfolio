@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
 import { MapPin, Mail, Github, Linkedin } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 
@@ -24,7 +25,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="font-mono text-indigo-400 text-sm tracking-widest mb-4"
+        className="font-mono text-indigo-400 text-base md:text-lg tracking-widest mb-4"
       >
         Hi, my name is
       </motion.span>
@@ -44,9 +45,23 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-3xl md:text-5xl font-bold text-slate-400 mt-2"
+        className="text-3xl md:text-5xl font-bold text-slate-400 mt-2 min-h-[3rem] md:min-h-[4rem]"
       >
-        {personal.role}
+        <TypeAnimation
+          sequence={[
+            "Software Engineer (SDE-2)",
+            2000,
+            "Full-Stack Developer",
+            2000,
+            "Polyglot Engineer",
+            2000,
+          ]}
+          wrapper="span"
+          speed={50}
+          repeat={Infinity}
+          cursor={true}
+          style={{ display: "inline-block" }}
+        />
       </motion.h2>
 
       <motion.p

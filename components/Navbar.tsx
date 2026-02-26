@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 
 const NAV_LABELS: Record<string, string> = {
@@ -14,12 +15,17 @@ const NAV_LABELS: Record<string, string> = {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <motion.header
@@ -33,9 +39,11 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 md:px-16 flex items-center justify-between">
-        <a href="#intro" className="font-mono text-indigo-400 font-bold text-lg">
+        <a href="#intro" className="font-mono text-indigo-400 font-bold text-lg z-50">
           SS/
         </a>
+        
+        {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-6">
           {portfolioData.layout.section_order.map((section, i) => (
             <li key={section}>
@@ -51,7 +59,57 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden z-50 text-slate-400 hover:text-indigo-400 transition-colors p-2"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-40 md:hidden"
+            />
+            
+            {/* Menu Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 right-0 bottom-0 w-[75vw] max-w-sm bg-slate-800 border-l border-slate-700 z-40 md:hidden"
+            >
+              <nav className="flex flex-col gap-2 p-8 pt-24">
+                {portfolioData.layout.section_order.map((section, i) => (
+                  <a
+                    key={section}
+                    href={`#${section}`}
+                    onClick={handleNavClick}
+                    className="text-slate-300 hover:text-indigo-400 transition-colors py-3 px-4 rounded-lg hover:bg-slate-700/50 flex items-center gap-3"
+                  >
+                    <span className="text-indigo-400 font-mono text-sm">
+                      0{i + 1}.
+                    </span>
+                    <span className="font-medium">{NAV_LABELS[section] ?? section}</span>
+                  </a>
+                ))}
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

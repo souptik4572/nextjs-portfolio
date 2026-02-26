@@ -28,21 +28,21 @@ function ExperienceCard({
       {/* Timeline dot */}
       <span className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-indigo-500 ring-4 ring-slate-900" />
 
-      <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 hover:border-indigo-500/40 transition-colors">
-        <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-          <div>
-            <h3 className="text-xl font-bold text-slate-100">{exp.role}</h3>
+      <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 sm:p-6 hover:border-indigo-500/40 transition-colors">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-3 mb-4">
+          <div className="flex-1">
+            <h3 className="text-lg sm:text-xl font-bold text-slate-100">{exp.role}</h3>
             <p className="text-indigo-400 font-semibold mt-0.5 flex items-center gap-1.5">
               <Briefcase size={14} />
               {exp.company}
             </p>
           </div>
-          <div className="text-right text-sm text-slate-400 space-y-1">
-            <div className="flex items-center gap-1.5 justify-end">
+          <div className="text-left sm:text-right text-sm text-slate-400 space-y-1 w-full sm:w-auto">
+            <div className="flex items-center gap-1.5 sm:justify-end">
               <Calendar size={13} />
               <span>{exp.period}</span>
             </div>
-            <div className="flex items-center gap-1.5 justify-end">
+            <div className="flex items-center gap-1.5 sm:justify-end">
               <MapPin size={13} />
               <span>{exp.location}</span>
             </div>

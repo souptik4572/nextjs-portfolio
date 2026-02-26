@@ -24,7 +24,7 @@ export default function Skills() {
         <div className="mt-2 h-px w-32 bg-indigo-500/40" />
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl">
         {portfolioData.skills.map((group, gi) => (
           <motion.div
             key={group.category}

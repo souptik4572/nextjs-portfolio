@@ -15,8 +15,8 @@ export const portfolioData = {
     bio: "Polyglot engineer at heart. Deep expertise in Java and Spring Boot, frequently building high-performance services in Golang and Python.",
     email: "souptik4572@gmail.com",
     github: "https://github.com/souptik4572",
-    linkedin: "https://linkedin.com/in/souptik-sarkar",
-    location: "India",
+    linkedin: "https://www.linkedin.com/in/souptik4572/",
+    location: "Kolkata, India",
   },
   skills: [
     { category: "Languages", items: ["Java", "Golang", "Python", "TypeScript"] },

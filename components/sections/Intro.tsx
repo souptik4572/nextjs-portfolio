@@ -67,7 +67,7 @@ export default function Intro() {
         className="flex flex-wrap gap-4 mt-8"
       >
         <a
-          href={`mailto:${personal.email}`}
+          href="#contact"
           className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-medium transition-colors"
         >
           <Mail size={16} /> Contact Me

@@ -45,7 +45,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-3xl md:text-5xl font-bold text-slate-400 mt-2 min-h-[3rem] md:min-h-[4rem]"
+        className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-400 mt-2 min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]"
       >
         <TypeAnimation
           sequence={[
@@ -69,7 +69,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-6 max-w-xl text-slate-400 text-lg leading-relaxed"
+        className="mt-6 max-w-xl text-slate-400 text-base md:text-lg leading-relaxed"
       >
         {personal.bio}
       </motion.p>

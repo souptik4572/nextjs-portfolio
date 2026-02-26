@@ -157,10 +157,10 @@ export default function Contact() {
             href={`mailto:${personal.email}`}
             className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors">
+            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors shrink-0">
               <Mail size={16} />
             </span>
-            <span>{personal.email}</span>
+            <span className="break-all text-sm sm:text-base">{personal.email}</span>
           </a>
           <a
             href={personal.github}
@@ -168,10 +168,10 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors">
+            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors shrink-0">
               <Github size={16} />
             </span>
-            <span>github.com/souptik4572</span>
+            <span className="break-all text-sm sm:text-base">github.com/souptik4572</span>
           </a>
           <a
             href={personal.linkedin}
@@ -179,16 +179,16 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors">
+            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors shrink-0">
               <Linkedin size={16} />
             </span>
-            <span>linkedin.com/in/souptik-sarkar</span>
+            <span className="break-all text-sm sm:text-base">linkedin.com/in/souptik-sarkar</span>
           </a>
           <div className="flex items-center gap-3 text-slate-500">
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center">
+            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
               <MapPin size={16} />
             </span>
-            <span>{personal.location}</span>
+            <span className="text-sm sm:text-base">{personal.location}</span>
           </div>
         </div>
 

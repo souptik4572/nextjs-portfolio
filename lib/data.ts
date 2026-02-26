@@ -9,6 +9,9 @@ export const portfolioData = {
       "contact",
     ] as const,
   },
+  theme: {
+    defaultMode: "dark" as "light" | "dark", // Default theme mode
+  },
   personal: {
     name: "Souptik Sarkar",
     role: "Software Engineer (SDE-2)",

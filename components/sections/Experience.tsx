@@ -24,20 +24,20 @@ function ExperienceCard({
       className="relative pl-8 pb-12 last:pb-0"
     >
       {/* Timeline line */}
-      <span className="absolute left-0 top-2 bottom-0 w-px bg-slate-700" />
+      <span className="absolute left-0 top-2 bottom-0 w-px bg-slate-300 dark:bg-slate-700" />
       {/* Timeline dot */}
-      <span className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-indigo-500 ring-4 ring-slate-900" />
+      <span className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-600 dark:bg-indigo-500 ring-4 ring-white dark:ring-slate-900" />
 
-      <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 sm:p-6 hover:border-indigo-500/40 transition-colors">
+      <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-xl p-4 sm:p-6 hover:border-blue-400 dark:hover:border-indigo-500/40 transition-colors">
         <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-3 mb-4">
           <div className="flex-1">
-            <h3 className="text-lg sm:text-xl font-bold text-slate-100">{exp.role}</h3>
-            <p className="text-indigo-400 font-semibold mt-0.5 flex items-center gap-1.5">
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100">{exp.role}</h3>
+            <p className="text-blue-600 dark:text-indigo-400 font-semibold mt-0.5 flex items-center gap-1.5">
               <Briefcase size={14} />
               {exp.company}
             </p>
           </div>
-          <div className="text-left sm:text-right text-sm text-slate-400 space-y-1 w-full sm:w-auto">
+          <div className="text-left sm:text-right text-sm text-slate-600 dark:text-slate-400 space-y-1 w-full sm:w-auto">
             <div className="flex items-center gap-1.5 sm:justify-end">
               <Calendar size={13} />
               <span>{exp.period}</span>
@@ -50,8 +50,8 @@ function ExperienceCard({
         </div>
         <ul className="space-y-2">
           {exp.highlights.map((h, i) => (
-            <li key={i} className="flex gap-3 text-slate-400 text-sm leading-relaxed">
-              <span className="text-indigo-400 mt-1 shrink-0">▹</span>
+            <li key={i} className="flex gap-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+              <span className="text-blue-600 dark:text-indigo-400 mt-1 shrink-0">▹</span>
               {h}
             </li>
           ))}
@@ -74,11 +74,11 @@ export default function Experience() {
         transition={{ duration: 0.5 }}
         className="mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-100">
-          <span className="text-indigo-400 font-mono text-xl mr-3">02.</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100">
+          <span className="text-blue-600 dark:text-indigo-400 font-mono text-xl mr-3">02.</span>
           Experience
         </h2>
-        <div className="mt-2 h-px w-32 bg-indigo-500/40" />
+        <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
       </motion.div>
 
       <div className="max-w-3xl">

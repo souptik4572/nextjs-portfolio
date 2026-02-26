@@ -133,11 +133,11 @@ export default function Contact() {
         transition={{ duration: 0.5 }}
         className="mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-100">
-          <span className="text-indigo-400 font-mono text-xl mr-3">06.</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100">
+          <span className="text-blue-600 dark:text-indigo-400 font-mono text-xl mr-3">06.</span>
           Get In Touch
         </h2>
-        <div className="mt-2 h-px w-32 bg-indigo-500/40" />
+        <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
       </motion.div>
 
       <motion.div
@@ -146,7 +146,7 @@ export default function Contact() {
         transition={{ duration: 0.55, delay: 0.15 }}
         className="max-w-lg"
       >
-        <p className="text-slate-400 text-lg leading-relaxed mb-8">
+        <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
           I&apos;m currently open to senior engineering opportunities. Whether
           you have a question, a project idea, or just want to say hi — my inbox
           is always open.
@@ -155,9 +155,9 @@ export default function Contact() {
         <div className="space-y-4 mb-12">
           <a
             href={`mailto:${personal.email}`}
-            className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group"
+            className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center group-hover:border-blue-500 dark:group-hover:border-indigo-500/50 transition-colors shrink-0">
               <Mail size={16} />
             </span>
             <span className="break-all text-sm sm:text-base">{personal.email}</span>
@@ -166,9 +166,9 @@ export default function Contact() {
             href={personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group"
+            className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center group-hover:border-blue-500 dark:group-hover:border-indigo-500/50 transition-colors shrink-0">
               <Github size={16} />
             </span>
             <span className="break-all text-sm sm:text-base">github.com/souptik4572</span>
@@ -177,15 +177,15 @@ export default function Contact() {
             href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group"
+            className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:border-indigo-500/50 transition-colors shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center group-hover:border-blue-500 dark:group-hover:border-indigo-500/50 transition-colors shrink-0">
               <Linkedin size={16} />
             </span>
             <span className="break-all text-sm sm:text-base">linkedin.com/in/souptik-sarkar</span>
           </a>
-          <div className="flex items-center gap-3 text-slate-500">
-            <span className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
+          <div className="flex items-center gap-3 text-slate-500 dark:text-slate-500">
+            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0">
               <MapPin size={16} />
             </span>
             <span className="text-sm sm:text-base">{personal.location}</span>
@@ -201,17 +201,17 @@ export default function Contact() {
           className="space-y-6 max-w-xl"
         >
           <div className="mb-6">
-            <h3 className="text-xl font-semibold text-slate-200 mb-2">
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-200 mb-2">
               Send me a message
             </h3>
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
               Fill out the form below and I&apos;ll get back to you as soon as possible.
             </p>
           </div>
 
           {/* Name Field */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Name
             </label>
             <input
@@ -220,9 +220,9 @@ export default function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-slate-800/50 border ${
-                errors.name ? "border-red-500" : "border-slate-700"
-              } rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors`}
+              className={`w-full px-4 py-3 bg-white dark:bg-slate-800/50 border ${
+                errors.name ? "border-red-500" : "border-slate-300 dark:border-slate-700"
+              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-indigo-500 transition-colors`}
               placeholder="Your name"
             />
             {errors.name && (
@@ -235,7 +235,7 @@ export default function Contact() {
 
           {/* Email Field */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Email
             </label>
             <input
@@ -244,9 +244,9 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-slate-800/50 border ${
-                errors.email ? "border-red-500" : "border-slate-700"
-              } rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors`}
+              className={`w-full px-4 py-3 bg-white dark:bg-slate-800/50 border ${
+                errors.email ? "border-red-500" : "border-slate-300 dark:border-slate-700"
+              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-indigo-500 transition-colors`}
               placeholder="your.email@example.com"
             />
             {errors.email && (
@@ -259,7 +259,7 @@ export default function Contact() {
 
           {/* Message Field */}
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
+            <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Message
             </label>
             <textarea
@@ -268,9 +268,9 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               rows={5}
-              className={`w-full px-4 py-3 bg-slate-800/50 border ${
-                errors.message ? "border-red-500" : "border-slate-700"
-              } rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors resize-none`}
+              className={`w-full px-4 py-3 bg-white dark:bg-slate-800/50 border ${
+                errors.message ? "border-red-500" : "border-slate-300 dark:border-slate-700"
+              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-indigo-500 transition-colors resize-none`}
               placeholder="Your message..."
             />
             {errors.message && (
@@ -285,7 +285,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>

@@ -20,7 +20,7 @@ export default function Education() {
         className="mb-8"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
-          <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">05.</span>
+          <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">06.</span>
           Education
         </h2>
         <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />

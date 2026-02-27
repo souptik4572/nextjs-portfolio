@@ -11,7 +11,11 @@ import Contact from "@/components/sections/Contact";
 import NotableOffers from "@/components/sections/NotableOffers";
 import type { SectionKey } from "@/lib/data";
 
-const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType> = {
+export interface SectionProps {
+  sectionIndex?: number;
+}
+
+const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType<SectionProps>> = {
   intro: Intro,
   experience: Experience,
   skills: Skills,
@@ -29,9 +33,9 @@ export default function Home() {
     <>
       <Navbar />
       <main className="max-w-6xl mx-auto">
-        {section_order.map((section) => {
+        {section_order.map((section, index) => {
           const Section = SECTION_COMPONENTS[section];
-          return <Section key={section} />;
+          return <Section key={section} sectionIndex={index + 1} />;
         })}
       </main>
       <Footer />

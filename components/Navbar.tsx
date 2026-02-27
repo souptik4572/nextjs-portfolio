@@ -11,6 +11,7 @@ const NAV_LABELS: Record<string, string> = {
   skills: "Skills",
   projects: "Projects",
   notable_offers: "Offers",
+  achievements: "Achievements",
   education: "Education",
   contact: "Contact",
 };
@@ -56,7 +57,7 @@ export default function Navbar() {
                   className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-indigo-400 hover:bg-white/60 dark:hover:bg-slate-700/50 transition-all text-sm font-medium px-3 py-1.5 rounded-lg block"
                 >
                   <span className="text-blue-600 dark:text-indigo-400 font-mono text-xs mr-1">
-                    0{i + 1}.
+                    {String(i + 1).padStart(2, '0')}.
                   </span>
                   {NAV_LABELS[section] ?? section}
                 </a>
@@ -114,7 +115,7 @@ export default function Navbar() {
                     className="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors py-3 px-4 rounded-xl hover:bg-white/40 dark:hover:bg-slate-700/40 flex items-center gap-3"
                   >
                     <span className="text-blue-600 dark:text-indigo-400 font-mono text-sm">
-                      0{i + 1}.
+                      {String(i + 1).padStart(2, '0')}.
                     </span>
                     <span className="font-medium">{NAV_LABELS[section] ?? section}</span>
                   </a>

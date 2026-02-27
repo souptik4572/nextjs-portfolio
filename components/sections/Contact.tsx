@@ -4,8 +4,9 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Github, Linkedin, MapPin, Send, CheckCircle2, AlertCircle, Eye } from "lucide-react";
 import { portfolioData } from "@/lib/data";
+import type { SectionProps } from "@/app/page";
 
-export default function Contact() {
+export default function Contact({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const { personal } = portfolioData;
@@ -134,7 +135,9 @@ export default function Contact() {
         className="mb-8"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
-          <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">06.</span>
+          {sectionIndex !== undefined && (
+            <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">{String(sectionIndex).padStart(2, '0')}.</span>
+          )}
           Get In Touch
         </h2>
         <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />

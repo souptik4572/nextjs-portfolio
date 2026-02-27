@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Github, Linkedin, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Send, CheckCircle2, AlertCircle, Eye } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 
 export default function Contact() {
@@ -191,6 +191,17 @@ export default function Contact() {
             <span className="text-sm sm:text-base">{personal.location}</span>
           </div>
         </div>
+
+        {/* Resume View Button */}
+        <a
+          href={personal.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-indigo-500/20 hover:shadow-xl hover:shadow-blue-500/30 dark:hover:shadow-indigo-500/30 hover:-translate-y-0.5 mb-8"
+        >
+          <Eye size={16} />
+          View Resume
+        </a>
 
         {/* Contact Form */}
         <motion.form

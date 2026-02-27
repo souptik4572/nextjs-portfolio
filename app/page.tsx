@@ -5,6 +5,7 @@ import Intro from "@/components/sections/Intro";
 import Experience from "@/components/sections/Experience";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
+import Achievements from "@/components/sections/Achievements";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import type { SectionKey } from "@/lib/data";
@@ -14,6 +15,7 @@ const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType> = {
   experience: Experience,
   skills: Skills,
   projects: Projects,
+  achievements: Achievements,
   education: Education,
   contact: Contact,
 };

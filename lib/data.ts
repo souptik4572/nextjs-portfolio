@@ -99,6 +99,15 @@ export const portfolioData = {
       github: "https://github.com/souptik4572/yt-downloader",
       live: null,
     },
+    {
+      id: "proj-4",
+      title: "Real-Time Chat Platform",
+      tech: ["TypeScript", "Node.js", "Socket.io", "MongoDB", "Tailwind CSS"],
+      description:
+        "Modern chat application with real-time messaging, file sharing, and presence indicators. Built with WebSocket connections and optimistic UI updates for instant feedback.",
+      github: "https://github.com/souptik4572/realtime-chat",
+      live: "https://chat.souptik.dev",
+    },
   ],
   education: [
     {

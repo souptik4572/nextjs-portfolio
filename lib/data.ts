@@ -1,3 +1,14 @@
+/** All possible section keys that can appear in section_order */
+export type SectionKey =
+	| "intro"
+	| "experience"
+	| "skills"
+	| "projects"
+	| "achievements"
+	| "notable_offers"
+	| "education"
+	| "contact";
+
 export const portfolioData = {
 	layout: {
 		section_order: [
@@ -6,10 +17,10 @@ export const portfolioData = {
 			"skills",
 			"projects",
 			"achievements",
-			"notable_offers",
+			// "notable_offers",
 			"education",
 			"contact",
-		] as const,
+		] as SectionKey[],
 	},
 	theme: {
 		defaultMode: "dark" as "light" | "dark",
@@ -179,22 +190,22 @@ export const portfolioData = {
 			period: "October 2023",
 			companyUrl: "https://navi.com/",
 		},
-		{
-			id: "offer-3",
-			company: "UNO Digital Bank",
-			companyLogo: "/images/companies/unobank.png",
-			role: "Software Engineer",
-			period: "February 2023",
-			companyUrl: "https://uno.bank/",
-		},
-		{
-			id: "offer-4",
-			company: "Tracxn",
-			companyLogo: "/images/companies/tracxn.jpeg",
-			role: "Software Engineer",
-			period: "September 2022",
-			companyUrl: "https://tracxn.com/",
-		},
+		// {
+		// 	id: "offer-3",
+		// 	company: "UNO Digital Bank",
+		// 	companyLogo: "/images/companies/unobank.png",
+		// 	role: "Software Engineer",
+		// 	period: "February 2023",
+		// 	companyUrl: "https://uno.bank/",
+		// },
+		// {
+		// 	id: "offer-4",
+		// 	company: "Tracxn",
+		// 	companyLogo: "/images/companies/tracxn.jpeg",
+		// 	role: "Software Engineer",
+		// 	period: "September 2022",
+		// 	companyUrl: "https://tracxn.com/",
+		// },
 		{
 			id: "offer-5",
 			company: "Cricbuzz",
@@ -203,22 +214,22 @@ export const portfolioData = {
 			period: "May 2022",
 			companyUrl: "https://www.cricbuzz.com/",
 		},
-		{
-			id: "offer-6",
-			company: "Tejas Networks",
-			companyLogo: "/images/companies/tejas.jpeg",
-			role: "Software Engineer",
-			period: "March 2022",
-			companyUrl: "https://www.tejasnetworks.com/",
-		},
-		{
-			id: "offer-7",
-			company: "Zaggle",
-			companyLogo: "/images/companies/zaggle.svg",
-			role: "Software Engineer",
-			period: "November 2021",
-			companyUrl: "https://www.zaggle.in/",
-		},
+		// {
+		// 	id: "offer-6",
+		// 	company: "Tejas Networks",
+		// 	companyLogo: "/images/companies/tejas.jpeg",
+		// 	role: "Software Engineer",
+		// 	period: "March 2022",
+		// 	companyUrl: "https://www.tejasnetworks.com/",
+		// },
+		// {
+		// 	id: "offer-7",
+		// 	company: "Zaggle",
+		// 	companyLogo: "/images/companies/zaggle.svg",
+		// 	role: "Software Engineer",
+		// 	period: "November 2021",
+		// 	companyUrl: "https://www.zaggle.in/",
+		// },
 	],
 	education: [
 		{
@@ -232,4 +243,3 @@ export const portfolioData = {
 };
 
 export type PortfolioData = typeof portfolioData;
-export type SectionKey = (typeof portfolioData.layout.section_order)[number];

@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 import { MacOSCard } from "@/components/MacOSElements";
+import type { SectionProps } from "@/app/page";
 
 function ProjectCard({
   project,
@@ -72,7 +73,7 @@ function ProjectCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -87,7 +88,9 @@ export default function Projects() {
           className="mb-8"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
-            <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">04.</span>
+            {sectionIndex !== undefined && (
+              <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">{String(sectionIndex).padStart(2, '0')}.</span>
+            )}
             Projects
           </h2>
           <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />

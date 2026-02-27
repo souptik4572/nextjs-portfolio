@@ -18,14 +18,15 @@ export default function Intro() {
   return (
     <section
       id="intro"
-      className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-32 py-24"
+      className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-32 py-16"
     >
       <motion.span
         custom={0}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="font-mono text-blue-600 dark:text-indigo-400 text-base md:text-lg tracking-widest mb-4"
+        className="text-blue-600 dark:text-indigo-400 text-lg md:text-xl font-light tracking-wide mb-3"
+        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif' }}
       >
         Hi, my name is
       </motion.span>
@@ -35,7 +36,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-slate-100 leading-tight"
+        className="text-6xl md:text-8xl font-bold text-slate-900 dark:text-slate-100 leading-tight"
       >
         {personal.name}
       </motion.h1>
@@ -45,7 +46,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-600 dark:text-slate-400 mt-2 min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]"
+        className="text-3xl sm:text-4xl md:text-6xl font-bold text-slate-600 dark:text-slate-400 mt-3 min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]"
       >
         <TypeAnimation
           sequence={[
@@ -69,7 +70,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-6 max-w-xl text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed"
+        className="mt-5 max-w-xl text-slate-600 dark:text-slate-400 text-lg md:text-xl leading-relaxed"
       >
         {personal.bio}
       </motion.p>
@@ -79,7 +80,7 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="flex flex-wrap gap-4 mt-8"
+        className="flex flex-wrap gap-4 mt-6"
       >
         <a
           href="#contact"
@@ -110,9 +111,9 @@ export default function Intro() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="flex items-center gap-2 mt-6 text-slate-500 dark:text-slate-500 text-sm"
+        className="flex items-center gap-2 mt-5 text-slate-500 dark:text-slate-500 text-base"
       >
-        <MapPin size={14} />
+        <MapPin size={16} />
         <span>{personal.location}</span>
       </motion.div>
     </section>

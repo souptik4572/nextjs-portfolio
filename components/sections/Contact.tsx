@@ -125,16 +125,16 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="px-6 md:px-16 lg:px-32 py-24">
+    <section id="contact" className="px-6 md:px-16 lg:px-32 py-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100">
-          <span className="text-blue-600 dark:text-indigo-400 font-mono text-xl mr-3">06.</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
+          <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">06.</span>
           Get In Touch
         </h2>
         <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
@@ -146,13 +146,13 @@ export default function Contact() {
         transition={{ duration: 0.55, delay: 0.15 }}
         className="max-w-lg"
       >
-        <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
+        <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">
           I&apos;m currently open to senior engineering opportunities. Whether
           you have a question, a project idea, or just want to say hi — my inbox
           is always open.
         </p>
 
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <a
             href={`mailto:${personal.email}`}
             className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"

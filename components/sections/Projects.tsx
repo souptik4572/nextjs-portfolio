@@ -52,13 +52,13 @@ function ProjectCard({
               )}
             </div>
           </div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">{project.title}</h3>
-          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-1">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">{project.title}</h3>
+          <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed flex-1">
             {project.description}
           </p>
           <div className="flex flex-wrap gap-2 mt-4">
             {project.tech.map((t) => (
-              <span key={t} className="font-mono text-blue-600 dark:text-indigo-400 text-xs">
+              <span key={t} className="font-mono text-blue-600 dark:text-indigo-400 text-sm">
                 {t}
               </span>
             ))}
@@ -74,22 +74,22 @@ export default function Projects() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="projects" className="px-6 md:px-16 lg:px-32 py-24">
+    <section id="projects" className="px-6 md:px-16 lg:px-32 py-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-8"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100">
-          <span className="text-blue-600 dark:text-indigo-400 font-mono text-xl mr-3">04.</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
+          <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">04.</span>
           Projects
         </h2>
         <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {portfolioData.projects.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} />
         ))}

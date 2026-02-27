@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 import { MacOSCard } from "@/components/MacOSElements";
+import Image from "next/image";
 
 function ExperienceCard({
   exp,
@@ -34,10 +35,35 @@ function ExperienceCard({
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-3 mb-4">
             <div className="flex-1">
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100">{exp.role}</h3>
-              <p className="text-blue-600 dark:text-indigo-400 font-semibold mt-0.5 flex items-center gap-1.5 text-base">
-                <Briefcase size={16} />
-                {exp.company}
-              </p>
+              <div className="flex items-center gap-2 mt-2">
+                {(exp as any).companyLogo && (exp as any).companyWebsite ? (
+                  <a
+                    href={(exp as any).companyWebsite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 group"
+                  >
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/50 p-1.5 group-hover:border-blue-500/60 dark:group-hover:border-indigo-500/50 transition-all flex items-center justify-center">
+                      <Image
+                        src={(exp as any).companyLogo}
+                        alt={`${exp.company} logo`}
+                        width={48}
+                        height={48}
+                        className="object-contain w-full h-full"
+                      />
+                    </div>
+                    <p className="text-blue-600 dark:text-indigo-400 font-semibold flex items-center gap-1.5 text-lg group-hover:text-blue-500 dark:group-hover:text-indigo-300 transition-colors">
+                      <Briefcase size={18} />
+                      {exp.company}
+                    </p>
+                  </a>
+                ) : (
+                  <p className="text-blue-600 dark:text-indigo-400 font-semibold flex items-center gap-1.5 text-lg">
+                    <Briefcase size={18} />
+                    {exp.company}
+                  </p>
+                )}
+              </div>
             </div>
             <div className="text-left sm:text-right text-base text-slate-600 dark:text-slate-400 space-y-1 w-full sm:w-auto">
               <div className="flex items-center gap-1.5 sm:justify-end">

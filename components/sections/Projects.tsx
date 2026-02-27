@@ -101,7 +101,7 @@ export default function Projects() {
       <div className="px-6 md:px-16 lg:px-32">
         <div className="relative">
           <div className="overflow-x-auto pt-2 pb-4 scroll-smooth hide-scrollbar">
-            <div className="flex gap-4 md:gap-5 min-w-max">
+            <div className="flex items-center gap-10 md:gap-10 min-w-max px-8 md:px-12">
               {portfolioData.projects.map((project, i) => (
                 <div key={project.id} className="w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] flex-shrink-0">
                   <ProjectCard project={project} index={i} />

@@ -20,6 +20,7 @@ export const portfolioData = {
     github: "https://github.com/souptik4572",
     linkedin: "https://www.linkedin.com/in/souptik4572/",
     location: "Kolkata, India",
+    resume: "https://bit.ly/Souptik_Sarkar_4YOE_SDE2",
   },
   skills: [
     { 

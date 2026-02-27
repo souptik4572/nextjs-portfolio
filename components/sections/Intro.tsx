@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { MapPin, Mail, Github, Linkedin } from "lucide-react";
+import { MapPin, Mail, Github, Linkedin, Eye } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 
 const fadeUp = {
@@ -87,6 +87,14 @@ export default function Intro() {
           className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-indigo-500/20 hover:shadow-xl hover:shadow-blue-500/30 dark:hover:shadow-indigo-500/30 hover:-translate-y-0.5"
         >
           <Mail size={16} /> Contact Me
+        </a>
+        <a
+          href={personal.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-5 py-2.5 border border-slate-300/60 dark:border-slate-600/60 hover:border-blue-500/60 dark:hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-lg font-medium transition-all hover:-translate-y-0.5"
+        >
+          <Eye size={16} /> Resume
         </a>
         <a
           href={personal.github}

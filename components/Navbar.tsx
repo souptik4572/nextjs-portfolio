@@ -10,6 +10,7 @@ const NAV_LABELS: Record<string, string> = {
   experience: "Experience",
   skills: "Skills",
   projects: "Projects",
+  notable_offers: "Offers",
   education: "Education",
   contact: "Contact",
 };

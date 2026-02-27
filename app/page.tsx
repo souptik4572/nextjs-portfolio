@@ -8,6 +8,7 @@ import Projects from "@/components/sections/Projects";
 import Achievements from "@/components/sections/Achievements";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
+import NotableOffers from "@/components/sections/NotableOffers";
 import type { SectionKey } from "@/lib/data";
 
 const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType> = {
@@ -16,6 +17,7 @@ const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType> = {
   skills: Skills,
   projects: Projects,
   achievements: Achievements,
+  notable_offers: NotableOffers,
   education: Education,
   contact: Contact,
 };

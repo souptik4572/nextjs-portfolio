@@ -49,7 +49,7 @@ export default function Intro() {
       >
         <TypeAnimation
           sequence={[
-            "Software Engineer (SDE-2)",
+            "Software Engineer",
             2000,
             "Full-Stack Developer",
             2000,
@@ -83,7 +83,7 @@ export default function Intro() {
       >
         <a
           href="#contact"
-          className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-indigo-500/20 hover:shadow-xl hover:shadow-blue-500/30 dark:hover:shadow-indigo-500/30 hover:-translate-y-0.5"
         >
           <Mail size={16} /> Contact Me
         </a>
@@ -91,7 +91,7 @@ export default function Intro() {
           href={personal.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-5 py-2.5 border border-slate-300 dark:border-slate-600 hover:border-blue-500 dark:hover:border-indigo-400 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 border border-slate-300/60 dark:border-slate-600/60 hover:border-blue-500/60 dark:hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-lg font-medium transition-all hover:-translate-y-0.5"
         >
           <Github size={16} /> GitHub
         </a>
@@ -99,7 +99,7 @@ export default function Intro() {
           href={personal.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-5 py-2.5 border border-slate-300 dark:border-slate-600 hover:border-blue-500 dark:hover:border-indigo-400 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 border border-slate-300/60 dark:border-slate-600/60 hover:border-blue-500/60 dark:hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-lg font-medium transition-all hover:-translate-y-0.5"
         >
           <Linkedin size={16} /> LinkedIn
         </a>

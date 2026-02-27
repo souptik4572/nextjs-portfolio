@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import { portfolioData } from "@/lib/data";
+import { MacOSCard } from "@/components/MacOSElements";
 
 function ProjectCard({
   project,
@@ -21,46 +22,49 @@ function ProjectCard({
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay: index * 0.1, ease: "easeOut" }}
-      className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-xl p-6 flex flex-col hover:border-blue-400 dark:hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300"
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="w-10 h-10 rounded-lg bg-blue-500/10 dark:bg-indigo-500/10 border border-blue-500/20 dark:border-indigo-500/20 flex items-center justify-center">
-          <span className="text-blue-600 dark:text-indigo-400 font-mono text-lg">{"</>"}</span>
+      <MacOSCard className="flex flex-col h-full">
+        <div className="p-6 flex flex-col flex-1">
+          <div className="flex items-start justify-between mb-4">
+            <div className="w-10 h-10 rounded-lg bg-blue-500/10 dark:bg-indigo-500/10 border border-blue-500/20 dark:border-indigo-500/20 flex items-center justify-center">
+              <span className="text-blue-600 dark:text-indigo-400 font-mono text-lg">{"</>"}</span>
+            </div>
+            <div className="flex gap-3">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors"
+                >
+                  <Github size={18} />
+                </a>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors"
+                >
+                  <ExternalLink size={18} />
+                </a>
+              )}
+            </div>
+          </div>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">{project.title}</h3>
+          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-1">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-2 mt-4">
+            {project.tech.map((t) => (
+              <span key={t} className="font-mono text-blue-600 dark:text-indigo-400 text-xs">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
-        <div className="flex gap-3">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors"
-            >
-              <Github size={18} />
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors"
-            >
-              <ExternalLink size={18} />
-            </a>
-          )}
-        </div>
-      </div>
-      <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">{project.title}</h3>
-      <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-1">
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-2 mt-4">
-        {project.tech.map((t) => (
-          <span key={t} className="font-mono text-blue-600 dark:text-indigo-400 text-xs">
-            {t}
-          </span>
-        ))}
-      </div>
+      </MacOSCard>
     </motion.div>
   );
 }

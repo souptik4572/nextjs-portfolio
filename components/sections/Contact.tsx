@@ -157,7 +157,7 @@ export default function Contact() {
             href={`mailto:${personal.email}`}
             className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center group-hover:border-blue-500 dark:group-hover:border-indigo-500/50 transition-colors shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/50 flex items-center justify-center group-hover:border-blue-500/60 dark:group-hover:border-indigo-500/50 transition-all shrink-0">
               <Mail size={16} />
             </span>
             <span className="break-all text-sm sm:text-base">{personal.email}</span>
@@ -168,7 +168,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center group-hover:border-blue-500 dark:group-hover:border-indigo-500/50 transition-colors shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/50 flex items-center justify-center group-hover:border-blue-500/60 dark:group-hover:border-indigo-500/50 transition-all shrink-0">
               <Github size={16} />
             </span>
             <span className="break-all text-sm sm:text-base">github.com/souptik4572</span>
@@ -179,13 +179,13 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"
           >
-            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center group-hover:border-blue-500 dark:group-hover:border-indigo-500/50 transition-colors shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/50 flex items-center justify-center group-hover:border-blue-500/60 dark:group-hover:border-indigo-500/50 transition-all shrink-0">
               <Linkedin size={16} />
             </span>
             <span className="break-all text-sm sm:text-base">linkedin.com/in/souptik-sarkar</span>
           </a>
           <div className="flex items-center gap-3 text-slate-500 dark:text-slate-500">
-            <span className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0">
+            <span className="w-9 h-9 rounded-lg bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/50 flex items-center justify-center shrink-0">
               <MapPin size={16} />
             </span>
             <span className="text-sm sm:text-base">{personal.location}</span>
@@ -220,9 +220,9 @@ export default function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white dark:bg-slate-800/50 border ${
-                errors.name ? "border-red-500" : "border-slate-300 dark:border-slate-700"
-              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-indigo-500 transition-colors`}
+              className={`w-full px-4 py-3 bg-white/80 dark:bg-slate-800/60 backdrop-blur-sm border ${
+                errors.name ? "border-red-500" : "border-slate-300/60 dark:border-slate-700/50"
+              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40 transition-all macos-shadow`}
               placeholder="Your name"
             />
             {errors.name && (
@@ -244,9 +244,9 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-white dark:bg-slate-800/50 border ${
-                errors.email ? "border-red-500" : "border-slate-300 dark:border-slate-700"
-              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-indigo-500 transition-colors`}
+              className={`w-full px-4 py-3 bg-white/80 dark:bg-slate-800/60 backdrop-blur-sm border ${
+                errors.email ? "border-red-500" : "border-slate-300/60 dark:border-slate-700/50"
+              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40 transition-all macos-shadow`}
               placeholder="your.email@example.com"
             />
             {errors.email && (
@@ -268,9 +268,9 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               rows={5}
-              className={`w-full px-4 py-3 bg-white dark:bg-slate-800/50 border ${
-                errors.message ? "border-red-500" : "border-slate-300 dark:border-slate-700"
-              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-indigo-500 transition-colors resize-none`}
+              className={`w-full px-4 py-3 bg-white/80 dark:bg-slate-800/60 backdrop-blur-sm border ${
+                errors.message ? "border-red-500" : "border-slate-300/60 dark:border-slate-700/50"
+              } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40 transition-all resize-none macos-shadow`}
               placeholder="Your message..."
             />
             {errors.message && (

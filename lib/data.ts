@@ -14,7 +14,7 @@ export const portfolioData = {
   },
   personal: {
     name: "Souptik Sarkar",
-    role: "Software Engineer (SDE-2)",
+    role: "Software Engineer",
     bio: "Polyglot engineer at heart. Deep expertise in Java and Spring Boot, frequently building high-performance services in Golang and Python.",
     email: "souptik4572@gmail.com",
     github: "https://github.com/souptik4572",
@@ -22,16 +22,26 @@ export const portfolioData = {
     location: "Kolkata, India",
   },
   skills: [
-    { category: "Languages", items: ["Java", "Golang", "Python", "TypeScript"] },
-    {
-      category: "Frameworks & Libraries",
-      items: ["Spring Boot", "React.js", "Next.js"],
+    { 
+      category: "Languages", 
+      items: ["Java", "Python", "Golang", "JavaScript", "TypeScript"] 
     },
     {
-      category: "Cloud & Infrastructure",
-      items: ["AWS EC2", "AWS EKS", "DynamoDB", "Kafka", "S3", "Docker"],
+      category: "Libraries/Frameworks",
+      items: ["Spring Boot", "NodeJS", "Django", "ReactJS", "Redux", "Mongoose", "Prisma"],
     },
-    { category: "Databases", items: ["SQL", "DynamoDB"] },
+    {
+      category: "Databases",
+      items: ["MySQL", "PostgreSQL", "MongoDB", "DynamoDB", "SQLite", "Redis", "ElasticSearch"],
+    },
+    { 
+      category: "Infrastructure", 
+      items: ["AWS", "Nginx", "Bash", "Docker", "Kubernetes"] 
+    },
+    { 
+      category: "Others", 
+      items: ["Git", "Postman", "Jira", "GitHub", "Bitbucket", "System Design"] 
+    },
   ],
   experience: [
     {

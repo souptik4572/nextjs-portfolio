@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { portfolioData } from "@/lib/data";
+import { MacOSCard } from "@/components/MacOSElements";
 
 function ExperienceCard({
   exp,
@@ -28,35 +29,37 @@ function ExperienceCard({
       {/* Timeline dot */}
       <span className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-blue-600 dark:bg-indigo-500 ring-4 ring-white dark:ring-slate-900" />
 
-      <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-xl p-4 sm:p-6 hover:border-blue-400 dark:hover:border-indigo-500/40 transition-colors">
-        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-3 mb-4">
-          <div className="flex-1">
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100">{exp.role}</h3>
-            <p className="text-blue-600 dark:text-indigo-400 font-semibold mt-0.5 flex items-center gap-1.5">
-              <Briefcase size={14} />
-              {exp.company}
-            </p>
-          </div>
-          <div className="text-left sm:text-right text-sm text-slate-600 dark:text-slate-400 space-y-1 w-full sm:w-auto">
-            <div className="flex items-center gap-1.5 sm:justify-end">
-              <Calendar size={13} />
-              <span>{exp.period}</span>
+      <MacOSCard>
+        <div className="p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-3 mb-4">
+            <div className="flex-1">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100">{exp.role}</h3>
+              <p className="text-blue-600 dark:text-indigo-400 font-semibold mt-0.5 flex items-center gap-1.5">
+                <Briefcase size={14} />
+                {exp.company}
+              </p>
             </div>
-            <div className="flex items-center gap-1.5 sm:justify-end">
-              <MapPin size={13} />
-              <span>{exp.location}</span>
+            <div className="text-left sm:text-right text-sm text-slate-600 dark:text-slate-400 space-y-1 w-full sm:w-auto">
+              <div className="flex items-center gap-1.5 sm:justify-end">
+                <Calendar size={13} />
+                <span>{exp.period}</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:justify-end">
+                <MapPin size={13} />
+                <span>{exp.location}</span>
+              </div>
             </div>
           </div>
+          <ul className="space-y-2">
+            {exp.highlights.map((h, i) => (
+              <li key={i} className="flex gap-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                <span className="text-blue-600 dark:text-indigo-400 mt-1 shrink-0">▹</span>
+                {h}
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="space-y-2">
-          {exp.highlights.map((h, i) => (
-            <li key={i} className="flex gap-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-              <span className="text-blue-600 dark:text-indigo-400 mt-1 shrink-0">▹</span>
-              {h}
-            </li>
-          ))}
-        </ul>
-      </div>
+      </MacOSCard>
     </motion.div>
   );
 }

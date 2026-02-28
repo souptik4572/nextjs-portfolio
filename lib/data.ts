@@ -32,10 +32,26 @@ export const portfolioData = {
 		email: "souptiksarkar4572@gmail.com",
 		linkedin: "https://www.linkedin.com/in/souptik4572/",
 		coding_profiles: {
-            github: "https://github.com/souptik4572",
-			leetcode: "https://leetcode.com/u/Souptik4572/",
-			takeuforward: "https://takeuforward.org/profile/souptik4572",
-			hackerrank: "https://www.hackerrank.com/profile/souptik4572",
+			github: {
+                title: "GitHub",
+				url: "https://github.com/souptik4572",
+				image: "/images/coding-profiles/github.svg",
+			},
+			leetcode: {
+                title: "LeetCode",
+				url: "https://leetcode.com/u/Souptik4572/",
+				image: "/images/coding-profiles/leetcode.svg",
+			},
+			takeuforward: {
+                title: "TakeUforward",
+				url: "https://takeuforward.org/profile/souptik4572",
+				image: "/images/coding-profiles/takeUforward.svg",
+			},
+			hackerrank: {
+                title: "HackerRank",
+				url: "https://www.hackerrank.com/profile/souptik4572",
+				image: "/images/coding-profiles/hackerrank.svg",
+			},
 		},
 		location: "Kolkata, West Bengal",
 		resume: "https://bit.ly/Souptik_Sarkar_4YOE_SDE2",

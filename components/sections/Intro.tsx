@@ -97,7 +97,7 @@ export default function Intro() {
           <Eye size={16} /> Resume
         </a>
         <a
-          href={personal.coding_profiles.github}
+          href={personal.coding_profiles.github.url}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-5 py-2.5 border border-slate-300/60 dark:border-slate-600/60 hover:border-blue-500/60 dark:hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-lg font-medium transition-all hover:-translate-y-0.5"

@@ -4,11 +4,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import type { SectionProps } from "@/app/page";
 import ContactForm from "@/components/ContactForm";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 
 export default function Contact({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const portfolioData = usePortfolioData();
 
   return (
     <section id="contact" className="px-6 md:px-16 lg:px-32 py-16">

@@ -1,4 +1,4 @@
-import { portfolioData } from "@/lib/data";
+import { getPortfolioData } from "@/lib/getPortfolioData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Intro from "@/components/sections/Intro";
@@ -27,8 +27,9 @@ const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType<SectionProps>> 
   contact: Contact,
 };
 
-export default function Home() {
-  const { section_order } = portfolioData.layout;
+export default async function Home() {
+  const data = await getPortfolioData();
+  const { section_order } = data.layout;
 
   return (
     <>

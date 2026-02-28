@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Terminal } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 
 const NAV_LABELS: Record<string, string> = {
 	intro: "Home",
@@ -22,6 +22,7 @@ export default function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const { theme, toggleTheme } = useTheme();
+	const portfolioData = usePortfolioData();
 	const pathname = usePathname();
 	const isHome = pathname === "/";
 	const sectionHref = (section: string) => isHome ? `#${section}` : `/#${section}`;

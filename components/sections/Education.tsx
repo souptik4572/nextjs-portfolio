@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, Calendar } from "lucide-react";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import { MacOSCard } from "@/components/MacOSElements";
 import type { SectionProps } from "@/app/page";
 
 export default function Education({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const portfolioData = usePortfolioData();
 
   return (
     <section id="education" className="px-6 md:px-16 lg:px-32 py-16">

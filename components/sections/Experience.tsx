@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import type { ExperienceEntry } from "@/lib/data";
 import { MacOSCard } from "@/components/MacOSElements";
 import Image from "next/image";
@@ -95,6 +95,7 @@ function ExperienceCard({
 export default function Experience({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const portfolioData = usePortfolioData();
 
   return (
     <section id="experience" className="px-6 md:px-16 lg:px-32 py-16">

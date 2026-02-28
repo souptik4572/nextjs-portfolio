@@ -1,7 +1,9 @@
-import { portfolioData } from "@/lib/data";
+"use client";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import { Mail, Github, Linkedin, FileText } from "lucide-react";
 
 export default function Footer() {
+  const portfolioData = usePortfolioData();
   const { personal } = portfolioData;
 
   const socialLinks = [

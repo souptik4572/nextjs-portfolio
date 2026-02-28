@@ -2,12 +2,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import type { SectionProps } from "@/app/page";
 
 export default function Skills({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const portfolioData = usePortfolioData();
 
   return (
     <section id="skills" className="px-6 md:px-16 lg:px-32 py-16">

@@ -3,7 +3,7 @@ import { portfolioData, type PortfolioData } from "@/lib/data";
 /**
  * Fetch portfolio data from Firebase Realtime Database REST API.
  *
- * Uses Next.js ISR caching (revalidate every 3600 s / 1 hour).
+ * Uses Next.js ISR caching (revalidate every 300 s / 5 minutes).
  * Falls back to the static `portfolioData` export from data.ts
  * when the env variable is missing or the request fails.
  */
@@ -19,7 +19,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
 
 	try {
 		const res = await fetch(`${dbUrl}/.json`, {
-			next: { revalidate: 3600 },
+			next: { revalidate: 300 },
 		});
 
 		if (!res.ok) {

@@ -1,6 +1,7 @@
 "use client";
 import { ReactTerminal, TerminalContextProvider, TerminalContext } from "react-terminal";
 import { portfolioData } from "@/lib/data";
+import type { SectionKey } from "@/lib/data";
 import { TrafficLights } from "@/components/MacOSElements";
 import { useTheme } from "@/contexts/ThemeContext";
 import InteractiveCodingList from "@/components/InteractiveCodingList";
@@ -24,8 +25,24 @@ const palette = {
 	},
 } as const;
 
+/**
+ * Maps each SectionKey to its terminal command name and help description.
+ * Sections not listed here (e.g. "education", "contact") have no terminal command.
+ */
+const SECTION_COMMAND_META: Partial<
+	Record<SectionKey, { cmd: string; desc: string }>
+> = {
+	intro: { cmd: "intro", desc: "About me & contact links" },
+	experience: { cmd: "experience", desc: "Work experience" },
+	skills: { cmd: "skills", desc: "Technical skills" },
+	projects: { cmd: "projects", desc: "Featured projects" },
+	achievements: { cmd: "achievements", desc: "Achievements & awards" },
+	notable_offers: { cmd: "offers", desc: "Notable job offers" },
+};
+
 function TerminalCommands() {
 	const {
+		layout: { section_order },
 		personal,
 		experience,
 		skills,
@@ -37,57 +54,9 @@ function TerminalCommands() {
 	const c = palette[theme];
 	const { setTemporaryContent } = useContext(TerminalContext);
 
-	const commands = {
-		help: (
-			<div className="py-2">
-				<p
-					style={{
-						color: c.green,
-						fontWeight: 600,
-						marginBottom: "8px",
-					}}
-				>
-					Available Commands:
-				</p>
-				{[
-					{ cmd: "intro", desc: "About me & contact links" },
-					{ cmd: "experience", desc: "Work experience" },
-					{ cmd: "skills", desc: "Technical skills" },
-					{ cmd: "projects", desc: "Featured projects" },
-					{ cmd: "achievements", desc: "Achievements & awards" },
-					{ cmd: "offers", desc: "Notable job offers" },
-					{ cmd: "clear", desc: "Clear the terminal" },
-					{ cmd: "sudo", desc: "Try running as root 😏" },
-					{ cmd: "whoami", desc: "Who are you ?" },
-					{ cmd: "pwd", desc: "Print working directory" },
-					{ cmd: "coffee", desc: "Fuel the developer" },
-					{ cmd: "date", desc: "Current date & time" },
-					{ cmd: "theme", desc: "Toggle light / dark mode" },
-					{ cmd: "coding", desc: "Interactive coding profiles" },
-				].map(({ cmd, desc }) => (
-					<div
-						key={cmd}
-						style={{
-							display: "flex",
-							gap: "12px",
-							padding: "2px 0",
-						}}
-					>
-						<span
-							style={{
-								color: c.blue,
-								fontFamily: "monospace",
-								minWidth: "140px",
-							}}
-						>
-							{cmd}
-						</span>
-						<span style={{ color: c.text }}>{desc}</span>
-					</div>
-				))}
-			</div>
-		),
-
+	/* ── Build section-specific commands (only those in section_order) ── */
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const allSectionCommands: Record<string, any> = {
 		intro: (
 			<div className="py-2">
 				<p
@@ -369,7 +338,35 @@ function TerminalCommands() {
 				))}
 			</div>
 		),
+	};
 
+	/* ── Filter: only keep section commands present in section_order ── */
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const activeSectionCommands: Record<string, any> = {};
+	const activeSectionHelp: { cmd: string; desc: string }[] = [];
+
+	for (const key of section_order) {
+		const meta = SECTION_COMMAND_META[key];
+		if (meta && meta.cmd in allSectionCommands) {
+			activeSectionCommands[meta.cmd] = allSectionCommands[meta.cmd];
+			activeSectionHelp.push(meta);
+		}
+	}
+
+	/* ── Utility / Easter-egg commands (always available) ─────────── */
+	const utilityHelpEntries = [
+		{ cmd: "clear", desc: "Clear the terminal" },
+		{ cmd: "sudo", desc: "Try running as root 😏" },
+		{ cmd: "whoami", desc: "Who are you ?" },
+		{ cmd: "pwd", desc: "Print working directory" },
+		{ cmd: "coffee", desc: "Fuel the developer" },
+		{ cmd: "date", desc: "Current date & time" },
+		{ cmd: "theme", desc: "Toggle light / dark mode" },
+		{ cmd: "coding", desc: "Interactive coding profiles" },
+	];
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const utilityCommands: Record<string, any> = {
 		/* ── Easter egg & personality commands ───────────────────────── */
 
 		coding: () =>
@@ -514,6 +511,51 @@ function TerminalCommands() {
 				</div>
 			);
 		},
+	};
+
+	/* ── Dynamic help command ────────────────────────────────────── */
+	const allHelpEntries = [...activeSectionHelp, ...utilityHelpEntries];
+
+	const help = (
+		<div className="py-2">
+			<p
+				style={{
+					color: c.green,
+					fontWeight: 600,
+					marginBottom: "8px",
+				}}
+			>
+				Available Commands:
+			</p>
+			{allHelpEntries.map(({ cmd, desc }) => (
+				<div
+					key={cmd}
+					style={{
+						display: "flex",
+						gap: "12px",
+						padding: "2px 0",
+					}}
+				>
+					<span
+						style={{
+							color: c.blue,
+							fontFamily: "monospace",
+							minWidth: "140px",
+						}}
+					>
+						{cmd}
+					</span>
+					<span style={{ color: c.text }}>{desc}</span>
+				</div>
+			))}
+		</div>
+	);
+
+	/* ── Merge all commands ──────────────────────────────────────── */
+	const commands = {
+		help,
+		...activeSectionCommands,
+		...utilityCommands,
 	};
 
 	const welcomeMessage = (

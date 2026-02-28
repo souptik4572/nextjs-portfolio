@@ -1,9 +1,12 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { MapPin, Mail, Linkedin, Eye, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { portfolioData } from "@/lib/data";
+import Modal from "@/components/Modal";
+import ContactForm from "@/components/ContactForm";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -17,6 +20,7 @@ const fadeUp = {
 export default function Intro() {
   const { personal } = portfolioData;
   const codingProfiles = Object.values(personal.coding_profiles);
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <section
@@ -29,7 +33,6 @@ export default function Intro() {
         initial="hidden"
         animate="visible"
         className="text-blue-600 dark:text-indigo-400 text-lg md:text-xl font-light tracking-wide mb-3"
-        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif' }}
       >
         Hi, my name is
       </motion.span>
@@ -87,7 +90,11 @@ export default function Intro() {
       >
         <a
           href="#contact"
-          className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-indigo-500/20 hover:shadow-xl hover:shadow-blue-500/30 dark:hover:shadow-indigo-500/30 hover:-translate-y-0.5"
+          onClick={(e) => {
+            e.preventDefault();
+            setContactOpen(true);
+          }}
+          className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-indigo-500/20 hover:shadow-xl hover:shadow-blue-500/30 dark:hover:shadow-indigo-500/30 hover:-translate-y-0.5 cursor-pointer"
         >
           <Mail size={16} /> Contact Me
         </a>
@@ -187,6 +194,19 @@ export default function Intro() {
           ))}
         </div>
       </motion.div>
+
+      {/* Contact Modal */}
+      <Modal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+        title="Send me a message"
+      >
+        <p className="text-slate-600 dark:text-slate-400 text-sm mb-5">
+          Fill out the form below and I&apos;ll get back to you as soon as
+          possible.
+        </p>
+        <ContactForm idPrefix="intro" />
+      </Modal>
     </section>
   );
 }

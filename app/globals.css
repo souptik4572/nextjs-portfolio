@@ -12,9 +12,10 @@
   --card-border: #e2e8f0;
   --muted: #64748b;
   --muted-light: #94a3b8;
-  
+
   /* Font families */
-  --font-inter: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-body: "Clash Display", system-ui, -apple-system, sans-serif;
   --font-fira-code: "Courier New", Courier, monospace;
 }
 
@@ -45,9 +46,14 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-body);
   /* Smooth theme transition */
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply heading font globally */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 ::selection {

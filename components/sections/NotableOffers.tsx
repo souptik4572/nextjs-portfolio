@@ -86,7 +86,7 @@ export default function NotableOffers({ sectionIndex }: SectionProps) {
         <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 max-w-4xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 sm:gap-6 max-w-4xl">
         {portfolioData.notable_offers.map((offer, i) => (
           <OfferCard key={offer.id} offer={offer} index={i} />
         ))}

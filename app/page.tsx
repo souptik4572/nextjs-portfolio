@@ -9,6 +9,7 @@ import Achievements from "@/components/sections/Achievements";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import NotableOffers from "@/components/sections/NotableOffers";
+import ScrollToTop from "@/components/ScrollToTop";
 import type { SectionKey } from "@/lib/data";
 
 export interface SectionProps {
@@ -39,6 +40,7 @@ export default function Home() {
         })}
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

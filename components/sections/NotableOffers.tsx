@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Calendar, Briefcase, ExternalLink } from "lucide-react";
 import { portfolioData } from "@/lib/data";
+import type { OfferEntry } from "@/lib/data";
 import Image from "next/image";
 import type { SectionProps } from "@/app/page";
 
@@ -11,7 +12,7 @@ function OfferCard({
   offer,
   index,
 }: {
-  offer: (typeof portfolioData.notable_offers)[number];
+  offer: OfferEntry;
   index: number;
 }) {
   const ref = useRef(null);
@@ -87,9 +88,11 @@ export default function NotableOffers({ sectionIndex }: SectionProps) {
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 sm:gap-6 max-w-4xl">
-        {portfolioData.notable_offers.map((offer, i) => (
-          <OfferCard key={offer.id} offer={offer} index={i} />
-        ))}
+        {Object.entries(portfolioData.notable_offers)
+          .filter(([, offer]) => offer.visible !== false)
+          .map(([id, offer], i) => (
+            <OfferCard key={id} offer={offer} index={i} />
+          ))}
       </div>
     </section>
   );

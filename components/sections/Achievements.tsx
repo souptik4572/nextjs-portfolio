@@ -12,7 +12,7 @@ export default function Achievements({ sectionIndex }: SectionProps) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="achievements" className="px-6 md:px-16 lg:px-32 py-16 bg-white dark:bg-slate-800/40">
+    <section id="achievements" className="px-6 md:px-16 lg:px-32 py-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
@@ -30,9 +30,9 @@ export default function Achievements({ sectionIndex }: SectionProps) {
       </motion.div>
 
       <div className="max-w-2xl space-y-5">
-        {portfolioData.achievements.map((achievement, i) => (
+        {Object.entries(portfolioData.achievements).map(([id, achievement], i) => (
           <motion.div
-            key={achievement.id}
+            key={id}
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}

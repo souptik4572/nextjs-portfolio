@@ -23,32 +23,66 @@ export const portfolioData = {
 		] as SectionKey[],
 	},
 	theme: {
-		defaultMode: "dark" as "light" | "dark",
+		defaultMode: "light" as "light" | "dark",
+	},
+	meta: {
+		title: "👨‍💻 Souptik Sarkar | Software Engineer",
+		description:
+			"Polyglot engineer with deep expertise in Java, Spring Boot, Golang, Python, and cloud-native systems. Open to senior engineering roles.",
+		keywords: [
+			"Souptik Sarkar",
+			"SDE-2",
+			"Software Engineer",
+			"Java",
+			"Spring Boot",
+			"Golang",
+			"Python",
+			"Next.js",
+			"AWS",
+		],
+		ogTitle: "👨‍💻 Souptik Sarkar | Software Engineer",
+		ogDescription:
+			"Polyglot engineer — Java, Spring Boot, Golang, Python, React, AWS.",
+		devTitle: "👨‍💻 Souptik Sarkar | Developer Terminal",
+		devDescription:
+			"Explore Souptik Sarkar's portfolio via an interactive terminal interface.",
+	},
+	terminal: {
+		welcomeMessage: "Welcome to Souptik's Terminal 🚀",
+		pwdPath: "/home/souptik/portfolio/terminal",
+		whoamiOutput: "guest-user@evaluating-top-tier-software-engineer",
+		windowTitle: "visitor@souptik.dev — zsh",
+		prompt: "visitor@souptik.dev:~$ ",
 	},
 	personal: {
 		name: "Souptik Sarkar",
+		initials: "SS",
+		domain: "souptik.dev",
 		role: "Software Engineer",
+		alternateRoles: ["Software Engineer", "Full-Stack Developer", "Polyglot Engineer"],
 		bio: "Software Engineer with 4 years of experience in designing scalable microservices and backend systems using Java, Go, Python, and JavaScript. Skilled in cloud infrastructure and database optimization.",
+		contactBlurb:
+			"I'm currently open to senior engineering opportunities. Whether you have a question, a project idea, or just want to say hi — my inbox is always open.",
 		email: "souptiksarkar4572@gmail.com",
 		linkedin: "https://www.linkedin.com/in/souptik4572/",
 		coding_profiles: {
 			github: {
-                title: "GitHub",
+				title: "GitHub",
 				url: "https://github.com/souptik4572",
 				image: "/images/coding-profiles/github.svg",
 			},
 			leetcode: {
-                title: "LeetCode",
+				title: "LeetCode",
 				url: "https://leetcode.com/u/Souptik4572/",
 				image: "/images/coding-profiles/leetcode.svg",
 			},
 			takeuforward: {
-                title: "TakeUforward",
+				title: "TakeUforward",
 				url: "https://takeuforward.org/profile/souptik4572",
 				image: "/images/coding-profiles/takeUforward.svg",
 			},
 			hackerrank: {
-                title: "HackerRank",
+				title: "HackerRank",
 				url: "https://www.hackerrank.com/profile/souptik4572",
 				image: "/images/coding-profiles/hackerrank.svg",
 			},
@@ -56,12 +90,12 @@ export const portfolioData = {
 		location: "Kolkata, West Bengal",
 		resume: "https://bit.ly/Souptik_Sarkar_4YOE_SDE2",
 	},
-	skills: [
-		{
+	skills: {
+		languages: {
 			category: "Languages",
 			items: ["Java", "Python", "Golang", "JavaScript", "TypeScript"],
 		},
-		{
+		libraries_frameworks: {
 			category: "Libraries/Frameworks",
 			items: [
 				"Spring Boot",
@@ -73,7 +107,7 @@ export const portfolioData = {
 				"Prisma",
 			],
 		},
-		{
+		databases: {
 			category: "Databases",
 			items: [
 				"MySQL",
@@ -85,11 +119,11 @@ export const portfolioData = {
 				"ElasticSearch",
 			],
 		},
-		{
+		infrastructure: {
 			category: "Infrastructure",
 			items: ["AWS", "Nginx", "Bash", "Docker", "Kubernetes"],
 		},
-		{
+		others: {
 			category: "Others",
 			items: [
 				"Git",
@@ -101,10 +135,9 @@ export const portfolioData = {
 				"OOP & Design Patterns",
 			],
 		},
-	],
-	experience: [
-		{
-			id: "exp-1",
+	},
+	experience: {
+		"exp-1": {
 			company: "Seamless Distribution Systems",
 			companyLogo: "/images/companies/seamless.jpeg",
 			companyWebsite: "https://seamless.se/",
@@ -118,8 +151,7 @@ export const portfolioData = {
 				"Developed a log ingestion service using Go and Gin to collect and process logs from 10+ microservices, transforming and indexing audit and data feeds into Elasticsearch for centralized search and analysis.",
 			],
 		},
-		{
-			id: "exp-2",
+		"exp-2": {
 			company: "Solulab",
 			companyLogo: "/images/companies/solulab.png",
 			companyWebsite: "https://www.solulab.com/",
@@ -133,37 +165,33 @@ export const portfolioData = {
 				"Collaborated closely with front-end and product teams in an Agile environment to define GraphQL API contracts and implement reward-based gameplay features, delivering 20+ new endpoints.",
 			],
 		},
-	],
-	projects: [
-		{
-			id: "proj-1",
+	},
+	projects: {
+		"proj-1": {
 			title: "macOS-Inspired Portfolio",
 			tech: ["React.js", "GSAP", "CSS Modules"],
 			description:
 				"A pixel-perfect macOS desktop simulation built as a personal portfolio. Features animated dock, draggable windows, and smooth GSAP-powered transitions.",
 			github: "https://github.com/souptik4572/macos-portfolio",
-			live: null,
+			live: "",
 		},
-		{
-			id: "proj-2",
+		"proj-2": {
 			title: "Full-Stack Calendar App",
 			tech: ["Next.js", "Prisma", "Shadcn/UI", "PostgreSQL"],
 			description:
 				"A production-grade calendar application with drag-and-drop event scheduling, recurring events, and timezone support, backed by Prisma ORM and PostgreSQL.",
 			github: "https://github.com/souptik4572/calendar-app",
-			live: null,
+			live: "",
 		},
-		{
-			id: "proj-3",
+		"proj-3": {
 			title: "Scalable YouTube Downloader",
 			tech: ["Python", "FastAPI", "Redis", "Docker", "AWS S3"],
 			description:
 				"Distributed architecture for downloading and transcoding YouTube videos at scale. Uses Redis-backed job queues, Docker workers, and S3 for storage.",
 			github: "https://github.com/souptik4572/yt-downloader",
-			live: null,
+			live: "",
 		},
-		{
-			id: "proj-4",
+		"proj-4": {
 			title: "Real-Time Chat Platform",
 			tech: [
 				"TypeScript",
@@ -177,90 +205,95 @@ export const portfolioData = {
 			github: "https://github.com/souptik4572/realtime-chat",
 			live: "https://chat.souptik.dev",
 		},
-	],
-	achievements: [
-		{
-			id: "ach-1",
+	},
+	achievements: {
+		"ach-1": {
 			title: "Smart India Hackathon Finalist",
 			date: "2020",
 			description:
 				"Qualified for the finals of Smart India Hackathon 2020, competing among 100,000+ participants nationwide.",
 		},
-		{
-			id: "ach-2",
+		"ach-2": {
 			title: "Research Intern at DRDO",
-			date: "2021", // Approximated based on typical B.Tech timeline, feel free to adjust!
+			date: "2021",
 			description:
 				"Selected for a research internship at the Defence Research and Development Organisation (DRDO), contributing to a project on Meteorological Data Analysis.",
 		},
-	],
-	notable_offers: [
-		{
-			id: "offer-1",
+	},
+	notable_offers: {
+		"offer-1": {
 			company: "Twilio",
 			companyLogo: "/images/companies/twilio.svg",
 			role: "Software Engineer 2",
 			period: "November 2025",
 			companyUrl: "https://www.twilio.com/",
+			visible: true,
 		},
-		{
-			id: "offer-2",
+		"offer-2": {
 			company: "Navi",
 			companyLogo: "/images/companies/navi.png",
 			role: "Software Engineer",
 			period: "October 2023",
 			companyUrl: "https://navi.com/",
+			visible: true,
 		},
-		// {
-		// 	id: "offer-3",
-		// 	company: "UNO Digital Bank",
-		// 	companyLogo: "/images/companies/unobank.png",
-		// 	role: "Software Engineer",
-		// 	period: "February 2023",
-		// 	companyUrl: "https://uno.bank/",
-		// },
-		// {
-		// 	id: "offer-4",
-		// 	company: "Tracxn",
-		// 	companyLogo: "/images/companies/tracxn.jpeg",
-		// 	role: "Software Engineer",
-		// 	period: "September 2022",
-		// 	companyUrl: "https://tracxn.com/",
-		// },
-		{
-			id: "offer-5",
+		"offer-3": {
+			company: "UNO Digital Bank",
+			companyLogo: "/images/companies/unobank.png",
+			role: "Software Engineer",
+			period: "February 2023",
+			companyUrl: "https://uno.bank/",
+			visible: false,
+		},
+		"offer-4": {
+			company: "Tracxn",
+			companyLogo: "/images/companies/tracxn.jpeg",
+			role: "Software Engineer",
+			period: "September 2022",
+			companyUrl: "https://tracxn.com/",
+			visible: false,
+		},
+		"offer-5": {
 			company: "Cricbuzz",
 			companyLogo: "/images/companies/cricbuzz.svg",
 			role: "Software Engineer",
 			period: "May 2022",
 			companyUrl: "https://www.cricbuzz.com/",
+			visible: true,
 		},
-		// {
-		// 	id: "offer-6",
-		// 	company: "Tejas Networks",
-		// 	companyLogo: "/images/companies/tejas.jpeg",
-		// 	role: "Software Engineer",
-		// 	period: "March 2022",
-		// 	companyUrl: "https://www.tejasnetworks.com/",
-		// },
-		// {
-		// 	id: "offer-7",
-		// 	company: "Zaggle",
-		// 	companyLogo: "/images/companies/zaggle.svg",
-		// 	role: "Software Engineer",
-		// 	period: "November 2021",
-		// 	companyUrl: "https://www.zaggle.in/",
-		// },
-	],
-	education: [
-		{
-			id: "edu-1",
+		"offer-6": {
+			company: "Tejas Networks",
+			companyLogo: "/images/companies/tejas.jpeg",
+			role: "Software Engineer",
+			period: "March 2022",
+			companyUrl: "https://www.tejasnetworks.com/",
+			visible: false,
+		},
+		"offer-7": {
+			company: "Zaggle",
+			companyLogo: "/images/companies/zaggle.svg",
+			role: "Software Engineer",
+			period: "November 2021",
+			companyUrl: "https://www.zaggle.in/",
+			visible: false,
+		},
+	},
+	education: {
+		"edu-1": {
 			institution: "University of Engineering and Management",
 			degree: "Bachelor's of Technology (B.Tech) in Computer Science & Engineering",
 			period: "2018 - 2022",
 			gpa: "9.35 CGPA",
 		},
-	],
+	},
 };
 
 export type PortfolioData = typeof portfolioData;
+
+/** Convenience types for individual record entries */
+export type ExperienceEntry = PortfolioData["experience"][keyof PortfolioData["experience"]];
+export type ProjectEntry = PortfolioData["projects"][keyof PortfolioData["projects"]];
+export type OfferEntry = PortfolioData["notable_offers"][keyof PortfolioData["notable_offers"]];
+export type SkillGroup = PortfolioData["skills"][keyof PortfolioData["skills"]];
+export type AchievementEntry = PortfolioData["achievements"][keyof PortfolioData["achievements"]];
+export type EducationEntry = PortfolioData["education"][keyof PortfolioData["education"]];

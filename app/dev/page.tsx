@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import TerminalWrapper from "@/components/TerminalWrapper";
 import Navbar from "@/components/Navbar";
+import { portfolioData } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "👨‍💻 Souptik Sarkar | Developer Terminal",
-  description: "Explore Souptik Sarkar's portfolio via an interactive terminal interface.",
+  title: portfolioData.meta.devTitle,
+  description: portfolioData.meta.devDescription,
 };
 
 export default function DevPage() {

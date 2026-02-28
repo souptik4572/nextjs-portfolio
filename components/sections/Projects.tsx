@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import { portfolioData } from "@/lib/data";
+import type { ProjectEntry } from "@/lib/data";
 import { MacOSCard } from "@/components/MacOSElements";
 import type { SectionProps } from "@/app/page";
 
@@ -11,7 +12,7 @@ function ProjectCard({
   project,
   index,
 }: {
-  project: (typeof portfolioData.projects)[number];
+  project: ProjectEntry;
   index: number;
 }) {
   const ref = useRef(null);
@@ -105,8 +106,8 @@ export default function Projects({ sectionIndex }: SectionProps) {
         <div className="relative">
           <div className="overflow-x-auto pt-2 pb-4 scroll-smooth hide-scrollbar">
             <div className="flex items-center gap-10 md:gap-10 min-w-max px-8 md:px-12">
-              {portfolioData.projects.map((project, i) => (
-                <div key={project.id} className="w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] flex-shrink-0">
+              {Object.entries(portfolioData.projects).map(([id, project], i) => (
+                <div key={id} className="w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] flex-shrink-0">
                   <ProjectCard project={project} index={i} />
                 </div>
               ))}

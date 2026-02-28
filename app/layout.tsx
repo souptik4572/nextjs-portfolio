@@ -1,27 +1,18 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { portfolioData } from "@/lib/data";
 import "./globals.css";
 
+const { meta, personal } = portfolioData;
+
 export const metadata: Metadata = {
-  title: "👨‍💻 Souptik Sarkar | Software Engineer",
-  description:
-    "Polyglot engineer with deep expertise in Java, Spring Boot, Golang, Python, and cloud-native systems. Open to senior engineering roles.",
-  keywords: [
-    "Souptik Sarkar",
-    "SDE-2",
-    "Software Engineer",
-    "Java",
-    "Spring Boot",
-    "Golang",
-    "Python",
-    "Next.js",
-    "AWS",
-  ],
-  authors: [{ name: "Souptik Sarkar" }],
+  title: meta.title,
+  description: meta.description,
+  keywords: meta.keywords,
+  authors: [{ name: personal.name }],
   openGraph: {
-    title: "👨‍💻 Souptik Sarkar | Software Engineer",
-    description:
-      "Polyglot engineer — Java, Spring Boot, Golang, Python, React, AWS.",
+    title: meta.ogTitle,
+    description: meta.ogDescription,
     type: "website",
   },
 };

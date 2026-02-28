@@ -166,7 +166,7 @@ export default function Contact({ sectionIndex }: SectionProps) {
             <span className="break-all text-sm sm:text-base">{personal.email}</span>
           </a>
           <a
-            href={personal.coding_profiles.github}
+            href={personal.coding_profiles.github.url}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-indigo-400 transition-colors group"

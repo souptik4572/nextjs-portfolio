@@ -10,7 +10,7 @@ export default function Skills({ sectionIndex }: SectionProps) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="skills" className="px-6 md:px-16 lg:px-32 py-16 bg-slate-100 dark:bg-slate-900/40">
+    <section id="skills" className="px-6 md:px-16 lg:px-32 py-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ export default function Skills({ sectionIndex }: SectionProps) {
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 max-w-3xl">
-        {portfolioData.skills.map((group, gi) => (
+        {Object.values(portfolioData.skills).map((group, gi) => (
           <motion.div
             key={group.category}
             initial={{ opacity: 0, y: 24 }}

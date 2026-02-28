@@ -65,7 +65,7 @@ export default function Navbar() {
 					href={sectionHref("intro")}
 					className="font-mono text-blue-600 dark:text-indigo-400 font-bold text-sm px-3 py-1.5 rounded-xl hover:bg-blue-50/60 dark:hover:bg-indigo-500/10 transition-colors shrink-0"
 				>
-					SS<span className="text-slate-400 dark:text-slate-500">/</span>
+					{portfolioData.personal.initials}<span className="text-slate-400 dark:text-slate-500">/</span>
 				</NavAnchor>
 
 				{/* Divider */}

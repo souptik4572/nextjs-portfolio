@@ -12,7 +12,7 @@ export default function Education({ sectionIndex }: SectionProps) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="education" className="px-6 md:px-16 lg:px-32 py-16 bg-slate-100 dark:bg-slate-900/40">
+    <section id="education" className="px-6 md:px-16 lg:px-32 py-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
@@ -30,9 +30,9 @@ export default function Education({ sectionIndex }: SectionProps) {
       </motion.div>
 
       <div className="max-w-2xl space-y-5">
-        {portfolioData.education.map((edu, i) => (
+        {Object.entries(portfolioData.education).map(([id, edu], i) => (
           <motion.div
-            key={edu.id}
+            key={id}
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}

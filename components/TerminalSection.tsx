@@ -135,8 +135,8 @@ function TerminalCommands() {
 
 		experience: (
 			<div className="py-2">
-				{experience.map((exp) => (
-					<div key={exp.id} style={{ marginBottom: "16px" }}>
+				{Object.entries(experience).map(([id, exp]) => (
+					<div key={id} style={{ marginBottom: "16px" }}>
 						<p
 							style={{
 								color: c.green,
@@ -190,7 +190,7 @@ function TerminalCommands() {
 
 		skills: (
 			<div className="py-2">
-				{skills.map((group) => (
+				{Object.values(skills).map((group) => (
 					<div key={group.category} style={{ marginBottom: "10px" }}>
 						<span style={{ color: c.green, fontWeight: 600 }}>
 							{group.category}:
@@ -205,8 +205,8 @@ function TerminalCommands() {
 
 		projects: (
 			<div className="py-2">
-				{projects.map((proj) => (
-					<div key={proj.id} style={{ marginBottom: "16px" }}>
+				{Object.entries(projects).map(([id, proj]) => (
+					<div key={id} style={{ marginBottom: "16px" }}>
 						<p
 							style={{
 								color: c.green,
@@ -269,8 +269,8 @@ function TerminalCommands() {
 
 		achievements: (
 			<div className="py-2">
-				{achievements.map((ach) => (
-					<div key={ach.id} style={{ marginBottom: "12px" }}>
+				{Object.entries(achievements).map(([id, ach]) => (
+					<div key={id} style={{ marginBottom: "12px" }}>
 						<p style={{ color: c.green, fontWeight: 700 }}>
 							🏆 {ach.title}
 							<span
@@ -308,9 +308,11 @@ function TerminalCommands() {
 				>
 					Notable Offers Received:
 				</p>
-				{notable_offers.map((offer) => (
+				{Object.entries(notable_offers)
+					.filter(([, offer]) => offer.visible !== false)
+					.map(([id, offer]) => (
 					<div
-						key={offer.id}
+						key={id}
 						style={{ marginBottom: "10px", paddingLeft: "8px" }}
 					>
 						<p style={{ color: c.text }}>
@@ -398,7 +400,7 @@ function TerminalCommands() {
 		whoami: (
 			<div className="py-2">
 				<span style={{ color: c.green, fontFamily: "monospace" }}>
-					guest-user@evaluating-top-tier-software-engineer
+					{portfolioData.terminal.whoamiOutput}
 				</span>
 			</div>
 		),
@@ -406,7 +408,7 @@ function TerminalCommands() {
 		pwd: (
 			<div className="py-2">
 				<span style={{ color: c.text, fontFamily: "monospace" }}>
-					/home/souptik/portfolio/terminal
+					{portfolioData.terminal.pwdPath}
 				</span>
 			</div>
 		),
@@ -561,7 +563,7 @@ function TerminalCommands() {
 	const welcomeMessage = (
 		<div style={{ padding: "4px 0" }}>
 			<p style={{ color: c.green, fontWeight: 700, fontSize: "16px" }}>
-				Welcome to Souptik&apos;s Terminal 🚀
+				{portfolioData.terminal.welcomeMessage}
 			</p>
 			<p style={{ color: c.text, marginTop: "4px" }}>
 				Type{" "}
@@ -591,7 +593,7 @@ function TerminalCommands() {
 						isDark ? "text-slate-400" : "text-slate-500"
 					}`}
 				>
-					visitor@souptik.dev — zsh
+					{portfolioData.terminal.windowTitle}
 				</span>
 			</div>
 
@@ -614,7 +616,7 @@ function TerminalCommands() {
 						},
 					}}
 					theme={isDark ? "terminal-dark" : "terminal-light"}
-					prompt="visitor@souptik.dev:~$ "
+					prompt={portfolioData.terminal.prompt}
 					welcomeMessage={welcomeMessage}
 					errorMessage="Command not found. Type 'help' for a list of valid commands."
 					showControlBar={false}

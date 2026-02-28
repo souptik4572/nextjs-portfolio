@@ -55,14 +55,7 @@ export default function Intro() {
         className="text-3xl sm:text-4xl md:text-6xl font-bold text-slate-600 dark:text-slate-400 mt-3 min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]"
       >
         <TypeAnimation
-          sequence={[
-            "Software Engineer",
-            2000,
-            "Full-Stack Developer",
-            2000,
-            "Polyglot Engineer",
-            2000,
-          ]}
+          sequence={personal.alternateRoles.flatMap((role) => [role, 2000])}
           wrapper="span"
           speed={50}
           repeat={Infinity}

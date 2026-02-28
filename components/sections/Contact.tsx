@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import type { SectionProps } from "@/app/page";
 import ContactForm from "@/components/ContactForm";
+import { portfolioData } from "@/lib/data";
 
 export default function Contact({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
@@ -34,9 +35,7 @@ export default function Contact({ sectionIndex }: SectionProps) {
         className="max-w-lg"
       >
         <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
-          I&apos;m currently open to senior engineering opportunities. Whether
-          you have a question, a project idea, or just want to say hi — my inbox
-          is always open.
+          {portfolioData.personal.contactBlurb}
         </p>
 
         {/* Contact Form */}

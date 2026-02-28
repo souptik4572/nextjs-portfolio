@@ -118,3 +118,17 @@ h1, h2, h3, h4, h5, h6 {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
 }
+
+/* ── Alternating section overlays ─────────────────────────────── */
+.section-base {
+  background: transparent;
+}
+
+.section-alt {
+  background: rgba(241, 245, 249, 0.45); /* slate-100 @ 45% */
+  border-radius: 1.25rem; /* 20px — subtle rounded corners */
+}
+
+.dark .section-alt {
+  background: rgba(15, 23, 42, 0.35); /* slate-900 @ 35% */
+}

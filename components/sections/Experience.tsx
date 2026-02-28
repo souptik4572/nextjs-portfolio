@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { portfolioData } from "@/lib/data";
+import type { ExperienceEntry } from "@/lib/data";
 import { MacOSCard } from "@/components/MacOSElements";
 import Image from "next/image";
 import type { SectionProps } from "@/app/page";
@@ -12,7 +13,7 @@ function ExperienceCard({
   exp,
   index,
 }: {
-  exp: (typeof portfolioData.experience)[number];
+  exp: ExperienceEntry;
   index: number;
 }) {
   const ref = useRef(null);
@@ -114,8 +115,8 @@ export default function Experience({ sectionIndex }: SectionProps) {
       </motion.div>
 
       <div className="max-w-3xl">
-        {portfolioData.experience.map((exp, i) => (
-          <ExperienceCard key={exp.id} exp={exp} index={i} />
+        {Object.entries(portfolioData.experience).map(([id, exp], i) => (
+          <ExperienceCard key={id} exp={exp} index={i} />
         ))}
       </div>
     </section>

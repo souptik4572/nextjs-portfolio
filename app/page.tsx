@@ -36,7 +36,15 @@ export default function Home() {
       <main className="max-w-6xl mx-auto">
         {section_order.map((section, index) => {
           const Section = SECTION_COMPONENTS[section];
-          return <Section key={section} sectionIndex={index + 1} />;
+          const isAlt = index % 2 === 1;
+          return (
+            <div
+              key={section}
+              className={isAlt ? "section-alt" : "section-base"}
+            >
+              <Section sectionIndex={index + 1} />
+            </div>
+          );
         })}
       </main>
       <Footer />

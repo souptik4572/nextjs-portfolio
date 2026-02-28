@@ -1,12 +1,13 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
-import { portfolioData } from "@/lib/data";
+import { getPortfolioData } from "@/lib/getPortfolioData";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json();
+    const portfolioData = await getPortfolioData();
 
     // Validate inputs
     if (!name || !email || !message) {

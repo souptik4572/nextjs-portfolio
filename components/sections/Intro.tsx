@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { MapPin, Mail, Linkedin, Eye, ExternalLink } from "lucide-react";
 import Image from "next/image";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import Modal from "@/components/Modal";
 import ContactForm from "@/components/ContactForm";
 
@@ -18,7 +18,7 @@ const fadeUp = {
 };
 
 export default function Intro() {
-  const { personal } = portfolioData;
+  const { personal } = usePortfolioData();
   const codingProfiles = Object.values(personal.coding_profiles);
   const [contactOpen, setContactOpen] = useState(false);
 

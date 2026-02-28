@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import TerminalWrapper from "@/components/TerminalWrapper";
 import Navbar from "@/components/Navbar";
-import { portfolioData } from "@/lib/data";
+import { getPortfolioData } from "@/lib/getPortfolioData";
 
-export const metadata: Metadata = {
-  title: portfolioData.meta.devTitle,
-  description: portfolioData.meta.devDescription,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = await getPortfolioData();
+  return {
+    title: meta.devTitle,
+    description: meta.devDescription,
+  };
+}
 
 export default function DevPage() {
   return (

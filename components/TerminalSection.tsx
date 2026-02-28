@@ -1,6 +1,6 @@
 "use client";
 import { ReactTerminal, TerminalContextProvider, TerminalContext } from "react-terminal";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import type { SectionKey } from "@/lib/data";
 import { TrafficLights } from "@/components/MacOSElements";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -41,6 +41,7 @@ const SECTION_COMMAND_META: Partial<
 };
 
 function TerminalCommands() {
+	const portfolioData = usePortfolioData();
 	const {
 		layout: { section_order },
 		personal,

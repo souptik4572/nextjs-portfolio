@@ -1,27 +1,31 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import { portfolioData } from "@/lib/data";
+import { PortfolioDataProvider } from "@/contexts/PortfolioDataContext";
+import { getPortfolioData } from "@/lib/getPortfolioData";
 import "./globals.css";
 
-const { meta, personal } = portfolioData;
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta, personal } = await getPortfolioData();
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    authors: [{ name: personal.name }],
+    openGraph: {
+      title: meta.ogTitle,
+      description: meta.ogDescription,
+      type: "website",
+    },
+  };
+}
 
-export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
-  keywords: meta.keywords,
-  authors: [{ name: personal.name }],
-  openGraph: {
-    title: meta.ogTitle,
-    description: meta.ogDescription,
-    type: "website",
-  },
-};
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const data = await getPortfolioData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -45,7 +49,11 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <PortfolioDataProvider data={data}>
+            {children}
+          </PortfolioDataProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Github, ExternalLink } from "lucide-react";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import type { ProjectEntry } from "@/lib/data";
 import { MacOSCard } from "@/components/MacOSElements";
 import type { SectionProps } from "@/app/page";
@@ -77,6 +77,7 @@ function ProjectCard({
 export default function Projects({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const portfolioData = usePortfolioData();
 
   return (
     <section id="projects" className="py-16">

@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Trophy, Calendar } from "lucide-react";
-import { portfolioData } from "@/lib/data";
+import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import { MacOSCard } from "@/components/MacOSElements";
 import type { SectionProps } from "@/app/page";
 
 export default function Achievements({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const portfolioData = usePortfolioData();
 
   return (
     <section id="achievements" className="px-6 md:px-16 lg:px-32 py-16">

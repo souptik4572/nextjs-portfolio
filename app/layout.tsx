@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Souptik Sarkar | Software Engineer",
+  title: "👨‍💻 Souptik Sarkar | Software Engineer",
   description:
     "Polyglot engineer with deep expertise in Java, Spring Boot, Golang, Python, and cloud-native systems. Open to senior engineering roles.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Souptik Sarkar" }],
   openGraph: {
-    title: "Souptik Sarkar | Software Engineer",
+    title: "👨‍💻 Souptik Sarkar | Software Engineer",
     description:
       "Polyglot engineer — Java, Spring Boot, Golang, Python, React, AWS.",
     type: "website",

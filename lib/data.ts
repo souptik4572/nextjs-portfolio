@@ -30,8 +30,14 @@ export const portfolioData = {
 		role: "Software Engineer",
 		bio: "Software Engineer with 4 years of experience in designing scalable microservices and backend systems using Java, Go, Python, and JavaScript. Skilled in cloud infrastructure and database optimization.",
 		email: "souptiksarkar4572@gmail.com",
-		github: "https://github.com/souptik4572",
+		
 		linkedin: "https://www.linkedin.com/in/souptik4572/",
+		coding_profiles: {
+            github: "https://github.com/souptik4572",
+			leetcode: "https://leetcode.com/u/Souptik4572/",
+			takeuforward: "https://takeuforward.org/profile/souptik4572",
+			hackerrank: "https://www.hackerrank.com/profile/souptik4572",
+		},
 		location: "Kolkata, West Bengal",
 		resume: "https://bit.ly/Souptik_Sarkar_4YOE_SDE2",
 	},

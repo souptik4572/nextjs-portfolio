@@ -17,7 +17,7 @@ export const portfolioData = {
 			"skills",
 			"projects",
 			"achievements",
-			// "notable_offers",
+			"notable_offers",
 			"education",
 			"contact",
 		] as SectionKey[],
@@ -32,7 +32,7 @@ export const portfolioData = {
 		email: "souptiksarkar4572@gmail.com",
 		github: "https://github.com/souptik4572",
 		linkedin: "https://www.linkedin.com/in/souptik4572/",
-		location: "Bengaluru, Karnataka",
+		location: "Kolkata, West Bengal",
 		resume: "https://bit.ly/Souptik_Sarkar_4YOE_SDE2",
 	},
 	skills: [

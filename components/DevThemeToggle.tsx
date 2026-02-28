@@ -12,9 +12,9 @@ export default function DevThemeToggle() {
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <Sun className="w-4 h-4 text-yellow-500" />
+        <Sun size={18} />
       ) : (
-        <Moon className="w-4 h-4 text-slate-600" />
+        <Moon size={18} />
       )}
     </button>
   );

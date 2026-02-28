@@ -24,7 +24,7 @@ const palette = {
 
 function TerminalCommands() {
   const { personal, experience, skills, projects, achievements, notable_offers } = portfolioData;
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const c = palette[theme];
 
   const commands = {
@@ -41,6 +41,12 @@ function TerminalCommands() {
           { cmd: "achievements", desc: "Achievements & awards" },
           { cmd: "offers", desc: "Notable job offers" },
           { cmd: "clear", desc: "Clear the terminal" },
+          { cmd: "sudo", desc: "Try running as root 😏" },
+          { cmd: "whoami", desc: "Who are you ?" },
+          { cmd: "pwd", desc: "Print working directory" },
+          { cmd: "coffee", desc: "Fuel the developer" },
+          { cmd: "date", desc: "Current date & time" },
+          { cmd: "theme", desc: "Toggle light / dark mode" },
         ].map(({ cmd, desc }) => (
           <div key={cmd} style={{ display: "flex", gap: "12px", padding: "2px 0" }}>
             <span style={{ color: c.blue, fontFamily: "monospace", minWidth: "140px" }}>
@@ -200,6 +206,96 @@ function TerminalCommands() {
         ))}
       </div>
     ),
+
+    /* ── Easter egg & personality commands ───────────────────────── */
+
+    sudo: (arg: string) => (
+      <div className="py-2">
+        <p style={{ color: "#ef4444", fontWeight: 600 }}>
+          🚫 Permission denied: <span style={{ color: c.yellow }}>sudo {arg || "..."}</span>
+        </p>
+        <p style={{ color: c.text, marginTop: "4px" }}>
+          Nice try! This incident <span style={{ color: c.muted, fontStyle: "italic" }}>will</span> be reported. You do not have root privileges.
+        </p>
+      </div>
+    ),
+
+    whoami: (
+      <div className="py-2">
+        <span style={{ color: c.green, fontFamily: "monospace" }}>
+          guest-user@evaluating-top-tier-software-engineer
+        </span>
+      </div>
+    ),
+
+    pwd: (
+      <div className="py-2">
+        <span style={{ color: c.text, fontFamily: "monospace" }}>
+          /home/souptik/portfolio/terminal
+        </span>
+      </div>
+    ),
+
+    coffee: (
+      <div className="py-2">
+        <pre style={{ color: c.yellow, fontFamily: "monospace", lineHeight: "1.3" }}>{`
+        ( (
+         ) )
+      ........
+      |      |]
+      \\      /
+       \`----\`
+        `}</pre>
+        <p style={{ color: c.text, marginTop: "4px" }}>
+          I run on <span style={{ color: c.green, fontWeight: 600 }}>Java</span> (and sometimes{" "}
+          <span style={{ color: c.blue, fontWeight: 600 }}>TypeScript</span> and{" "}
+          <span style={{ color: c.yellow, fontWeight: 600 }}>Python</span>).
+        </p>
+      </div>
+    ),
+
+    brew: (
+      <div className="py-2">
+        <pre style={{ color: c.yellow, fontFamily: "monospace", lineHeight: "1.3" }}>{`
+        ( (
+         ) )
+      ........
+      |      |]
+      \\      /
+       \`----\`
+        `}</pre>
+        <p style={{ color: c.text, marginTop: "4px" }}>
+          I run on <span style={{ color: c.green, fontWeight: 600 }}>Java</span> (and sometimes{" "}
+          <span style={{ color: c.blue, fontWeight: 600 }}>TypeScript</span> and{" "}
+          <span style={{ color: c.yellow, fontWeight: 600 }}>Python</span>).
+        </p>
+      </div>
+    ),
+
+    /* ── System & interactive commands ───────────────────────────── */
+
+    date: () => (
+      <div className="py-2">
+        <span style={{ color: c.blue, fontFamily: "monospace" }}>
+          {new Date().toString()}
+        </span>
+      </div>
+    ),
+
+    theme: () => {
+      toggleTheme();
+      const next = theme === "dark" ? "light" : "dark";
+      return (
+        <div className="py-2">
+          <p style={{ color: c.green, fontWeight: 600 }}>
+            🎨 Theme toggled to <span style={{ color: c.yellow }}>{next}</span> mode!
+          </p>
+          <p style={{ color: c.muted, marginTop: "4px", fontSize: "13px" }}>
+            All pages share the same preference — it&apos;s saved in localStorage.
+          </p>
+        </div>
+      );
+    },
   };
 
   const welcomeMessage = (

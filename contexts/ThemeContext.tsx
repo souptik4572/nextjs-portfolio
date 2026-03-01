@@ -12,8 +12,14 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(portfolioData.theme.defaultMode);
+export function ThemeProvider({
+  children,
+  defaultMode,
+}: {
+  children: React.ReactNode;
+  defaultMode?: Theme;
+}) {
+  const [theme, setThemeState] = useState<Theme>(defaultMode ?? portfolioData.theme.defaultMode);
   const [mounted, setMounted] = useState(false);
 
   // Initialize theme from localStorage or default

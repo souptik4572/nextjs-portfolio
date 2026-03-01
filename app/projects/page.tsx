@@ -144,7 +144,7 @@ export default function ProjectsPage() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {allProjects.map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} />
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
       </main>

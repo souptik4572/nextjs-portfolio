@@ -1,6 +1,7 @@
 "use client";
 import { ReactTerminal, TerminalContextProvider, TerminalContext } from "react-terminal";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
+import { getEnabledSections } from "@/lib/data";
 import type { SectionKey } from "@/lib/data";
 import { TrafficLights } from "@/components/MacOSElements";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -43,7 +44,7 @@ const SECTION_COMMAND_META: Partial<
 function TerminalCommands() {
 	const portfolioData = usePortfolioData();
 	const {
-		layout: { section_order },
+		layout: { section_order: sectionOrderMap },
 		personal,
 		experience,
 		skills,
@@ -343,12 +344,13 @@ function TerminalCommands() {
 		),
 	};
 
-	/* ── Filter: only keep section commands present in section_order ── */
+	/* ── Filter: only keep section commands enabled in section_order ── */
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const activeSectionCommands: Record<string, any> = {};
 	const activeSectionHelp: { cmd: string; desc: string }[] = [];
 
-	for (const key of section_order) {
+	const enabledSections = getEnabledSections(sectionOrderMap);
+	for (const key of enabledSections) {
 		const meta = SECTION_COMMAND_META[key];
 		if (meta && meta.cmd in allSectionCommands) {
 			activeSectionCommands[meta.cmd] = allSectionCommands[meta.cmd];

@@ -1,15 +1,15 @@
 {
 	"layout": {
-		"section_order": [
-			"intro",
-			"experience",
-			"skills",
-			"projects",
-			"achievements",
-			"notable_offers",
-			"education",
-			"contact"
-		]
+		"section_order": {
+			"intro": { "enabled": true, "order": 1 },
+			"experience": { "enabled": true, "order": 2 },
+			"skills": { "enabled": true, "order": 3 },
+			"projects": { "enabled": true, "order": 4 },
+			"achievements": { "enabled": true, "order": 5 },
+			"notable_offers": { "enabled": true, "order": 6 },
+			"education": { "enabled": true, "order": 7 },
+			"contact": { "enabled": true, "order": 8 }
+		}
 	},
 	"theme": { "defaultMode": "light" },
 	"meta": {
@@ -155,38 +155,53 @@
 	},
 	"projects": {
 		"proj-1": {
-			"title": "macOS-Inspired Portfolio",
-			"tech": ["React.js", "GSAP", "CSS Modules"],
-			"description": "A pixel-perfect macOS desktop simulation built as a personal portfolio. Features animated dock, draggable windows, and smooth GSAP-powered transitions.",
-			"github": "https://github.com/souptik4572/macos-portfolio",
+			"title": "Contextual Chatbot",
+			"tech": ["NodeJS", "ExpressJS", "PostgreSQL", "Prisma", "ReactJS", "Redux"],
+			"description": "Developed a dynamic chatbot widget for rendering 100+ contextual questions in an interactive chat window. Enabled real-time configurability of the question list and context via admin panel APIs.",
+			"github": "https://github.com/souptik4572/Contextual_Chatbot",
 			"live": ""
 		},
 		"proj-2": {
-			"title": "Full-Stack Calendar App",
-			"tech": ["Next.js", "Prisma", "Shadcn/UI", "PostgreSQL"],
-			"description": "A production-grade calendar application with drag-and-drop event scheduling, recurring events, and timezone support, backed by Prisma ORM and PostgreSQL.",
-			"github": "https://github.com/souptik4572/calendar-app",
+			"title": "Video Streaming POC",
+			"tech": ["Node.js", "Express.js", "MySQL", "Prisma", "FFmpeg", "React 18", "Video.js"],
+			"description": "A proof-of-concept video streaming application that demonstrates server-side video processing, automatic HLS (HTTP Live Streaming) format conversion, and a responsive video player interface.",
+			"github": "https://github.com/souptik4572/video-streaming-poc",
 			"live": ""
 		},
 		"proj-3": {
-			"title": "Scalable YouTube Downloader",
-			"tech": ["Python", "FastAPI", "Redis", "Docker", "AWS S3"],
-			"description": "Distributed architecture for downloading and transcoding YouTube videos at scale. Uses Redis-backed job queues, Docker workers, and S3 for storage.",
-			"github": "https://github.com/souptik4572/yt-downloader",
+			"title": "ChatterAI",
+			"tech": ["Expo", "React Native", "Zustand", "NativeWind", "OpenAI API", "TypeScript"],
+			"description": "A multi-modal AI chat application featuring text chat, image-assisted vision input, voice-to-text transcription, AI image generation, and persistent local chat history.",
+			"github": "https://github.com/souptik4572/ChatterAI",
 			"live": ""
 		},
 		"proj-4": {
-			"title": "Real-Time Chat Platform",
-			"tech": [
-				"TypeScript",
-				"Node.js",
-				"Socket.io",
-				"MongoDB",
-				"Tailwind CSS"
-			],
-			"description": "Modern chat application with real-time messaging, file sharing, and presence indicators. Built with WebSocket connections and optimistic UI updates for instant feedback.",
-			"github": "https://github.com/souptik4572/realtime-chat",
-			"live": "https://chat.souptik.dev"
+			"title": "Echo Scribe",
+			"tech": ["Node.js", "Express.js", "Supabase", "PostgreSQL", "React 19", "Material-UI", "OpenAI Whisper"],
+			"description": "A web application that transforms messy meeting audio recordings into concise, structured summaries. It uses a chain of AI models to provide a summary, key decisions, and a checklist of action items.",
+			"github": "https://github.com/souptik4572/echo-scribe",
+			"live": ""
+		},
+        "proj-5": {
+			"title": "Jinete Riders",
+			"tech": ["Python"],
+			"description": "Ride booking app for traveling within the city.",
+			"github": "https://github.com/souptik4572/Jinete-Riders",
+			"live": ""
+		},
+		"proj-6": {
+			"title": "Digital Dialogue Backend",
+			"tech": ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT"],
+			"description": "A robust backend API for a full-stack MERN blogging platform enabling users to post, read, edit, and delete blogs while fostering community engagement through role-based access control.",
+			"github": "https://github.com/souptik4572/DigitalDialogue-backend",
+			"live": ""
+		},
+		"proj-7": {
+			"title": "Just Ask It",
+			"tech": ["Python", "Django", "Django REST Framework", "PostgreSQL", "SQLite"],
+			"description": "The Django backend for a Q&A web application where users can ask questions, post answers, follow others, and vote. Includes JWT-based authentication and email password resets.",
+			"github": "https://github.com/souptik4572/JustAskIt",
+			"live": "https://justaskit.herokuapp.com/api/"
 		}
 	},
 	"achievements": {

@@ -157,7 +157,7 @@ export default function Projects({ sectionIndex }: SectionProps) {
         {/* Mobile: plain stack */}
         <div className="flex flex-col gap-4 md:hidden">
           {FEATURED_PROJECTS.map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} isFeatured={i === 0 || i === 3} />
+            <ProjectCard key={project.title} project={project} index={i} isFeatured={i === 0 || i === 3} />
           ))}
         </div>
 

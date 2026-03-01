@@ -2,18 +2,18 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Calendar } from "lucide-react";
+import { Trophy, Calendar } from "lucide-react";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import { MacOSCard } from "@/components/MacOSElements";
 import type { SectionProps } from "@/app/page";
 
-export default function Education({ sectionIndex }: SectionProps) {
+export default function Achievements({ sectionIndex }: SectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const portfolioData = usePortfolioData();
 
   return (
-    <section id="education" className="px-6 md:px-16 lg:px-32 py-16">
+    <section id="achievements" className="px-6 md:px-16 lg:px-32 py-16">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
@@ -25,13 +25,13 @@ export default function Education({ sectionIndex }: SectionProps) {
           {sectionIndex !== undefined && (
             <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">{String(sectionIndex).padStart(2, '0')}.</span>
           )}
-          Education
+          Achievements
         </h2>
         <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
       </motion.div>
 
       <div className="max-w-2xl space-y-5">
-        {Object.entries(portfolioData.education).map(([id, edu], i) => (
+        {Object.entries(portfolioData.achievements).map(([id, achievement], i) => (
           <motion.div
             key={id}
             initial={{ opacity: 0, y: 24 }}
@@ -42,18 +42,17 @@ export default function Education({ sectionIndex }: SectionProps) {
               <div className="p-6">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-blue-500/10 dark:bg-indigo-500/10 border border-blue-500/20 dark:border-indigo-500/20 flex items-center justify-center shrink-0 mt-1">
-                    <GraduationCap size={20} className="text-blue-600 dark:text-indigo-400" />
+                    <Trophy size={20} className="text-blue-600 dark:text-indigo-400" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{edu.degree}</h3>
-                    <p className="text-blue-600 dark:text-indigo-400 font-medium mt-0.5 text-base">{edu.institution}</p>
-                    <div className="flex flex-wrap gap-4 mt-2 text-base text-slate-600 dark:text-slate-400">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar size={14} />
-                        {edu.period}
-                      </span>
-                      <span className="text-slate-700 dark:text-slate-300 font-medium">GPA: {edu.gpa}</span>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{achievement.title}</h3>
+                    <div className="flex items-center gap-1.5 mt-2 text-base text-slate-600 dark:text-slate-400">
+                      <Calendar size={14} />
+                      {achievement.date}
                     </div>
+                    <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-3">
+                      {achievement.description}
+                    </p>
                   </div>
                 </div>
               </div>

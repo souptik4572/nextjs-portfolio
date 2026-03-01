@@ -1,39 +1,39 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { PortfolioDataProvider } from "@/contexts/PortfolioDataContext";
+import { getPortfolioData } from "@/lib/getPortfolioData";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Souptik Sarkar | Software Engineer (SDE-2)",
-  description:
-    "Polyglot engineer with deep expertise in Java, Spring Boot, Golang, Python, and cloud-native systems. Open to senior engineering roles.",
-  keywords: [
-    "Souptik Sarkar",
-    "SDE-2",
-    "Software Engineer",
-    "Java",
-    "Spring Boot",
-    "Golang",
-    "Python",
-    "Next.js",
-    "AWS",
-  ],
-  authors: [{ name: "Souptik Sarkar" }],
-  openGraph: {
-    title: "Souptik Sarkar | Software Engineer (SDE-2)",
-    description:
-      "Polyglot engineer — Java, Spring Boot, Golang, Python, React, AWS.",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta, personal } = await getPortfolioData();
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    authors: [{ name: personal.name }],
+    openGraph: {
+      title: meta.ogTitle,
+      description: meta.ogDescription,
+      type: "website",
+    },
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const data = await getPortfolioData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* FontShare: Archivo (headings) + Clash Display (body) */}
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=archivo@100,200,300,400,500,600,700,800,900&f[]=clash-display@200,300,400,500,600,700&display=swap"
+          rel="stylesheet"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -49,7 +49,11 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <PortfolioDataProvider data={data}>
+            {children}
+          </PortfolioDataProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

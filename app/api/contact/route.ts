@@ -1,11 +1,13 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { getPortfolioData } from "@/lib/getPortfolioData";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json();
+    const portfolioData = await getPortfolioData();
 
     // Validate inputs
     if (!name || !email || !message) {
@@ -26,8 +28,8 @@ export async function POST(request: Request) {
 
     // Send email using Resend
     await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>", // Using Resend's test email
-      to: ["souptik4572@gmail.com"],
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: [portfolioData.personal.email],
       replyTo: email,
       subject: `Portfolio Contact from ${name}`,
       html: `

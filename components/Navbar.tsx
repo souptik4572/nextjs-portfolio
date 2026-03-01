@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Terminal } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
+import { getEnabledSections } from "@/lib/data";
 
 const NAV_LABELS: Record<string, string> = {
 	intro: "Home",
@@ -23,6 +24,7 @@ export default function Navbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const { theme, toggleTheme } = useTheme();
 	const portfolioData = usePortfolioData();
+	const enabledSections = getEnabledSections(portfolioData.layout.section_order);
 	const pathname = usePathname();
 	const isHome = pathname === "/";
 	const sectionHref = (section: string) => isHome ? `#${section}` : `/#${section}`;
@@ -74,7 +76,7 @@ export default function Navbar() {
 
 				{/* Desktop Nav Links */}
 				<ul className="hidden md:flex items-center gap-0.5">
-					{portfolioData.layout.section_order.map((section) => (
+					{enabledSections.map((section) => (
 						<li key={section}>
 							<NavAnchor
 								href={sectionHref(section)}
@@ -143,7 +145,7 @@ export default function Navbar() {
 							className="fixed top-0 right-0 bottom-0 w-[75vw] max-w-sm macos-glass border-l border-slate-200/50 dark:border-slate-700/30 z-40 md:hidden macos-shadow pointer-events-auto"
 						>
 							<nav className="flex flex-col gap-2 p-8 pt-24">
-								{portfolioData.layout.section_order.map(
+								{enabledSections.map(
 									(section, i) => (
 										<NavAnchor
 											key={section}

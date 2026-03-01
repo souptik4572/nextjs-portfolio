@@ -10,7 +10,8 @@ import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import NotableOffers from "@/components/sections/NotableOffers";
 import ScrollToTop from "@/components/ScrollToTop";
-import type { SectionKey } from "@/lib/data";
+import ScrollSpy from "@/components/ScrollSpy";
+import { type SectionKey, getEnabledSections } from "@/lib/data";
 
 export interface SectionProps {
   sectionIndex?: number;
@@ -29,13 +30,13 @@ const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType<SectionProps>> 
 
 export default async function Home() {
   const data = await getPortfolioData();
-  const { section_order } = data.layout;
+  const enabledSections = getEnabledSections(data.layout.section_order);
 
   return (
     <>
       <Navbar />
       <main className="max-w-6xl mx-auto">
-        {section_order.map((section, index) => {
+        {enabledSections.map((section, index) => {
           const Section = SECTION_COMPONENTS[section];
           const isAlt = index % 2 === 1;
           return (
@@ -50,6 +51,7 @@ export default async function Home() {
       </main>
       <Footer />
       <ScrollToTop />
+      <ScrollSpy sectionIds={enabledSections} />
     </>
   );
 }

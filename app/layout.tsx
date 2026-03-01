@@ -40,7 +40,7 @@ export default async function RootLayout({
               (function() {
                 try {
                   const savedTheme = localStorage.getItem('portfolio-theme');
-                  const theme = savedTheme || 'dark';
+                  const theme = savedTheme || '${data.theme.defaultMode}';
                   document.documentElement.classList.add(theme);
                 } catch (e) {}
               })();
@@ -49,7 +49,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <ThemeProvider>
+        <ThemeProvider defaultMode={data.theme.defaultMode}>
           <PortfolioDataProvider data={data}>
             {children}
           </PortfolioDataProvider>

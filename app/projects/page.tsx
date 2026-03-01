@@ -92,7 +92,7 @@ function ProjectCard({
 
 export default function ProjectsPage() {
   const portfolioData = usePortfolioData();
-  const allProjects = Object.values(portfolioData.projects);
+  const allProjects = Object.entries(portfolioData.projects);
 
   const headingRef = useRef(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-60px" });
@@ -143,8 +143,8 @@ export default function ProjectsPage() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-          {allProjects.map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} />
+          {allProjects.map(([id, project], i) => (
+            <ProjectCard key={id} project={project} index={i} />
           ))}
         </div>
       </main>

@@ -39,8 +39,9 @@ export default async function RootLayout({
             __html: `
               (function() {
                 try {
-                  const savedTheme = localStorage.getItem('portfolio-theme');
-                  const theme = savedTheme || '${data.theme.defaultMode}';
+                  var saved = localStorage.getItem('portfolio-theme');
+                  var def = '${data.theme.defaultMode === "dark" ? "dark" : "light"}';
+                  var theme = (saved === 'light' || saved === 'dark') ? saved : def;
                   document.documentElement.classList.add(theme);
                 } catch (e) {}
               })();

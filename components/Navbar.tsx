@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,6 +7,15 @@ import { Menu, X, Sun, Moon, Terminal } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import { getEnabledSections } from "@/lib/data";
+
+/* Use <Link> for route changes, plain <a> for same-page hash scrolls */
+function NavAnchor({ href, className, onClick, children }: {
+	href: string; className?: string; onClick?: () => void; children: React.ReactNode;
+}) {
+	const isHash = href.startsWith("#");
+	if (isHash) return <a href={href} className={className} onClick={onClick}>{children}</a>;
+	return <Link href={href} className={className} onClick={onClick}>{children}</Link>;
+}
 
 const NAV_LABELS: Record<string, string> = {
 	intro: "Home",
@@ -24,29 +33,26 @@ export default function Navbar() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const { theme, toggleTheme } = useTheme();
 	const portfolioData = usePortfolioData();
-	const enabledSections = getEnabledSections(portfolioData.layout.section_order);
+	const enabledSections = useMemo(
+		() => getEnabledSections(portfolioData.layout.section_order),
+		[portfolioData.layout.section_order],
+	);
 	const pathname = usePathname();
 	const isHome = pathname === "/";
-	const sectionHref = (section: string) => isHome ? `#${section}` : `/#${section}`;
+	const sectionHref = useCallback(
+		(section: string) => (isHome ? `#${section}` : `/#${section}`),
+		[isHome],
+	);
 
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 20);
-		window.addEventListener("scroll", onScroll);
+		window.addEventListener("scroll", onScroll, { passive: true });
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
 
-	const handleNavClick = () => {
+	const handleNavClick = useCallback(() => {
 		setMobileMenuOpen(false);
-	};
-
-	/* Use <Link> for route changes, plain <a> for same-page hash scrolls */
-	const NavAnchor = ({ href, className, onClick, children }: {
-		href: string; className?: string; onClick?: () => void; children: React.ReactNode;
-	}) => {
-		const isHash = href.startsWith("#");
-		if (isHash) return <a href={href} className={className} onClick={onClick}>{children}</a>;
-		return <Link href={href} className={className} onClick={onClick}>{children}</Link>;
-	};
+	}, []);
 
 	return (
 		<motion.header

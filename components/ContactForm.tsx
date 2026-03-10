@@ -126,6 +126,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
             errors.name ? "border-red-500" : "border-slate-300/60 dark:border-slate-700/50"
           } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40 transition-all macos-shadow`}
           placeholder="Your name"
+          maxLength={100}
         />
         {errors.name && (
           <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
@@ -153,6 +154,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
             errors.email ? "border-red-500" : "border-slate-300/60 dark:border-slate-700/50"
           } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40 transition-all macos-shadow`}
           placeholder="your.email@example.com"
+          maxLength={254}
         />
         {errors.email && (
           <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
@@ -180,6 +182,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
             errors.message ? "border-red-500" : "border-slate-300/60 dark:border-slate-700/50"
           } rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-1 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40 transition-all resize-none macos-shadow`}
           placeholder="Your message..."
+          maxLength={5000}
         />
         {errors.message && (
           <p className="mt-1 text-sm text-red-400 flex items-center gap-1">

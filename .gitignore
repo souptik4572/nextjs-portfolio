@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 
 # Miscellaneous
 .DS_Store
+lib/portfolioData.json

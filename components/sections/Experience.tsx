@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";

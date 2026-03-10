@@ -6,7 +6,7 @@
 			"skills": { "enabled": true, "order": 3 },
 			"projects": { "enabled": true, "order": 4 },
 			"achievements": { "enabled": true, "order": 5 },
-			"notable_offers": { "enabled": true, "order": 6 },
+			"notable_offers": { "enabled": false, "order": 6 },
 			"education": { "enabled": true, "order": 7 },
 			"contact": { "enabled": true, "order": 8 }
 		}

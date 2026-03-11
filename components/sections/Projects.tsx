@@ -47,37 +47,21 @@ export default function Projects({ sectionIndex }: SectionProps) {
                         ├──────────────│   TALL  [3]  │
                         │  SHORT [2]   │              │
                         └──────────────┴──────────────┘
-             Top-left  & bottom-right → tall  (flex-1, isFeatured)
-             Top-right & bottom-left  → short (fixed h-[220px])
+             Top-left  & bottom-right → tall  (isFeatured)
+             Top-right & bottom-left  → short (fixed h-[260px])
         ─────────────────────────────────────────────────────────── */}
-
-        {/* Mobile: plain stack */}
-        <div className="flex flex-col gap-4 md:hidden">
-          {FEATURED_PROJECTS.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} isFeatured={i === 0 || i === 3} />
-          ))}
-        </div>
-
-        {/* md+: diagonal two-column bento */}
-        <div className="hidden md:flex gap-4 lg:gap-6">
-          {/* Left column — tall top, short bottom */}
-          <div className="flex flex-col gap-4 lg:gap-6 flex-1">
-            <div className="flex-1 min-h-[300px]">
-              <ProjectCard project={FEATURED_PROJECTS[0]} index={0} isFeatured />
-            </div>
-            <div className="h-[260px]">
-              <ProjectCard project={FEATURED_PROJECTS[2]} index={2} />
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 md:items-start gap-4 lg:gap-6">
+          <div className="md:min-h-[300px] h-full">
+            <ProjectCard project={FEATURED_PROJECTS[0]} index={0} isFeatured />
           </div>
-
-          {/* Right column — short top, tall bottom */}
-          <div className="flex flex-col gap-4 lg:gap-6 flex-1">
-            <div className="h-[260px]">
-              <ProjectCard project={FEATURED_PROJECTS[1]} index={1} />
-            </div>
-            <div className="flex-1 min-h-[300px]">
-              <ProjectCard project={FEATURED_PROJECTS[3]} index={3} isFeatured />
-            </div>
+          <div className="md:h-[260px]">
+            <ProjectCard project={FEATURED_PROJECTS[1]} index={1} />
+          </div>
+          <div className="md:h-[260px]">
+            <ProjectCard project={FEATURED_PROJECTS[2]} index={2} />
+          </div>
+          <div className="md:min-h-[300px] h-full">
+            <ProjectCard project={FEATURED_PROJECTS[3]} index={3} isFeatured />
           </div>
         </div>
 

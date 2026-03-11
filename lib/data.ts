@@ -1,5 +1,3 @@
-import portfolioDataJson from "./portfolioData.json";
-
 /** All possible section keys that can appear in section_order */
 export type SectionKey =
 	| "intro"
@@ -20,17 +18,92 @@ export type SectionOrder = Record<SectionKey, SectionEntry>;
 /** Legacy formats that may still exist in Firebase */
 type LegacySectionOrder = Record<SectionKey, boolean> | SectionKey[];
 
-/**
- * Static portfolio data imported from the JSON file.
- * Cast to include the stricter SectionKey and theme types.
- */
-export const portfolioData = portfolioDataJson as PortfolioData;
+export interface ExperienceEntry {
+	company: string;
+	companyLogo: string;
+	companyWebsite: string;
+	role: string;
+	period: string;
+	location: string;
+	highlights: string[];
+}
 
-/** Full portfolio data shape, derived from the JSON with refined type overrides */
-export type PortfolioData = Omit<typeof portfolioDataJson, "layout" | "theme"> & {
+export interface ProjectEntry {
+	title: string;
+	description: string;
+	tech: string[];
+	github?: string;
+	live?: string;
+}
+
+export interface OfferEntry {
+	company: string;
+	companyLogo: string;
+	companyUrl: string;
+	role: string;
+	period: string;
+	visible?: boolean;
+}
+
+export interface SkillGroup {
+	category: string;
+	items: string[];
+}
+
+export interface AchievementEntry {
+	title: string;
+	date: string;
+	description: string;
+}
+
+export interface EducationEntry {
+	institution: string;
+	degree: string;
+	period: string;
+	gpa: string;
+}
+
+/** Full portfolio data shape matching the Firebase Realtime Database structure */
+export interface PortfolioData {
 	layout: { section_order: SectionOrder | LegacySectionOrder };
 	theme: { defaultMode: "light" | "dark" };
-};
+	meta: {
+		title: string;
+		description: string;
+		keywords: string[];
+		ogTitle: string;
+		ogDescription: string;
+		devTitle: string;
+		devDescription: string;
+	};
+	terminal: {
+		welcomeMessage: string;
+		pwdPath: string;
+		whoamiOutput: string;
+		windowTitle: string;
+		prompt: string;
+	};
+	personal: {
+		name: string;
+		initials: string;
+		domain: string;
+		role: string;
+		alternateRoles: string[];
+		bio: string;
+		contactBlurb: string;
+		email: string;
+		linkedin: string;
+		coding_profiles: Record<string, { title: string; url: string; image: string }>;
+		location: string;
+		resume: string;
+	};
+	skills: Record<string, SkillGroup>;
+	experience: Record<string, ExperienceEntry>;
+	projects: Record<string, ProjectEntry>;
+	achievements: Record<string, AchievementEntry>;
+	notable_offers: Record<string, OfferEntry>;
+	education: Record<string, EducationEntry>;
+}
 
 /** Helper: derive an ordered array of enabled section keys.
  *  Handles the current { enabled, order } format, the legacy boolean-map,
@@ -62,11 +135,3 @@ export function getEnabledSections(
 		.sort(([, a], [, b]) => a.order - b.order)
 		.map(([key]) => key);
 }
-
-/** Convenience types for individual record entries */
-export type ExperienceEntry = PortfolioData["experience"][keyof PortfolioData["experience"]];
-export type ProjectEntry = PortfolioData["projects"][keyof PortfolioData["projects"]];
-export type OfferEntry = PortfolioData["notable_offers"][keyof PortfolioData["notable_offers"]];
-export type SkillGroup = PortfolioData["skills"][keyof PortfolioData["skills"]];
-export type AchievementEntry = PortfolioData["achievements"][keyof PortfolioData["achievements"]];
-export type EducationEntry = PortfolioData["education"][keyof PortfolioData["education"]];

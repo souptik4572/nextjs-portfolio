@@ -1,6 +1,5 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { portfolioData } from "@/lib/data";
 
 type Theme = "light" | "dark";
 
@@ -19,7 +18,7 @@ export function ThemeProvider({
   children: React.ReactNode;
   defaultMode?: Theme;
 }) {
-  const [theme, setThemeState] = useState<Theme>(defaultMode ?? portfolioData.theme.defaultMode);
+  const [theme, setThemeState] = useState<Theme>(defaultMode ?? "light");
   const [mounted, setMounted] = useState(false);
 
   // Initialize theme from localStorage or default

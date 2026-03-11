@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["framer-motion"],
+  webpack: (config) => {
+    config.optimization.concatenateModules = false;
+    return config;
+  },
   async headers() {
     return [
       {

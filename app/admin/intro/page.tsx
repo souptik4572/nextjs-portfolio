@@ -259,6 +259,10 @@ export default function IntroPage() {
         isDirty={isDirty}
         onSave={handleSubmit(onSubmit)}
         status={isSubmitting ? "saving" : saveStatus}
+        onDiscard={() => {
+          reset();
+          if (data?.coding_profiles) setCodingProfiles(data.coding_profiles);
+        }}
       />
 
       <DiffModal

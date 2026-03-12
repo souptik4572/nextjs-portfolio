@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, X } from "lucide-react";
 import SaveButton from "./SaveButton";
 import type { SaveStatus } from "@/types/admin";
 
@@ -9,6 +9,7 @@ interface UnsavedBannerProps {
   isDirty: boolean;
   onSave: () => void;
   status: SaveStatus;
+  onDiscard?: () => void;
 }
 
 /**
@@ -19,6 +20,7 @@ export default function UnsavedBanner({
   isDirty,
   onSave,
   status,
+  onDiscard,
 }: UnsavedBannerProps) {
   return (
     <AnimatePresence>
@@ -35,6 +37,16 @@ export default function UnsavedBanner({
             You have unsaved changes
           </span>
           <SaveButton status={status} onClick={onSave} />
+          {onDiscard && (
+            <button
+              type="button"
+              onClick={onDiscard}
+              aria-label="Discard changes"
+              className="flex items-center justify-center w-7 h-7 rounded-lg text-amber-600 dark:text-amber-400 hover:bg-amber-200/60 dark:hover:bg-amber-900/60 transition-colors"
+            >
+              <X size={15} />
+            </button>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

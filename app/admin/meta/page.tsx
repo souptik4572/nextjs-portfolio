@@ -281,6 +281,10 @@ export default function MetaPage() {
           if (terminalIsDirty) terminalForm.handleSubmit(handleTerminalSave)();
         }}
         status={metaIsSubmitting || terminalIsSubmitting ? "saving" : metaSaveStatus === "error" || terminalSaveStatus === "error" ? "error" : "idle"}
+        onDiscard={() => {
+          metaForm.reset();
+          terminalForm.reset();
+        }}
       />
 
       <DiffModal

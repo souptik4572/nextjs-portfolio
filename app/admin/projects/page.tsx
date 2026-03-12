@@ -136,7 +136,7 @@ export default function ProjectsPage() {
         {isLoading ? (
           <LoadingSkeleton rows={3} />
         ) : (
-          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Project" empty={<p className="text-sm font-heading">No projects yet.</p>}>
+          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Project" empty={<p className="text-sm">No projects yet.</p>}>
             {sortedKeys.map((key) => (
               <EntryCard
                 key={key}

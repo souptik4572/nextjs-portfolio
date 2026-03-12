@@ -30,11 +30,11 @@ export default function UnsavedBanner({
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 35 }}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-4 px-5 py-3 rounded-xl border border-amber-400/30 bg-amber-50/90 dark:bg-amber-950/80 backdrop-blur-xl shadow-xl shadow-black/10"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 pl-4 pr-2 py-2 rounded-2xl border border-black/[0.10] dark:border-white/[0.10] bg-white/92 dark:bg-[#2c2c2e]/92 backdrop-blur-2xl shadow-xl shadow-black/12 dark:shadow-black/40"
         >
-          <AlertCircle size={16} className="text-amber-500 shrink-0" />
-          <span className="text-sm font-medium text-amber-700 dark:text-amber-300 font-heading">
-            You have unsaved changes
+          <AlertCircle size={14} className="text-[#FF9F0A] dark:text-[#FFD60A] shrink-0" />
+          <span className="text-[13px] font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">
+            Unsaved changes
           </span>
           <SaveButton status={status} onClick={onSave} />
           {onDiscard && (
@@ -42,9 +42,9 @@ export default function UnsavedBanner({
               type="button"
               onClick={onDiscard}
               aria-label="Discard changes"
-              className="flex items-center justify-center w-7 h-7 rounded-lg text-amber-600 dark:text-amber-400 hover:bg-amber-200/60 dark:hover:bg-amber-900/60 transition-colors"
+              className="flex items-center justify-center w-7 h-7 rounded-lg text-slate-400 dark:text-slate-500 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
             >
-              <X size={15} />
+              <X size={14} />
             </button>
           )}
         </motion.div>

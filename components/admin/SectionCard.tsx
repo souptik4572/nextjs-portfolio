@@ -18,14 +18,14 @@ export default function SectionCard({
   action,
 }: SectionCardProps) {
   return (
-    <div className="rounded-xl border border-slate-200/60 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm macos-shadow overflow-hidden">
-      <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-slate-200/40 dark:border-slate-700/30">
+    <div className="rounded-2xl admin-card-surface border border-black/[0.07] dark:border-white/[0.06] overflow-hidden">
+      <div className="flex items-start justify-between gap-4 px-5 py-3.5 border-b border-black/[0.06] dark:border-white/[0.05]">
         <div>
-          <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+          <h3 className="text-[13px] font-semibold text-slate-800 dark:text-slate-100 tracking-tight">
             {title}
           </h3>
           {description && (
-            <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400 font-heading">
+            <p className="mt-0.5 text-[12px] text-slate-500 dark:text-slate-400">
               {description}
             </p>
           )}

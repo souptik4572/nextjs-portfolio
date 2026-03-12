@@ -46,25 +46,35 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-[#f2f2f7] dark:bg-[#161618]">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
         className="w-full max-w-sm"
       >
-        {/* Card */}
-        <div className="rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl macos-shadow px-7 py-8 space-y-6">
+        {/* Card — macOS window style */}
+        <div className="rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white/95 dark:bg-[#2c2c2e]/95 backdrop-blur-2xl shadow-2xl shadow-black/10 dark:shadow-black/40 overflow-hidden">
+          {/* Window titlebar */}
+          <div className="flex items-center px-5 pt-4 pb-3 border-b border-black/[0.06] dark:border-white/[0.05]">
+            <div className="flex items-center gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+              <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+              <span className="w-3 h-3 rounded-full bg-[#28C840]" />
+            </div>
+          </div>
+
+          <div className="px-7 py-6 space-y-5">
           {/* Logo / Initials */}
           <div className="flex flex-col items-center gap-3">
-            <span className="w-12 h-12 rounded-xl bg-blue-600 dark:bg-indigo-600 flex items-center justify-center text-white text-xl font-bold font-heading">
+            <span className="w-11 h-11 rounded-[14px] bg-[#007AFF] dark:bg-[#0A84FF] flex items-center justify-center text-white text-lg font-bold shadow-md shadow-[#007AFF]/30">
               A
             </span>
             <div className="text-center">
-              <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+              <h1 className="text-[15px] font-semibold text-slate-900 dark:text-slate-100 tracking-tight">
                 Admin Portal
               </h1>
-              <p className="text-sm text-slate-500 dark:text-slate-400 font-heading">
+              <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">
                 Sign in to manage your portfolio
               </p>
             </div>
@@ -72,8 +82,8 @@ export default function AdminLoginPage() {
 
           {/* Unauthorised error banner */}
           {isUnauthorised && (
-            <div className="flex items-start gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 text-sm">
-              <AlertCircle size={16} className="mt-0.5 shrink-0" />
+            <div className="flex items-start gap-2 p-3 bg-[#FF3B30]/[0.08] border border-[#FF3B30]/20 rounded-[8px] text-[#FF3B30] dark:text-[#FF453A] text-[13px]">
+              <AlertCircle size={14} className="mt-0.5 shrink-0" />
               Access denied — this account is not authorised.
             </div>
           )}
@@ -123,7 +133,7 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={isSubmitting}
               whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#007AFF] hover:bg-[#0071E3] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white rounded-[8px] text-[13px] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               {isSubmitting ? (
                 <>
@@ -139,6 +149,7 @@ export default function AdminLoginPage() {
               )}
             </motion.button>
           </form>
+          </div>
         </div>
       </motion.div>
     </div>

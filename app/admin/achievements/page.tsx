@@ -128,7 +128,7 @@ export default function AchievementsPage() {
         {isLoading ? (
           <LoadingSkeleton rows={3} />
         ) : (
-          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Achievement" empty={<p className="text-sm font-heading">No achievements yet.</p>}>
+          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Achievement" empty={<p className="text-sm">No achievements yet.</p>}>
             {sortedKeys.map((key) => (
               <EntryCard
                 key={key}

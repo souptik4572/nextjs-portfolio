@@ -148,7 +148,7 @@ export default function ExperiencePage() {
         {isLoading ? (
           <LoadingSkeleton rows={3} />
         ) : (
-          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Experience" empty={<p className="text-sm font-heading">No experience entries yet.</p>}>
+          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Experience" empty={<p className="text-sm">No experience entries yet.</p>}>
             {sortedKeys.map((key) => (
               <EntryCard
                 key={key}

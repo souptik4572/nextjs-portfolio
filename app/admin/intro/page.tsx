@@ -214,11 +214,11 @@ export default function IntroPage() {
             <div className="space-y-4">
               {CODING_PROFILE_KEYS.map((key) => (
                 <div key={key} className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-4 border-b border-slate-200/40 dark:border-slate-700/30 last:border-0 last:pb-0">
-                  <p className="col-span-full text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide font-heading">
+                  <p className="col-span-full text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
                     {key}
                   </p>
                   <div>
-                    <label htmlFor={`cp-title-${key}`} className="block text-xs text-slate-600 dark:text-slate-400 mb-1 font-heading">Title</label>
+                    <label htmlFor={`cp-title-${key}`} className="block text-xs text-slate-600 dark:text-slate-400 mb-1">Title</label>
                     <input
                       id={`cp-title-${key}`}
                       value={codingProfiles[key]?.title ?? ""}
@@ -233,7 +233,7 @@ export default function IntroPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor={`cp-url-${key}`} className="block text-xs text-slate-600 dark:text-slate-400 mb-1 font-heading">URL</label>
+                    <label htmlFor={`cp-url-${key}`} className="block text-xs text-slate-600 dark:text-slate-400 mb-1">URL</label>
                     <input
                       id={`cp-url-${key}`}
                       type="url"

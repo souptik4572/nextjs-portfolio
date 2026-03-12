@@ -47,12 +47,12 @@ export default function SaveButton({
       onClick={onClick}
       disabled={isDisabled}
       className={[
-        "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+        "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium transition-colors",
         isSuccess
-          ? "bg-green-500/15 text-green-500 border border-green-500/30"
+          ? "bg-[#34C759]/[0.12] dark:bg-[#30D158]/[0.15] text-[#34C759] dark:text-[#30D158] border border-[#34C759]/25"
           : isError
-            ? "bg-red-500/15 text-red-500 border border-red-500/30"
-            : "bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white border border-transparent disabled:opacity-50 disabled:cursor-not-allowed",
+            ? "bg-[#FF3B30]/[0.10] dark:bg-[#FF453A]/[0.15] text-[#FF3B30] dark:text-[#FF453A] border border-[#FF3B30]/25"
+            : "bg-[#007AFF] hover:bg-[#0071E3] active:bg-[#006FD6] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white border border-transparent disabled:opacity-45 disabled:cursor-not-allowed shadow-sm",
       ].join(" ")}
     >
       <AnimatePresence mode="wait" initial={false}>

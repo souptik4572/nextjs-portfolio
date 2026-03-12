@@ -88,7 +88,7 @@ function NotableOfferForm({ entryKey, defaultValues, onSave, requestDiff }: Nota
           <div className="w-10 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:ring-2 peer-focus:ring-blue-500/40 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-indigo-600 transition-colors" />
           <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4" />
         </label>
-        <span className="text-sm text-slate-700 dark:text-slate-300 font-heading">Show in portfolio</span>
+        <span className="text-sm text-slate-700 dark:text-slate-300">Show in portfolio</span>
       </div>
       <div className="flex justify-end">
         <SaveButton status={isSubmitting ? "saving" : saveStatus} type="submit" disabled={!isDirty} />
@@ -138,7 +138,7 @@ export default function NotableOffersPage() {
         {isLoading ? (
           <LoadingSkeleton rows={2} />
         ) : (
-          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Offer" empty={<p className="text-sm font-heading">No notable offers yet.</p>}>
+          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Offer" empty={<p className="text-sm">No notable offers yet.</p>}>
             {sortedKeys.map((key) => (
               <EntryCard
                 key={key}

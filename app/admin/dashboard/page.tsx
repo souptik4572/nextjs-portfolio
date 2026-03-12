@@ -55,19 +55,19 @@ export default function DashboardPage() {
 
         {/* Stats */}
         <section>
-          <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4 font-heading">
+          <h2 className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
             Overview
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
             {isLoading
               ? Array.from({ length: 5 }).map((_, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-slate-200/60 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40 p-4 animate-pulse"
+                    className="rounded-2xl admin-card-surface border border-black/[0.07] dark:border-white/[0.06] p-4 animate-pulse"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-700 mb-3" />
-                    <div className="h-7 w-8 rounded bg-slate-200 dark:bg-slate-700 mb-1" />
-                    <div className="h-3 w-20 rounded bg-slate-100 dark:bg-slate-800" />
+                    <div className="w-8 h-8 rounded-[10px] bg-black/[0.06] dark:bg-white/[0.06] mb-3" />
+                    <div className="h-7 w-8 rounded bg-black/[0.06] dark:bg-white/[0.06] mb-1" />
+                    <div className="h-3 w-20 rounded bg-black/[0.04] dark:bg-white/[0.04]" />
                   </div>
                 ))
               : statCards.map(({ label, value, Icon }, i) => (
@@ -76,15 +76,15 @@ export default function DashboardPage() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, delay: i * 0.07, ease: "easeOut" }}
-                    className="rounded-xl border border-slate-200/60 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm macos-shadow p-4"
+                    className="rounded-2xl admin-card-surface border border-black/[0.07] dark:border-white/[0.06] p-4"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/15 dark:bg-indigo-500/20 flex items-center justify-center text-blue-600 dark:text-indigo-400 mb-3">
+                    <div className="w-8 h-8 rounded-[10px] bg-[#007AFF]/[0.10] dark:bg-[#0A84FF]/[0.15] flex items-center justify-center text-[#007AFF] dark:text-[#4DB8FF] mb-3">
                       <Icon size={16} />
                     </div>
-                    <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 font-heading">
+                    <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                       {value}
                     </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-heading">
+                    <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">
                       {label}
                     </p>
                   </motion.div>
@@ -94,29 +94,29 @@ export default function DashboardPage() {
 
         {/* Quick Links */}
         <section>
-          <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4 font-heading">
+          <h2 className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
             Quick Actions
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
             {QUICK_LINKS.map(({ label, href, Icon, desc }, i) => (
               <motion.div
                 key={href}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: i * 0.05, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: i * 0.04, ease: "easeOut" }}
               >
                 <Link
                   href={href}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/60 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm macos-shadow hover:border-blue-300 dark:hover:border-indigo-500/50 hover:bg-blue-50/50 dark:hover:bg-indigo-500/10 transition-all group"
+                  className="flex items-center gap-3 p-3.5 rounded-2xl admin-card-surface border border-black/[0.07] dark:border-white/[0.06] hover:border-[#007AFF]/30 dark:hover:border-[#0A84FF]/30 hover:bg-[#007AFF]/[0.03] dark:hover:bg-[#0A84FF]/[0.05] transition-all group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-indigo-500/15 flex items-center justify-center text-blue-600 dark:text-indigo-400 group-hover:bg-blue-500/20 dark:group-hover:bg-indigo-500/25 transition-colors shrink-0">
-                    <Icon size={18} />
+                  <div className="w-9 h-9 rounded-[10px] bg-[#007AFF]/[0.08] dark:bg-[#0A84FF]/[0.12] flex items-center justify-center text-[#007AFF] dark:text-[#4DB8FF] group-hover:bg-[#007AFF]/[0.15] dark:group-hover:bg-[#0A84FF]/[0.2] transition-colors shrink-0">
+                    <Icon size={17} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">
+                    <p className="text-[13px] font-semibold text-slate-800 dark:text-slate-100 truncate tracking-tight">
                       {label}
                     </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 truncate font-heading">
+                    <p className="text-[12px] text-slate-500 dark:text-slate-400 truncate">
                       {desc}
                     </p>
                   </div>

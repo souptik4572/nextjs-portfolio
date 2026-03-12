@@ -63,43 +63,49 @@ export default function DeleteConfirm({
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="w-full max-w-sm pointer-events-auto rounded-2xl border border-slate-200/60 dark:border-slate-700/50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl shadow-black/10 dark:shadow-black/40"
+              className="w-full max-w-sm pointer-events-auto rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white/98 dark:bg-[#2c2c2e]/98 backdrop-blur-2xl shadow-2xl shadow-black/12 dark:shadow-black/50"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-slate-200/40 dark:border-slate-700/30">
-                <div className="flex items-center gap-2 text-red-500">
-                  <Trash2 size={18} />
-                  <h2 className="text-base font-semibold">Delete entry?</h2>
+              {/* macOS window chrome */}
+              <div className="flex items-center justify-between px-5 pt-4 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.05]">
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={onCancel}
+                    aria-label="Cancel"
+                    className="w-3 h-3 rounded-full bg-[#FF5F57] hover:brightness-90 transition-all flex items-center justify-center group"
+                  >
+                    <X size={7} className="opacity-0 group-hover:opacity-100 text-[#8b0000] transition-opacity" strokeWidth={2.5} />
+                  </button>
+                  <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                  <span className="w-3 h-3 rounded-full bg-[#28C840]" />
                 </div>
-                <button
-                  type="button"
-                  onClick={onCancel}
-                  aria-label="Cancel"
-                  className="w-7 h-7 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                >
-                  <X size={16} />
-                </button>
+                <div className="flex items-center gap-1.5 text-[#FF3B30] dark:text-[#FF453A]">
+                  <Trash2 size={14} />
+                  <h2 className="text-[13px] font-semibold">Delete entry?</h2>
+                </div>
+                <div className="w-[52px]" />
               </div>
-              <div className="px-6 py-5">
-                <p className="text-sm text-slate-600 dark:text-slate-300 font-heading">
+              <div className="px-5 py-4">
+                <p className="text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed">
                   Are you sure you want to delete{" "}
                   <span className="font-semibold text-slate-900 dark:text-slate-100">
                     {label}
                   </span>
                   ? This action cannot be undone.
                 </p>
-                <div className="mt-5 flex justify-end gap-2">
+                <div className="mt-4 flex justify-end gap-2">
                   <button
                     type="button"
                     onClick={onCancel}
-                    className="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    className="px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium text-slate-600 dark:text-slate-300 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="button"
                     onClick={onConfirm}
-                    className="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-500 text-white transition-colors"
+                    className="px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium bg-[#FF3B30] hover:bg-[#FF2D20] dark:bg-[#FF453A] dark:hover:bg-[#FF3830] text-white transition-colors shadow-sm"
                   >
                     Delete
                   </button>

@@ -1,6 +1,7 @@
 "use client";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
-import { Mail, Github, Linkedin, FileText } from "lucide-react";
+import { Mail, Github, Linkedin, FileText, Lock } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   const portfolioData = usePortfolioData();
@@ -58,8 +59,16 @@ export default function Footer() {
         </p>
 
         {/* Copyright */}
-        <p className="text-slate-400 dark:text-slate-600 text-xs">
+        <p className="flex items-center gap-1.5 text-slate-400 dark:text-slate-600 text-xs">
           © {new Date().getFullYear()} {personal.name}
+          <Link
+            href="/admin/login"
+            aria-label="Admin"
+            className="opacity-0 hover:opacity-25 transition-opacity duration-300 text-slate-400 dark:text-slate-600"
+            tabIndex={-1}
+          >
+            <Lock size={10} strokeWidth={2} />
+          </Link>
         </p>
       </div>
     </footer>

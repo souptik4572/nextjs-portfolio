@@ -61,7 +61,7 @@ export default function ArrayEditor({
       <button
         type="button"
         onClick={handleAdd}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-blue-600 dark:text-indigo-400 hover:bg-blue-500/10 dark:hover:bg-indigo-500/10 transition-colors border border-dashed border-blue-300 dark:border-indigo-500/50"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-[13px] text-[#007AFF] dark:text-[#4DB8FF] hover:bg-[#007AFF]/[0.07] dark:hover:bg-[#0A84FF]/[0.10] transition-colors border border-dashed border-[#007AFF]/30 dark:border-[#0A84FF]/30"
       >
         <Plus size={14} />
         {addLabel}

@@ -27,7 +27,7 @@ export default function FormField({
     <div className="space-y-1.5">
       <label
         htmlFor={htmlFor}
-        className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+        className="block text-[12px] font-medium text-slate-600 dark:text-slate-400 tracking-tight"
       >
         {label}
         {required && (
@@ -52,14 +52,14 @@ export default function FormField({
   );
 }
 
-/** Shared input class — matches the portfolio's ContactForm styling exactly. */
+/** Shared input class — macOS NSTextField aesthetic. */
 export const inputClass = (hasError?: boolean) =>
   [
-    "w-full px-4 py-2.5 bg-white/80 dark:bg-slate-800/60 backdrop-blur-sm",
-    "border rounded-lg text-slate-900 dark:text-slate-100",
-    "placeholder-slate-400 dark:placeholder-slate-500",
-    "focus:outline-none focus:ring-1 transition-all macos-shadow text-sm",
+    "w-full px-3 py-[7px] bg-white dark:bg-[#1c1c1e]/80",
+    "border rounded-[8px] text-[13px] text-slate-900 dark:text-slate-100",
+    "placeholder-slate-400/70 dark:placeholder-slate-500",
+    "focus:outline-none focus:ring-2 transition-all",
     hasError
-      ? "border-red-500 focus:border-red-500/60 focus:ring-red-500/40"
-      : "border-slate-300/60 dark:border-slate-700/50 focus:border-blue-500/60 dark:focus:border-indigo-500/60 focus:ring-blue-500/40 dark:focus:ring-indigo-500/40",
+      ? "border-[#FF3B30]/60 dark:border-[#FF453A]/50 focus:ring-[#FF3B30]/20 dark:focus:ring-[#FF453A]/20 focus:border-[#FF3B30]/80"
+      : "border-black/[0.15] dark:border-white/[0.10] focus:ring-[#007AFF]/20 dark:focus:ring-[#0A84FF]/20 focus:border-[#007AFF]/60 dark:focus:border-[#0A84FF]/60",
   ].join(" ");

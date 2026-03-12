@@ -27,7 +27,7 @@ export default function EntryList({
         <button
           type="button"
           onClick={onAdd}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 hover:bg-blue-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white transition-colors"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium bg-[#007AFF] hover:bg-[#0071E3] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white transition-colors shadow-sm"
         >
           <Plus size={15} />
           {addLabel}

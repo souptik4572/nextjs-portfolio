@@ -127,7 +127,7 @@ export default function EducationPage() {
         {isLoading ? (
           <LoadingSkeleton rows={2} />
         ) : (
-          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Education" empty={<p className="text-sm font-heading">No education entries yet.</p>}>
+          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Education" empty={<p className="text-sm">No education entries yet.</p>}>
             {sortedKeys.map((key) => (
               <EntryCard
                 key={key}

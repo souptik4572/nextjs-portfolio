@@ -13,8 +13,8 @@ interface AdminShellProps {
 
 /**
  * Full admin shell: sidebar + topbar + scrollable content area.
- * Desktop: fixed 240px sidebar + full-width top bar.
- * Mobile: bottom-tab-style nav replaced by hamburger drawer.
+ * Desktop: fixed 220px sidebar + full-width top bar.
+ * Mobile: hamburger drawer.
  */
 export default function AdminShell({
   title,
@@ -24,9 +24,9 @@ export default function AdminShell({
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background text-foreground">
+    <div className="flex h-screen overflow-hidden bg-[#f2f2f7] dark:bg-[#161618] text-foreground">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 shrink-0 border-r border-slate-200/40 dark:border-slate-700/30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+      <aside className="hidden lg:flex flex-col w-[220px] shrink-0 admin-sidebar-surface admin-vibrancy border-r border-black/[0.07] dark:border-white/[0.06]">
         <AdminSidebar />
       </aside>
 
@@ -37,7 +37,7 @@ export default function AdminShell({
           onMenuClick={() => setDrawerOpen(true)}
           actions={actions}
         />
-        <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5">
+        <main className="flex-1 overflow-y-auto px-4 lg:px-8 py-6">
           {children}
         </main>
       </div>
@@ -46,7 +46,6 @@ export default function AdminShell({
       <AnimatePresence>
         {drawerOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }}
@@ -57,14 +56,13 @@ export default function AdminShell({
               onClick={() => setDrawerOpen(false)}
               aria-hidden
             />
-            {/* Drawer */}
             <motion.aside
               key="drawer"
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 400, damping: 38 }}
-              className="fixed left-0 top-0 bottom-0 z-50 w-64 flex flex-col border-r border-slate-200/40 dark:border-slate-700/30 bg-white dark:bg-slate-900 lg:hidden"
+              className="fixed left-0 top-0 bottom-0 z-50 w-[220px] flex flex-col admin-sidebar-surface admin-vibrancy border-r border-black/[0.07] dark:border-white/[0.06] lg:hidden"
             >
               <AdminSidebar onClose={() => setDrawerOpen(false)} />
             </motion.aside>

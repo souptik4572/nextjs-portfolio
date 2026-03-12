@@ -9,7 +9,7 @@ interface AdminTopBarProps {
 }
 
 /**
- * Top bar: page title + optional save/action area + hamburger on mobile.
+ * macOS-style toolbar: page title centered on desktop, actions right.
  */
 export default function AdminTopBar({
   title,
@@ -17,24 +17,26 @@ export default function AdminTopBar({
   actions,
 }: AdminTopBarProps) {
   return (
-    <header className="h-14 shrink-0 flex items-center gap-3 px-4 lg:px-6 border-b border-slate-200/40 dark:border-slate-700/30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
-      {/* Hamburger (mobile / tablet only) */}
+    <header className="relative h-11 shrink-0 flex items-center gap-2 px-3 lg:px-4 admin-toolbar-surface admin-vibrancy">
+      {/* Hamburger (mobile/tablet only) */}
       <button
         type="button"
         onClick={onMenuClick}
-        className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        className="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
         aria-label="Open navigation menu"
       >
-        <Menu size={20} />
+        <Menu size={18} />
       </button>
 
-      {/* Title */}
-      <h1 className="flex-1 text-base font-semibold text-slate-900 dark:text-slate-100 truncate">
+      {/* Title — centered on desktop, left-aligned on mobile */}
+      <h1 className="flex-1 lg:flex-none lg:absolute lg:left-1/2 lg:-translate-x-1/2 text-[13px] font-semibold text-slate-800 dark:text-slate-100 truncate pointer-events-none">
         {title}
       </h1>
 
-      {/* Actions slot */}
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {/* Actions slot — always far right */}
+      <div className="ml-auto flex items-center gap-2">
+        {actions}
+      </div>
     </header>
   );
 }

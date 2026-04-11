@@ -141,3 +141,14 @@ vite.config.ts.timestamp-*
 # Miscellaneous
 .DS_Store
 lib/portfolioData.json
+GUIDE_IMPL.md
+
+.cursorrules
+.mcp.json
+.opencode.json
+.windsurfrules
+AGENTS.md
+GEMINI.md
+CLAUDE.md
+.claude
+.cursor

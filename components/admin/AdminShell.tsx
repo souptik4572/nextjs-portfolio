@@ -24,7 +24,7 @@ export default function AdminShell({
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#f2f2f7] dark:bg-[#161618] text-foreground">
+    <div className="flex h-[100dvh] overflow-hidden bg-[#f2f2f7] dark:bg-[#161618] text-foreground">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col w-[220px] shrink-0 admin-sidebar-surface admin-vibrancy border-r border-black/[0.07] dark:border-white/[0.06]">
         <AdminSidebar />
@@ -37,7 +37,7 @@ export default function AdminShell({
           onMenuClick={() => setDrawerOpen(true)}
           actions={actions}
         />
-        <main className="flex-1 overflow-y-auto px-4 lg:px-8 py-6">
+        <main className="flex-1 overflow-y-auto px-4 lg:px-8 py-6 pb-safe-area">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight mb-6 font-heading">
             {title}
           </h1>

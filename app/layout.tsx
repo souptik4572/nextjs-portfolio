@@ -1,4 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { PortfolioDataProvider } from "@/contexts/PortfolioDataContext";
 import { getPortfolioData } from "@/lib/getPortfolioData";

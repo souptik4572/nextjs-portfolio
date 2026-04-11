@@ -6,6 +6,7 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   type DragEndEvent,
@@ -61,7 +62,7 @@ function SortableRow({ id, label, enabled, onToggle }: SortableRowProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-3 px-4 py-3 rounded-lg border border-slate-200/60 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40"
+      className="flex items-center gap-3 px-4 py-3 min-h-[52px] rounded-lg border border-slate-200/60 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40"
     >
       <DragHandle listeners={listeners} attributes={attributes} />
       <span className="flex-1 text-sm font-medium text-slate-800 dark:text-slate-200">
@@ -91,6 +92,14 @@ export default function LayoutManagerPage() {
 
   const sensors = useSensors(
     useSensor(PointerSensor),
+    // TouchSensor enables drag-to-reorder on iOS Safari / iPadOS
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        // Require a 250ms press before activating drag, so taps still register
+        delay: 250,
+        tolerance: 5,
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),

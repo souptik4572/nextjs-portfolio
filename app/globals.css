@@ -165,3 +165,39 @@ h1, h2, h3, h4, h5, h6 {
 .dark .section-alt {
   background: rgba(15, 23, 42, 0.35); /* slate-900 @ 35% */
 }
+
+/* ── iOS / touch device optimisations ──────────────────────────── */
+
+/* Momentum scrolling for all overflow containers */
+.overflow-y-auto,
+.overflow-y-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Prevent iOS Safari from zooming on input focus.
+ * iOS zooms whenever an input's font-size is < 16 px.
+ * Target touch-only devices via the coarse pointer media query.
+ */
+@media (hover: none) and (pointer: coarse) {
+  .admin-input {
+    font-size: 16px;
+  }
+}
+
+/*
+ * Safe-area utility classes.
+ * Requires viewport-fit=cover in the viewport meta (set in app/layout.tsx).
+ * Accounts for the iPhone notch, Dynamic Island, and home indicator.
+ */
+.pb-safe-area {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe-area {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Used by UnsavedBanner so it clears the home indicator */
+.bottom-safe-banner {
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}

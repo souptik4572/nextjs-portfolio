@@ -16,7 +16,7 @@ export default function DragHandle({ listeners, attributes }: DragHandleProps) {
   return (
     <button
       type="button"
-      className="cursor-grab active:cursor-grabbing touch-none p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+      className="cursor-grab active:cursor-grabbing touch-none p-3 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
       aria-label="Drag to reorder"
       {...listeners}
       {...attributes}

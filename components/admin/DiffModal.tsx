@@ -147,7 +147,7 @@ export default function DiffModal({
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="w-full max-w-lg max-h-[82vh] flex flex-col pointer-events-auto rounded-2xl border border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#2c2c2e] shadow-2xl shadow-black/20 dark:shadow-black/50"
+              className="w-full max-w-lg max-h-[82dvh] flex flex-col pointer-events-auto rounded-2xl border border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#2c2c2e] shadow-2xl shadow-black/20 dark:shadow-black/50"
               onClick={(e) => e.stopPropagation()}
             >
               {/* macOS window chrome */}
@@ -202,11 +202,11 @@ export default function DiffModal({
               </div>
 
               {/* Footer */}
-              <div className="px-5 py-3.5 border-t border-slate-200 dark:border-white/[0.05] flex justify-end gap-2 shrink-0">
+              <div className="px-5 py-3 border-t border-slate-200 dark:border-white/[0.05] flex justify-end gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={onCancel}
-                  className="px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium text-slate-600 dark:text-slate-300 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
+                  className="px-4 py-2.5 min-h-[44px] rounded-[10px] text-[13px] font-medium text-slate-600 dark:text-slate-300 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
                 >
                   Cancel
                 </button>
@@ -214,7 +214,7 @@ export default function DiffModal({
                   type="button"
                   onClick={onConfirm}
                   disabled={diffs.length === 0}
-                  className="px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium bg-[#007AFF] hover:bg-[#0071E3] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
+                  className="px-4 py-2.5 min-h-[44px] rounded-[10px] text-[13px] font-medium bg-[#007AFF] hover:bg-[#0071E3] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                 >
                   Confirm &amp; Save
                 </button>

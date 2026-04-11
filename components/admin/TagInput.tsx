@@ -76,7 +76,7 @@ export default function TagInput({
         onKeyDown={handleKey}
         onBlur={() => input.trim() && addTag(input)}
         placeholder={value.length === 0 ? placeholder : ""}
-        className="flex-1 min-w-[120px] bg-transparent text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none"
+        className="admin-input flex-1 min-w-[120px] bg-transparent text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none"
       />
     </div>
   );

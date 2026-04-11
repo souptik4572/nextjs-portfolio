@@ -98,14 +98,14 @@ export default function DeleteConfirm({
                   <button
                     type="button"
                     onClick={onCancel}
-                    className="px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium text-slate-600 dark:text-slate-300 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
+                    className="px-4 py-2.5 min-h-[44px] rounded-[10px] text-[13px] font-medium text-slate-600 dark:text-slate-300 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="button"
                     onClick={onConfirm}
-                    className="px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium bg-[#FF3B30] hover:bg-[#FF2D20] dark:bg-[#FF453A] dark:hover:bg-[#FF3830] text-white transition-colors shadow-sm"
+                    className="px-4 py-2.5 min-h-[44px] rounded-[10px] text-[13px] font-medium bg-[#FF3B30] hover:bg-[#FF2D20] dark:bg-[#FF453A] dark:hover:bg-[#FF3830] text-white transition-colors shadow-sm"
                   >
                     Delete
                   </button>

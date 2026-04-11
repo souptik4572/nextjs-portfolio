@@ -52,7 +52,7 @@ export default function ArrayEditor({
             type="button"
             onClick={() => handleDelete(idx)}
             aria-label={`Delete item ${idx + 1}`}
-            className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+            className="shrink-0 w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
           >
             <Trash2 size={15} />
           </button>

@@ -89,7 +89,7 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
               href={href}
               onClick={onClose}
               className={[
-                "flex items-center gap-2.5 px-3 py-[7px] rounded-[8px] text-[13px] font-medium transition-colors",
+                "flex items-center gap-2.5 px-3 py-2.5 min-h-[44px] rounded-[8px] text-[13px] font-medium transition-colors",
                 isActive
                   ? "bg-[#007AFF]/[0.13] dark:bg-[#0A84FF]/[0.18] text-[#007AFF] dark:text-[#4DB8FF]"
                   : "text-slate-600 dark:text-slate-400 hover:bg-black/[0.05] dark:hover:bg-white/[0.07] hover:text-slate-900 dark:hover:text-slate-100",
@@ -103,11 +103,11 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
       </nav>
 
       {/* Sign Out */}
-      <div className="px-2.5 py-2.5 border-t border-black/[0.06] dark:border-white/[0.05]">
+      <div className="px-2.5 py-2.5 border-t border-black/[0.06] dark:border-white/[0.05] pb-safe-area">
         <button
           type="button"
           onClick={handleSignOut}
-          className="w-full flex items-center gap-2.5 px-3 py-[7px] rounded-[8px] text-[13px] font-medium text-slate-500 dark:text-slate-400 hover:bg-[#FF3B30]/[0.08] hover:text-[#FF3B30] dark:hover:bg-[#FF453A]/[0.12] dark:hover:text-[#FF453A] transition-colors"
+          className="w-full flex items-center gap-2.5 px-3 py-2.5 min-h-[44px] rounded-[8px] text-[13px] font-medium text-slate-500 dark:text-slate-400 hover:bg-[#FF3B30]/[0.08] hover:text-[#FF3B30] dark:hover:bg-[#FF453A]/[0.12] dark:hover:text-[#FF453A] transition-colors"
         >
           <LogOut size={15} className="shrink-0" strokeWidth={1.8} />
           Sign Out

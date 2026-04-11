@@ -55,7 +55,8 @@ export default function FormField({
 /** Shared input class — macOS NSTextField aesthetic. */
 export const inputClass = (hasError?: boolean) =>
   [
-    "w-full px-3 py-[7px] bg-white dark:bg-[#1c1c1e]/80",
+    // admin-input: overrides font-size to 16px on touch devices (prevents iOS Safari zoom)
+    "admin-input w-full px-3 py-[7px] bg-white dark:bg-[#1c1c1e]/80",
     "border rounded-[8px] text-[13px] text-slate-900 dark:text-slate-100",
     "placeholder-slate-400/70 dark:placeholder-slate-500",
     "focus:outline-none focus:ring-2 transition-all",

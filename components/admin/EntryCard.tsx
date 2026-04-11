@@ -57,7 +57,7 @@ export default function EntryCard({
           type="button"
           onClick={onDelete}
           aria-label={`Delete ${title}`}
-          className="shrink-0 w-7 h-7 flex items-center justify-center rounded-lg text-slate-400 hover:text-[#FF3B30] dark:hover:text-[#FF453A] hover:bg-[#FF3B30]/[0.08] dark:hover:bg-[#FF453A]/[0.12] transition-colors"
+          className="shrink-0 w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:text-[#FF3B30] dark:hover:text-[#FF453A] hover:bg-[#FF3B30]/[0.08] dark:hover:bg-[#FF453A]/[0.12] transition-colors"
         >
           <Trash2 size={14} />
         </button>

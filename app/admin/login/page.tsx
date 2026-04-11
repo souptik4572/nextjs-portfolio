@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-[#f2f2f7] dark:bg-[#161618]">
+    <div className="min-h-[100dvh] flex items-center justify-center px-4 bg-[#f2f2f7] dark:bg-[#161618]">
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}

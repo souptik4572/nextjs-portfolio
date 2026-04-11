@@ -25,7 +25,7 @@ export default function AdminTopBar({
       <button
         type="button"
         onClick={onMenuClick}
-        className="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
+        className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl text-slate-500 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] transition-colors"
         aria-label="Open navigation menu"
       >
         <Menu size={18} />
@@ -43,7 +43,7 @@ export default function AdminTopBar({
         <button
           type="button"
           onClick={toggleTheme}
-          className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+          className="w-11 h-11 flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
           aria-label="Toggle theme"
         >
           {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}

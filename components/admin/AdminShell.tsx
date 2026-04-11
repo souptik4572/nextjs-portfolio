@@ -38,6 +38,9 @@ export default function AdminShell({
           actions={actions}
         />
         <main className="flex-1 overflow-y-auto px-4 lg:px-8 py-6">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight mb-6 font-heading">
+            {title}
+          </h1>
           {children}
         </main>
       </div>

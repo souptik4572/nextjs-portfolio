@@ -147,11 +147,11 @@ export default function DiffModal({
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="w-full max-w-lg max-h-[82vh] flex flex-col pointer-events-auto rounded-2xl border border-black/[0.08] dark:border-white/[0.07] bg-white/98 dark:bg-[#2c2c2e]/98 backdrop-blur-2xl shadow-2xl shadow-black/12 dark:shadow-black/50"
+              className="w-full max-w-lg max-h-[82vh] flex flex-col pointer-events-auto rounded-2xl border border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#2c2c2e] shadow-2xl shadow-black/20 dark:shadow-black/50"
               onClick={(e) => e.stopPropagation()}
             >
               {/* macOS window chrome */}
-              <div className="flex items-center gap-3 px-5 pt-4 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.05] shrink-0">
+              <div className="flex items-center gap-3 px-5 pt-4 pb-3.5 border-b border-slate-200 dark:border-white/[0.05] shrink-0">
                 {/* Traffic lights */}
                 <div className="flex items-center gap-1.5 shrink-0">
                   <button
@@ -202,7 +202,7 @@ export default function DiffModal({
               </div>
 
               {/* Footer */}
-              <div className="px-5 py-3.5 border-t border-black/[0.06] dark:border-white/[0.05] flex justify-end gap-2 shrink-0">
+              <div className="px-5 py-3.5 border-t border-slate-200 dark:border-white/[0.05] flex justify-end gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={onCancel}

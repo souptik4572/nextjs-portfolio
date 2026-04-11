@@ -103,7 +103,7 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
       </nav>
 
       {/* Sign Out */}
-      <div className="px-2.5 py-2.5 border-t border-black/[0.06] dark:border-white/[0.05] pb-safe-area">
+      <div className="px-2.5 py-2.5 border-t border-black/[0.06] dark:border-white/[0.05]">
         <button
           type="button"
           onClick={handleSignOut}
@@ -112,6 +112,7 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
           <LogOut size={15} className="shrink-0" strokeWidth={1.8} />
           Sign Out
         </button>
+        <div aria-hidden className="safe-area-bottom-spacer" />
       </div>
     </div>
   );

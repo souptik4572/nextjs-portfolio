@@ -68,7 +68,7 @@ function SortableRow({ id, label, enabled, onToggle }: SortableRowProps) {
       <span className="flex-1 text-sm font-medium text-slate-800 dark:text-slate-200">
         {SECTION_LABELS[id] ?? id}
       </span>
-      <label className="relative inline-flex items-center cursor-pointer">
+      <label className="relative inline-flex items-center cursor-pointer shrink-0">
         <input
           type="checkbox"
           checked={enabled}
@@ -76,8 +76,13 @@ function SortableRow({ id, label, enabled, onToggle }: SortableRowProps) {
           className="sr-only peer"
           aria-label={`${label} section visible`}
         />
-        <div className="w-10 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:ring-2 peer-focus:ring-blue-500/40 rounded-full peer peer-checked:bg-blue-600 dark:peer-checked:bg-indigo-600 transition-colors" />
-        <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4" />
+        {/*
+          Track + knob via after: pseudo-element.
+          - Only the <input> carries the `peer` class so peer-checked:* refs are unambiguous.
+          - The knob (after:) is positioned relative to the track (relative), not the label,
+            so its top/left offsets remain correct regardless of label or row height.
+        */}
+        <div className="relative w-10 h-6 rounded-full bg-slate-200 dark:bg-slate-700 transition-colors peer-focus:ring-2 peer-focus:ring-blue-500/40 peer-checked:bg-blue-600 dark:peer-checked:bg-indigo-600 after:absolute after:top-1 after:left-1 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-4" />
       </label>
     </div>
   );

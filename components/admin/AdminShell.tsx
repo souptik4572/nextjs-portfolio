@@ -37,11 +37,15 @@ export default function AdminShell({
           onMenuClick={() => setDrawerOpen(true)}
           actions={actions}
         />
-        <main className="flex-1 overflow-y-auto px-4 lg:px-8 py-6 pb-safe-area">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight mb-6 font-heading">
+        <main className="flex-1 overflow-y-auto px-4 lg:px-8 py-6">
+          {/* Hidden on mobile — the TopBar already displays the title there */}
+          <h1 className="hidden lg:block text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight mb-6 font-heading">
             {title}
           </h1>
           {children}
+          {/* Safe-area spacer: adds height = home indicator height at the bottom of
+              the scroll container without conflicting with py-6's padding-bottom */}
+          <div aria-hidden className="safe-area-bottom-spacer" />
         </main>
       </div>
 

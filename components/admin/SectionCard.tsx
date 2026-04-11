@@ -19,7 +19,7 @@ export default function SectionCard({
 }: SectionCardProps) {
   return (
     <div className="rounded-2xl admin-card-surface border border-black/[0.07] dark:border-white/[0.06] overflow-hidden">
-      <div className="flex items-start justify-between gap-4 px-5 py-3.5 border-b border-black/[0.06] dark:border-white/[0.05]">
+      <div className="flex items-center justify-between gap-4 px-5 py-3.5 border-b border-black/[0.06] dark:border-white/[0.05]">
         <div>
           <h3 className="text-[13px] font-semibold text-slate-800 dark:text-slate-100 tracking-tight">
             {title}

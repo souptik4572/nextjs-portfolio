@@ -23,11 +23,11 @@ export default function EntryList({
 }: EntryListProps) {
   return (
     <div className="space-y-3">
-      <div className="flex justify-end">
+      <div className="flex justify-stretch sm:justify-end">
         <button
           type="button"
           onClick={onAdd}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium bg-[#007AFF] hover:bg-[#0071E3] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white transition-colors shadow-sm"
+          className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:py-1.5 min-h-[44px] rounded-[10px] text-[13px] font-medium bg-[#007AFF] hover:bg-[#0071E3] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF] text-white transition-colors shadow-sm"
         >
           <Plus size={15} />
           {addLabel}

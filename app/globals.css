@@ -186,18 +186,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
- * Safe-area utility classes.
+ * Safe-area utilities.
  * Requires viewport-fit=cover in the viewport meta (set in app/layout.tsx).
  * Accounts for the iPhone notch, Dynamic Island, and home indicator.
+ *
+ * Use .safe-area-bottom-spacer as the LAST child in a scroll container —
+ * it adds height equal to the safe area without conflicting with Tailwind
+ * padding utilities (unlike a pb-* class which would override py-*).
  */
-.pb-safe-area {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-.pt-safe-area {
-  padding-top: env(safe-area-inset-top, 0px);
+.safe-area-bottom-spacer {
+  display: block;
+  flex-shrink: 0;
+  height: env(safe-area-inset-bottom, 0px);
+  pointer-events: none;
 }
 
-/* Used by UnsavedBanner so it clears the home indicator */
+/* Used by UnsavedBanner so it floats above the home indicator */
 .bottom-safe-banner {
   bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
 }

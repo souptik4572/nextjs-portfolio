@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { subscribeToAuthState, adminSignOut, getAllowedUid } from "@/lib/admin/auth";
 import { useAdminAuthStore } from "@/store/adminAuthStore";
 import { logger } from "@/lib/admin/logger";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 export default function AdminLayout({
   children,
@@ -63,7 +64,11 @@ export default function AdminLayout({
 
   // On the login page, render children without the auth shell
   if (isLoginPage) {
-    return <>{children}</>;
+    return (
+      <ThemeProvider storageKey="admin-theme">
+        {children}
+      </ThemeProvider>
+    );
   }
 
   // If not authorised and not on login, show nothing (redirect in progress)
@@ -71,5 +76,9 @@ export default function AdminLayout({
     return null;
   }
 
-  return <>{children}</>;
+  return (
+    <ThemeProvider storageKey="admin-theme">
+      {children}
+    </ThemeProvider>
+  );
 }

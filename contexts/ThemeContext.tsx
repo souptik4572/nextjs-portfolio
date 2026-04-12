@@ -14,9 +14,11 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({
   children,
   defaultMode,
+  storageKey = "portfolio-theme",
 }: {
   children: React.ReactNode;
   defaultMode?: Theme;
+  storageKey?: string;
 }) {
   const [theme, setThemeState] = useState<Theme>(defaultMode ?? "light");
   const [mounted, setMounted] = useState(false);
@@ -24,11 +26,11 @@ export function ThemeProvider({
   // Initialize theme from localStorage or default
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
+    const savedTheme = localStorage.getItem(storageKey) as Theme | null;
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
       setThemeState(savedTheme);
     }
-  }, []);
+  }, [storageKey]);
 
   // Update document class and localStorage when theme changes
   useEffect(() => {
@@ -37,8 +39,8 @@ export function ThemeProvider({
     const root = document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
-    localStorage.setItem("portfolio-theme", theme);
-  }, [theme, mounted]);
+    localStorage.setItem(storageKey, theme);
+  }, [theme, mounted, storageKey]);
 
   const toggleTheme = () => {
     setThemeState((prev) => (prev === "dark" ? "light" : "dark"));

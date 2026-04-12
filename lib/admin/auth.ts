@@ -5,6 +5,8 @@
 
 import {
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut,
   onAuthStateChanged,
   type User,
@@ -12,11 +14,17 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 
+const googleProvider = new GoogleAuthProvider();
+
 export async function adminSignIn(
   email: string,
   password: string,
 ): Promise<void> {
   await signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function adminSignInWithGoogle(): Promise<void> {
+  await signInWithPopup(auth, googleProvider);
 }
 
 export async function adminSignOut(): Promise<void> {

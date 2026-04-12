@@ -1,23 +1,37 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { Menu, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useAdminShellTitle, useAdminShellSetters } from "@/contexts/AdminShellContext";
 
 interface AdminTopBarProps {
-  title: string;
   onMenuClick?: () => void;
-  actions?: React.ReactNode;
 }
 
 /**
- * macOS-style toolbar: page title centered on desktop, actions right.
+ * macOS-style toolbar rendered once in the admin layout.
+ *
+ * Title is read from AdminShellTitleCtx (set by the current page's AdminShell).
+ *
+ * Actions are NOT stored in context — instead, this component renders an empty
+ * <div> slot and registers it via registerActionsSlot(). AdminShell then uses
+ * ReactDOM.createPortal to render the page's action buttons into that div.
+ * This avoids any context state update for actions, eliminating re-render loops.
  */
-export default function AdminTopBar({
-  title,
-  onMenuClick,
-  actions,
-}: AdminTopBarProps) {
+export default function AdminTopBar({ onMenuClick }: AdminTopBarProps) {
   const { theme, toggleTheme } = useTheme();
+  const title = useAdminShellTitle();
+  const { registerActionsSlot } = useAdminShellSetters();
+  const slotRef = useRef<HTMLDivElement>(null);
+
+  // Register the slot element after mount so AdminShell can portal into it.
+  // Cleanup on unmount (TopBar should never unmount in practice, but be safe).
+  useEffect(() => {
+    registerActionsSlot(slotRef.current);
+    return () => registerActionsSlot(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <header className="relative h-11 shrink-0 flex items-center gap-2 px-3 lg:px-4 admin-toolbar-surface admin-vibrancy">
@@ -36,10 +50,11 @@ export default function AdminTopBar({
         {title}
       </span>
 
-      {/* Actions slot — always far right */}
+      {/* Right side: actions slot + theme toggle */}
       <div className="ml-auto flex items-center gap-2">
-        {actions}
-        {/* Theme toggle */}
+        {/* Empty div — AdminShell portals the current page's actions here */}
+        <div ref={slotRef} className="flex items-center gap-2" />
+
         <button
           type="button"
           onClick={toggleTheme}

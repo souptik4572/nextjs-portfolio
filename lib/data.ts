@@ -34,6 +34,7 @@ export interface ProjectEntry {
 	tech: string[];
 	github?: string;
 	live?: string;
+	order?: number;
 }
 
 export interface OfferEntry {
@@ -43,6 +44,7 @@ export interface OfferEntry {
 	role: string;
 	period: string;
 	visible?: boolean;
+	order?: number;
 }
 
 export interface SkillGroup {

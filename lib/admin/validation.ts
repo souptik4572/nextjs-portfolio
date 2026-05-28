@@ -29,6 +29,7 @@ export const ProjectEntrySchema = z.object({
   description: z.string().min(1, "Required"),
   github: urlOrEmpty,
   live: urlOrEmpty,
+  order: z.number().int().nonnegative().optional(),
 });
 
 export type ProjectEntryForm = z.infer<typeof ProjectEntrySchema>;
@@ -63,6 +64,7 @@ export const NotableOfferSchema = z.object({
   period: z.string().min(1, "Required"),
   companyUrl: urlOrEmpty,
   visible: z.boolean(),
+  order: z.number().int().nonnegative().optional(),
 });
 
 export type NotableOfferForm = z.infer<typeof NotableOfferSchema>;

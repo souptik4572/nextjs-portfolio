@@ -9,7 +9,16 @@ import type { SectionProps } from "@/app/page";
 
 export default function Projects({ sectionIndex }: SectionProps) {
   const portfolioData = usePortfolioData();
-  const FEATURED_PROJECTS = Object.values(portfolioData.projects).slice(0, 4);
+  // Sort by admin-configured `order` (missing → end, key as tiebreaker), then take the first 4.
+  const FEATURED_PROJECTS = Object.entries(portfolioData.projects)
+    .sort(([keyA, a], [keyB, b]) => {
+      const oa = a.order ?? Number.POSITIVE_INFINITY;
+      const ob = b.order ?? Number.POSITIVE_INFINITY;
+      if (oa !== ob) return oa - ob;
+      return keyA.localeCompare(keyB);
+    })
+    .map(([, project]) => project)
+    .slice(0, 4);
   const headingRef = useRef(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-60px" });
 

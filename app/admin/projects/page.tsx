@@ -1,9 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle } from "lucide-react";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import AdminShell from "@/components/admin/AdminShell";
 import EntryList from "@/components/admin/EntryList";
 import EntryCard from "@/components/admin/EntryCard";
@@ -12,6 +30,7 @@ import TagInput from "@/components/admin/TagInput";
 import SaveButton from "@/components/admin/SaveButton";
 import DeleteConfirm from "@/components/admin/DeleteConfirm";
 import DiffModal from "@/components/admin/DiffModal";
+import DragHandle from "@/components/admin/DragHandle";
 import LoadingSkeleton from "@/components/admin/LoadingSkeleton";
 import { useProjects } from "@/hooks/admin/useProjects";
 import { useDiffConfirm } from "@/hooks/admin/useDiffConfirm";
@@ -91,11 +110,86 @@ function ProjectForm({ entryKey, defaultValues, onSave, requestDiff }: ProjectFo
   );
 }
 
+interface SortableEntryProps {
+  id: string;
+  children: React.ReactNode;
+}
+
+function SortableEntry({ id, children }: SortableEntryProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style: React.CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 20 : undefined,
+    opacity: isDragging ? 0.85 : undefined,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} className="flex items-stretch gap-2">
+      <div className="self-stretch flex items-start pt-1">
+        <DragHandle listeners={listeners} attributes={attributes} />
+      </div>
+      <div className="flex-1 min-w-0">{children}</div>
+    </div>
+  );
+}
+
+/**
+ * Sort entry keys by the entry's stored `order`; missing-order entries fall to
+ * the end. Key is a stable tiebreaker so the sort is deterministic.
+ */
+function sortKeysByOrder(
+  keys: string[],
+  entries: Record<string, ProjectEntry>,
+): string[] {
+  return [...keys].sort((a, b) => {
+    const oa = entries[a]?.order ?? Number.POSITIVE_INFINITY;
+    const ob = entries[b]?.order ?? Number.POSITIVE_INFINITY;
+    if (oa !== ob) return oa - ob;
+    return a.localeCompare(b);
+  });
+}
+
 export default function ProjectsPage() {
-  const { entries, isLoading, error, save, addEntry, deleteEntry } = useProjects();
+  const { entries, isLoading, error, save, addEntry, deleteEntry, saveOrder } =
+    useProjects();
   const diff = useDiffConfirm();
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const [newKey, setNewKey] = useState<string | null>(null);
+
+  const [order, setOrder] = useState<string[]>([]);
+  const [originalOrder, setOriginalOrder] = useState<string[]>([]);
+  const [orderSaveStatus, setOrderSaveStatus] = useState<SaveStatus>("idle");
+
+  // Reconcile local order with entries: initial load populates from saved
+  // `order`; on add/delete we preserve any pending reorder.
+  useEffect(() => {
+    if (isLoading) return;
+    setOrder((prev) => {
+      if (prev.length === 0) return sortKeysByOrder(Object.keys(entries), entries);
+      const filtered = prev.filter((k) => k in entries);
+      const newKeys = Object.keys(entries).filter((k) => !filtered.includes(k));
+      if (filtered.length === prev.length && newKeys.length === 0) return prev;
+      return [...filtered, ...sortKeysByOrder(newKeys, entries)];
+    });
+    setOriginalOrder(sortKeysByOrder(Object.keys(entries), entries));
+  }, [entries, isLoading]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor, {
+      activationConstraint: { delay: 250, tolerance: 5 },
+    }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
 
   const handleAdd = async () => {
     const key = await addEntry();
@@ -113,11 +207,43 @@ export default function ProjectsPage() {
     }
   };
 
-  const sortedKeys = Object.keys(entries).sort((a, b) => {
-    const na = parseInt(a.replace("proj-", ""), 10);
-    const nb = parseInt(b.replace("proj-", ""), 10);
-    return nb - na;
-  });
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    setOrder((prev) => {
+      const oldIdx = prev.indexOf(String(active.id));
+      const newIdx = prev.indexOf(String(over.id));
+      if (oldIdx < 0 || newIdx < 0) return prev;
+      return arrayMove(prev, oldIdx, newIdx);
+    });
+    setOrderSaveStatus("idle");
+  };
+
+  const isOrderDirty =
+    order.length !== originalOrder.length ||
+    order.some((k, i) => originalOrder[i] !== k);
+
+  const handleSaveOrder = () => {
+    const before: Record<string, string> = {};
+    const after: Record<string, string> = {};
+    originalOrder.forEach((k, i) => {
+      before[`#${i + 1}`] = entries[k]?.title || k;
+    });
+    order.forEach((k, i) => {
+      after[`#${i + 1}`] = entries[k]?.title || k;
+    });
+
+    diff.request(before, after, "Projects Order", async () => {
+      setOrderSaveStatus("saving");
+      try {
+        await saveOrder(order);
+        setOrderSaveStatus("success");
+      } catch (err) {
+        logger.error("Projects reorder save failed", err);
+        setOrderSaveStatus("error");
+      }
+    });
+  };
 
   if (error) {
     return (
@@ -131,23 +257,55 @@ export default function ProjectsPage() {
   }
 
   return (
-    <AdminShell title="Projects">
+    <AdminShell
+      title="Projects"
+      actions={
+        isOrderDirty ? (
+          <SaveButton
+            status={orderSaveStatus}
+            onClick={handleSaveOrder}
+            label="Save Order"
+          />
+        ) : undefined
+      }
+    >
       <div className="max-w-3xl">
         {isLoading ? (
           <LoadingSkeleton rows={3} />
         ) : (
-          <EntryList count={sortedKeys.length} onAdd={handleAdd} addLabel="Add Project" empty={<p className="text-sm">No projects yet.</p>}>
-            {sortedKeys.map((key) => (
-              <EntryCard
-                key={key}
-                title={entries[key].title || "New Project"}
-                subtitle={entries[key].tech?.join(", ")}
-                onDelete={() => setDeleteTarget(key)}
-                defaultExpanded={key === newKey}
-              >
-                <ProjectForm entryKey={key} defaultValues={entries[key]} onSave={save} requestDiff={diff.request} />
-              </EntryCard>
-            ))}
+          <EntryList
+            count={order.length}
+            onAdd={handleAdd}
+            addLabel="Add Project"
+            empty={<p className="text-sm">No projects yet.</p>}
+          >
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext items={order} strategy={verticalListSortingStrategy}>
+                {order.map((key) =>
+                  entries[key] ? (
+                    <SortableEntry key={key} id={key}>
+                      <EntryCard
+                        title={entries[key].title || "New Project"}
+                        subtitle={entries[key].tech?.join(", ")}
+                        onDelete={() => setDeleteTarget(key)}
+                        defaultExpanded={key === newKey}
+                      >
+                        <ProjectForm
+                          entryKey={key}
+                          defaultValues={entries[key]}
+                          onSave={save}
+                          requestDiff={diff.request}
+                        />
+                      </EntryCard>
+                    </SortableEntry>
+                  ) : null,
+                )}
+              </SortableContext>
+            </DndContext>
           </EntryList>
         )}
       </div>

@@ -205,3 +205,17 @@ h1, h2, h3, h4, h5, h6 {
 .bottom-safe-banner {
   bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
 }
+
+/*
+ * Notable Offers marquee.
+ * The track holds the offer list duplicated twice; translating by -50%
+ * lands the second copy exactly where the first started, so the loop is seamless.
+ */
+@keyframes notable-offers-marquee-left {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes notable-offers-marquee-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}

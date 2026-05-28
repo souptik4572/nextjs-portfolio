@@ -11,7 +11,15 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 export default function ProjectsPage() {
   const portfolioData = usePortfolioData();
-  const allProjects = Object.entries(portfolioData.projects);
+  // Sort by admin-configured `order` (missing → end, key as tiebreaker).
+  const allProjects = Object.entries(portfolioData.projects).sort(
+    ([keyA, a], [keyB, b]) => {
+      const oa = a.order ?? Number.POSITIVE_INFINITY;
+      const ob = b.order ?? Number.POSITIVE_INFINITY;
+      if (oa !== ob) return oa - ob;
+      return keyA.localeCompare(keyB);
+    },
+  );
 
   const headingRef = useRef(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-60px" });

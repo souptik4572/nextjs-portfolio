@@ -84,6 +84,8 @@ export interface ProjectEntry {
   description: string;
   github: string;
   live: string;
+  /** 1-based display order. Optional for backwards compatibility. */
+  order?: number;
 }
 
 export interface AchievementEntry {
@@ -99,6 +101,8 @@ export interface NotableOffer {
   period: string;
   companyUrl: string;
   visible: boolean;
+  /** 1-based display order. Optional for backwards compatibility with entries written before ordering existed. */
+  order?: number;
 }
 
 export interface EducationEntry {

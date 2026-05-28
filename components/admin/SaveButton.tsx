@@ -10,6 +10,8 @@ interface SaveButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   type?: "button" | "submit";
+  /** Idle-state label. Defaults to "Save Changes". */
+  label?: string;
 }
 
 /**
@@ -21,6 +23,7 @@ export default function SaveButton({
   onClick,
   disabled,
   type = "button",
+  label = "Save Changes",
 }: SaveButtonProps) {
   const [display, setDisplay] = useState<SaveStatus>(status);
 
@@ -101,7 +104,7 @@ export default function SaveButton({
           </motion.span>
         )}
       </AnimatePresence>
-      {isLoading ? "Saving…" : isSuccess ? "Saved!" : isError ? "Error" : "Save Changes"}
+      {isLoading ? "Saving…" : isSuccess ? "Saved!" : isError ? "Error" : label}
     </button>
   );
 }

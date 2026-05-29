@@ -1,3 +1,5 @@
+import type { HeroMetaCell } from "@/types/portfolio";
+
 /** All possible section keys that can appear in section_order */
 export type SectionKey =
 	| "intro"
@@ -121,6 +123,7 @@ export interface PortfolioData {
 		coding_profiles: Record<string, { title: string; url: string; image: string }>;
 		location: string;
 		resume: string;
+		heroMeta?: HeroMetaCell[];
 	};
 	skills: Record<string, SkillGroup>;
 	experience: Record<string, ExperienceEntry>;
@@ -131,6 +134,29 @@ export interface PortfolioData {
 	/** Selected-impact counters shown under the hero. Optional — absent on portfolios created before this feature. */
 	impact?: Record<string, ImpactStat>;
 }
+
+export const DEFAULT_HERO_META: HeroMetaCell[] = [
+	{
+		label: "Role",
+		value: "Software Engineer",
+		detail: "Backend systems and product engineering",
+	},
+	{
+		label: "Experience",
+		value: "4+ Years",
+		detail: "Scalable microservices and APIs",
+	},
+	{
+		label: "Based in",
+		value: "Kolkata, West Bengal",
+		detail: "Open to remote and hybrid roles",
+	},
+	{
+		label: "Stack",
+		value: "Java · Go · Python",
+		detail: "TypeScript, React, Spring Boot",
+	},
+];
 
 /**
  * Pseudo-section key for the under-hero impact strip. It participates in

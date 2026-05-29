@@ -5,6 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 import { MapPin, Mail, Linkedin, Eye, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
+import { DEFAULT_HERO_META } from "@/lib/data";
 import Modal from "@/components/Modal";
 import ContactForm from "@/components/ContactForm";
 
@@ -20,6 +21,7 @@ const fadeUp = {
 export default function Intro() {
   const { personal } = usePortfolioData();
   const codingProfiles = Object.values(personal.coding_profiles);
+  const heroMeta = personal.heroMeta?.length ? personal.heroMeta : DEFAULT_HERO_META;
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
@@ -78,12 +80,43 @@ export default function Intro() {
         {personal.bio}
       </motion.p>
 
+      {/* Hero meta bar — Role / Experience / Based in / Stack.
+          Editable in Admin → Intro; falls back to starter cells. */}
+      {heroMeta?.length > 0 && (
+        <motion.div
+          custom={4}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-px border-y border-slate-200/70 dark:border-slate-700/50 bg-slate-200/70 dark:bg-slate-700/50 max-w-3xl"
+        >
+          {heroMeta.map((cell, i) => (
+            <div
+              key={`${cell.label}-${i}`}
+              className="bg-[var(--background)] py-5 md:py-6 px-4 md:px-5 first:pl-0"
+            >
+              <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500 mb-2.5">
+                {cell.label}
+              </div>
+              <div className="font-heading text-xl md:text-2xl font-medium text-slate-900 dark:text-slate-100 leading-tight">
+                {cell.value}
+                {cell.detail && (
+                  <span className="block font-sans text-[13px] font-normal text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    {cell.detail}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      )}
+
       <motion.div
-        custom={4}
+        custom={5}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="flex flex-wrap gap-4 mt-6"
+        className="flex flex-wrap gap-4 mt-8"
       >
         <a
           href="#contact"
@@ -114,7 +147,7 @@ export default function Intro() {
       </motion.div>
 
       <motion.div
-        custom={5}
+        custom={6}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -126,7 +159,7 @@ export default function Intro() {
 
       {/* Coding Profiles Section */}
       <motion.div
-        custom={6}
+        custom={7}
         variants={fadeUp}
         initial="hidden"
         animate="visible"

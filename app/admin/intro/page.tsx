@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Plus, Trash2 } from "lucide-react";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionCard from "@/components/admin/SectionCard";
 import FormField, { inputClass } from "@/components/admin/FormField";
@@ -16,11 +16,77 @@ import { useDiffConfirm } from "@/hooks/admin/useDiffConfirm";
 import { PersonalSchema, type PersonalForm } from "@/lib/admin/validation";
 import { logger } from "@/lib/admin/logger";
 import type { SaveStatus } from "@/types/admin";
-import type { PersonalConfig } from "@/types/portfolio";
+import type { HeroMetaCell, PersonalConfig } from "@/types/portfolio";
+import { DEFAULT_HERO_META } from "@/lib/data";
 import { updateEntry } from "@/lib/admin/db";
 import DiffModal from "@/components/admin/DiffModal";
 
 const CODING_PROFILE_KEYS = ["github", "leetcode", "takeuforward", "hackerrank"] as const;
+
+/** Inline editor for the hero meta bar cells (label / value / detail rows). */
+function HeroMetaEditor({
+  value,
+  onChange,
+}: {
+  value: HeroMetaCell[];
+  onChange: (v: HeroMetaCell[]) => void;
+}) {
+  const cells = value ?? [];
+
+  const update = (idx: number, patch: Partial<HeroMetaCell>) =>
+    onChange(cells.map((c, i) => (i === idx ? { ...c, ...patch } : c)));
+  const remove = (idx: number) => onChange(cells.filter((_, i) => i !== idx));
+  const add = () => onChange([...cells, { label: "", value: "", detail: "" }]);
+
+  return (
+    <div className="space-y-3">
+      {cells.map((cell, idx) => (
+        <div
+          key={idx}
+          className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1.4fr_auto] gap-2 items-start pb-3 border-b border-slate-200/40 dark:border-slate-700/30 last:border-0 last:pb-0"
+        >
+          <input
+            value={cell.label}
+            onChange={(e) => update(idx, { label: e.target.value })}
+            className={inputClass()}
+            placeholder="Label (e.g. Role)"
+            aria-label={`Cell ${idx + 1} label`}
+          />
+          <input
+            value={cell.value}
+            onChange={(e) => update(idx, { value: e.target.value })}
+            className={inputClass()}
+            placeholder="Value (e.g. SDE-2)"
+            aria-label={`Cell ${idx + 1} value`}
+          />
+          <input
+            value={cell.detail}
+            onChange={(e) => update(idx, { detail: e.target.value })}
+            className={inputClass()}
+            placeholder="Detail (e.g. Backend · Distributed Systems)"
+            aria-label={`Cell ${idx + 1} detail`}
+          />
+          <button
+            type="button"
+            onClick={() => remove(idx)}
+            aria-label={`Delete cell ${idx + 1}`}
+            className="shrink-0 w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+          >
+            <Trash2 size={15} />
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={add}
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-[13px] text-[#007AFF] dark:text-[#4DB8FF] hover:bg-[#007AFF]/[0.07] dark:hover:bg-[#0A84FF]/[0.10] transition-colors border border-dashed border-[#007AFF]/30 dark:border-[#0A84FF]/30"
+      >
+        <Plus size={14} />
+        Add cell
+      </button>
+    </div>
+  );
+}
 
 export default function IntroPage() {
   const { data, isLoading, error, save } = usePersonal();
@@ -53,6 +119,7 @@ export default function IntroPage() {
         linkedin: data.linkedin ?? "",
         location: data.location ?? "",
         resume: data.resume ?? "",
+        heroMeta: data.heroMeta?.length ? data.heroMeta : DEFAULT_HERO_META,
       });
     }
   }, [data, reset]);
@@ -170,6 +237,24 @@ export default function IntroPage() {
                   placeholder="e.g. Backend Engineer"
                   addLabel="Add role"
                 />
+              )}
+            />
+          )}
+        </SectionCard>
+
+        {/* Hero Meta Bar */}
+        <SectionCard
+          title="Hero Meta Bar"
+          description="The 4-cell Role / Experience / Based in / Stack bar under the hero tagline."
+        >
+          {isLoading ? (
+            <FieldSkeleton />
+          ) : (
+            <Controller
+              name="heroMeta"
+              control={control}
+              render={({ field }) => (
+                <HeroMetaEditor value={field.value ?? []} onChange={field.onChange} />
               )}
             />
           )}

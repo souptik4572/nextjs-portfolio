@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import type { SectionProps } from "@/app/page";
 import ContactForm from "@/components/ContactForm";
+import SectionHeading from "@/components/SectionHeading";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 
 export default function Contact({ sectionIndex }: SectionProps) {
@@ -13,23 +14,10 @@ export default function Contact({ sectionIndex }: SectionProps) {
 
   return (
     <section id="contact" className="px-6 md:px-16 lg:px-32 py-16">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-        className="mb-8"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
-          {sectionIndex !== undefined && (
-            <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">{String(sectionIndex).padStart(2, '0')}.</span>
-          )}
-          Get In Touch
-        </h2>
-        <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
-      </motion.div>
+      <SectionHeading index={sectionIndex} title="Get In Touch" />
 
       <motion.div
+        ref={ref}
         initial={{ opacity: 0, y: 24 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: 0.15 }}

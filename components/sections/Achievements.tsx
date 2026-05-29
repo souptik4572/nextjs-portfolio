@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Trophy, Calendar } from "lucide-react";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
 import { MacOSCard } from "@/components/MacOSElements";
+import SectionHeading from "@/components/SectionHeading";
 import type { SectionProps } from "@/app/page";
 
 export default function Achievements({ sectionIndex }: SectionProps) {
@@ -14,23 +15,13 @@ export default function Achievements({ sectionIndex }: SectionProps) {
 
   return (
     <section id="achievements" className="px-6 md:px-16 lg:px-32 py-16">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-        className="mb-8"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
-          {sectionIndex !== undefined && (
-            <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">{String(sectionIndex).padStart(2, '0')}.</span>
-          )}
-          Achievements
-        </h2>
-        <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
-      </motion.div>
+      <SectionHeading
+        index={sectionIndex}
+        title="Achievements"
+        blurb="Recognition and milestones along the way."
+      />
 
-      <div className="max-w-2xl space-y-5">
+      <div ref={ref} className="max-w-2xl space-y-5">
         {Object.entries(portfolioData.achievements).map(([id, achievement], i) => (
           <motion.div
             key={id}

@@ -40,6 +40,16 @@ export interface CodingProfile {
   image: string;
 }
 
+/** One cell of the hero meta bar (e.g. Role / Experience / Based in / Stack). */
+export interface HeroMetaCell {
+  /** Small uppercase mono label (e.g. "Role"). */
+  label: string;
+  /** Headline value (e.g. "SDE-2"). */
+  value: string;
+  /** Secondary detail line under the value (e.g. "Seamless Distribution Systems"). */
+  detail: string;
+}
+
 export interface PersonalConfig {
   name: string;
   initials: string;
@@ -53,6 +63,8 @@ export interface PersonalConfig {
   location: string;
   resume: string;
   coding_profiles: Record<string, CodingProfile>;
+  /** Hero meta bar cells. Optional — absent on portfolios created before this feature. */
+  heroMeta?: HeroMetaCell[];
 }
 
 export interface SkillCategory {

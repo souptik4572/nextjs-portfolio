@@ -71,6 +71,14 @@ export type NotableOfferForm = z.infer<typeof NotableOfferSchema>;
 
 // ── Personal ───────────────────────────────────────────────────────────────
 
+export const HeroMetaCellSchema = z.object({
+  label: z.string().min(1, "Required"),
+  value: z.string().min(1, "Required"),
+  detail: z.string(),
+});
+
+export type HeroMetaCellForm = z.infer<typeof HeroMetaCellSchema>;
+
 export const PersonalSchema = z.object({
   name: z.string().min(1, "Required"),
   initials: z.string().min(1).max(3),
@@ -83,6 +91,7 @@ export const PersonalSchema = z.object({
   linkedin: urlOrEmpty,
   location: z.string(),
   resume: urlOrEmpty,
+  heroMeta: z.array(HeroMetaCellSchema),
 });
 
 export type PersonalForm = z.infer<typeof PersonalSchema>;

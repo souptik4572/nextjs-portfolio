@@ -12,10 +12,12 @@ import ArrayEditor from "@/components/admin/ArrayEditor";
 import SaveButton from "@/components/admin/SaveButton";
 import DeleteConfirm from "@/components/admin/DeleteConfirm";
 import DiffModal from "@/components/admin/DiffModal";
+import CompanySearch from "@/components/admin/CompanySearch";
 import LoadingSkeleton from "@/components/admin/LoadingSkeleton";
 import { useExperience } from "@/hooks/admin/useExperience";
 import { useDiffConfirm } from "@/hooks/admin/useDiffConfirm";
 import { ExperienceEntrySchema, type ExperienceEntryForm } from "@/lib/admin/validation";
+import { importLogo } from "@/lib/admin/importLogo";
 import { logger } from "@/lib/admin/logger";
 import type { SaveStatus } from "@/types/admin";
 import type { ExperienceEntry } from "@/types/portfolio";
@@ -39,6 +41,7 @@ function ExperienceForm({ entryKey, defaultValues, onSave, requestDiff }: Experi
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors, isDirty, isSubmitting, defaultValues: originalValues },
   } = useForm<ExperienceEntryForm>({
     resolver: zodResolver(ExperienceEntrySchema),
@@ -65,8 +68,20 @@ function ExperienceForm({ entryKey, defaultValues, onSave, requestDiff }: Experi
     );
   };
 
+  const handleCompanyPick = async (s: { name: string; domain: string; logo: string }) => {
+    const opts = { shouldDirty: true, shouldValidate: true } as const;
+    setValue("company", s.name, opts);
+    setValue("companyWebsite", `https://${s.domain}`, opts);
+    setValue("companyLogo", s.logo, opts);
+    if (s.logo) {
+      const localPath = await importLogo(s.logo, s.domain || s.name);
+      setValue("companyLogo", localPath, opts);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 pt-3">
+      <CompanySearch onSelect={handleCompanyPick} />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label="Company" htmlFor={`company-${entryKey}`} error={errors.company?.message} required>
           <input id={`company-${entryKey}`} {...register("company")} className={inputClass(!!errors.company)} placeholder="Acme Corp" />

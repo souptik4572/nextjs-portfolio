@@ -9,6 +9,15 @@ const nextConfig = {
     NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.PUBLIC_FIREBASE_PROJECT_ID,
     NEXT_PUBLIC_FIREBASE_APP_ID: process.env.PUBLIC_FIREBASE_APP_ID,
     NEXT_PUBLIC_FIREBASE_ALLOWED_UID: process.env.PUBLIC_FIREBASE_ALLOWED_UID,
+    NEXT_PUBLIC_BRANDFETCH_CLIENT_ID: process.env.PUBLIC_BRANDFETCH_CLIENT_ID,
+  },
+  images: {
+    // Allow company logo URLs fetched via the admin company search.
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn.brandfetch.io" },
+      // Kept so previously-saved Clearbit URLs still render.
+      { protocol: "https", hostname: "logo.clearbit.com" },
+    ],
   },
   webpack: (config) => {
     config.optimization.concatenateModules = false;

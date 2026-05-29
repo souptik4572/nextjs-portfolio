@@ -112,6 +112,17 @@ export interface EducationEntry {
   gpa: string;
 }
 
+export interface ImpactStat {
+  /** Headline metric — the numeric part is animated as a count-up (e.g. "1000", "70", "10K"). */
+  value: string;
+  /** Small accent text rendered after the number (e.g. "ms+", "%", "+"). */
+  suffix: string;
+  /** Short description below the number. */
+  label: string;
+  /** 1-based display order. Optional for backwards compatibility. */
+  order?: number;
+}
+
 export interface PortfolioData {
   layout: LayoutConfig;
   theme: ThemeConfig;
@@ -124,4 +135,6 @@ export interface PortfolioData {
   achievements: Record<string, AchievementEntry>;
   notable_offers: Record<string, NotableOffer>;
   education: Record<string, EducationEntry>;
+  /** Selected-impact counters shown under the hero. Optional — absent on portfolios created before this feature. */
+  impact?: Record<string, ImpactStat>;
 }

@@ -11,6 +11,7 @@ import {
   Trophy,
   GraduationCap,
   Star,
+  Gauge,
   Settings2,
   FileText,
   LogOut,
@@ -23,6 +24,7 @@ import { logger } from "@/lib/admin/logger";
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin/dashboard", Icon: LayoutDashboard },
   { label: "Intro", href: "/admin/intro", Icon: User },
+  { label: "Impact", href: "/admin/impact", Icon: Gauge },
   { label: "Experience", href: "/admin/experience", Icon: Briefcase },
   { label: "Skills", href: "/admin/skills", Icon: Zap },
   { label: "Projects", href: "/admin/projects", Icon: FolderOpen },

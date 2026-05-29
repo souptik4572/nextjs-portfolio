@@ -27,15 +27,18 @@ export default function Intro() {
       id="intro"
       className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-32 py-16"
     >
-      <motion.span
+      <motion.div
         custom={0}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-blue-600 dark:text-indigo-400 text-lg md:text-xl font-light tracking-wide mb-3"
+        className="mb-5"
       >
-        Hi, my name is
-      </motion.span>
+        <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-slate-300/60 dark:border-slate-700/60 bg-white/50 dark:bg-slate-800/40 backdrop-blur-sm font-mono text-sm tracking-wide text-slate-600 dark:text-slate-400">
+          <span className="intro-pulse-dot w-2 h-2 rounded-full bg-blue-500 dark:bg-indigo-400 shadow-[0_0_0_0_rgba(99,102,241,0.5)] [animation:intro-pulse-ring_2.4s_ease-out_infinite]" />
+          Hi, my name is
+        </span>
+      </motion.div>
 
       <motion.h1
         custom={1}
@@ -44,6 +47,7 @@ export default function Intro() {
         animate="visible"
         className="text-6xl md:text-8xl font-bold text-slate-900 dark:text-slate-100 leading-tight"
       >
+        <span className="font-mono font-normal text-blue-600 dark:text-indigo-400 mr-2 align-baseline">&gt;</span>
         {personal.name}
       </motion.h1>
 

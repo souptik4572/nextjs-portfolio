@@ -65,6 +65,29 @@ export interface EducationEntry {
 	gpa: string;
 }
 
+export interface ImpactStat {
+	/** Headline metric — the numeric part is animated as a count-up (e.g. "1000", "70", "10K"). */
+	value: string;
+	/** Small accent text rendered after the number (e.g. "ms+", "%", "+"). */
+	suffix: string;
+	/** Short description below the number. */
+	label: string;
+	/** 1-based display order. Optional for backwards compatibility. */
+	order?: number;
+}
+
+/**
+ * Fallback "selected impact" counters rendered under the hero when no `impact`
+ * data exists in Firebase yet. These mirror the design mockup's placeholder
+ * metrics — verify/replace them via the Admin → Impact editor before relying on them.
+ */
+export const DEFAULT_IMPACT_STATS: ImpactStat[] = [
+	{ value: "1000", suffix: "ms+", label: "p99 latency shaved off core services", order: 1 },
+	{ value: "70", suffix: "%", label: "Faster processing on critical paths", order: 2 },
+	{ value: "10K", suffix: "+", label: "Users served in production", order: 3 },
+	{ value: "10", suffix: "+", label: "Microservices shipped & owned", order: 4 },
+];
+
 /** Full portfolio data shape matching the Firebase Realtime Database structure */
 export interface PortfolioData {
 	layout: { section_order: SectionOrder | LegacySectionOrder };
@@ -105,18 +128,31 @@ export interface PortfolioData {
 	achievements: Record<string, AchievementEntry>;
 	notable_offers: Record<string, OfferEntry>;
 	education: Record<string, EducationEntry>;
+	/** Selected-impact counters shown under the hero. Optional — absent on portfolios created before this feature. */
+	impact?: Record<string, ImpactStat>;
 }
+
+/**
+ * Pseudo-section key for the under-hero impact strip. It participates in
+ * `section_order` purely for its visibility toggle — it is NOT a flow section,
+ * so `getEnabledSections` filters it out (the strip renders separately under the
+ * hero in `app/page.tsx`).
+ */
+export const IMPACT_SECTION_KEY = "impact";
 
 /** Helper: derive an ordered array of enabled section keys.
  *  Handles the current { enabled, order } format, the legacy boolean-map,
- *  and the original plain-array format.
+ *  and the original plain-array format. The `impact` pseudo-section is always
+ *  excluded — it is rendered under the hero, not in the section flow.
  */
 export function getEnabledSections(
 	order: SectionOrder | LegacySectionOrder,
 ): SectionKey[] {
+	const notImpact = (key: SectionKey) => (key as string) !== IMPACT_SECTION_KEY;
+
 	// Legacy: plain array of section keys
 	if (Array.isArray(order)) {
-		return order;
+		return order.filter(notImpact);
 	}
 
 	const entries = Object.entries(order) as [SectionKey, SectionEntry | boolean][];
@@ -128,12 +164,29 @@ export function getEnabledSections(
 		// Legacy boolean-map: { intro: true, ... }
 		return (entries as [SectionKey, boolean][])
 			.filter(([, enabled]) => enabled)
-			.map(([key]) => key);
+			.map(([key]) => key)
+			.filter(notImpact);
 	}
 
 	// Current format: { intro: { enabled: true, order: 1 }, ... }
 	return (entries as [SectionKey, SectionEntry][])
 		.filter(([, entry]) => entry.enabled)
 		.sort(([, a], [, b]) => a.order - b.order)
-		.map(([key]) => key);
+		.map(([key]) => key)
+		.filter(notImpact);
+}
+
+/**
+ * Whether the under-hero impact strip should render. Reads the `impact` entry
+ * from `section_order` across all supported formats. Defaults to `true` when no
+ * explicit entry exists, so portfolios created before this feature keep showing it.
+ */
+export function isImpactEnabled(order: SectionOrder | LegacySectionOrder): boolean {
+	if (!order) return true;
+	// Legacy array format can't represent a disabled impact strip → default on.
+	if (Array.isArray(order)) return true;
+
+	const entry = (order as Record<string, SectionEntry | boolean>)[IMPACT_SECTION_KEY];
+	if (entry === undefined) return true;
+	return typeof entry === "boolean" ? entry : entry.enabled;
 }

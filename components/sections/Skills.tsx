@@ -42,7 +42,7 @@ export default function Skills({ sectionIndex }: SectionProps) {
               {group.items.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-2 bg-white/70 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 rounded-lg text-base font-medium hover:border-blue-500/60 dark:hover:border-indigo-500/60 hover:text-blue-600 dark:hover:text-indigo-300 transition-all hover:shadow-md"
+                  className="px-3 py-1.5 font-mono text-sm tracking-tight bg-blue-500/[0.06] dark:bg-indigo-500/[0.08] border border-blue-500/20 dark:border-indigo-500/25 text-slate-700 dark:text-slate-300 rounded-md hover:bg-blue-500/10 dark:hover:bg-indigo-500/15 hover:border-blue-500/45 dark:hover:border-indigo-400/50 hover:text-blue-700 dark:hover:text-indigo-200 transition-all"
                 >
                   {skill}
                 </span>

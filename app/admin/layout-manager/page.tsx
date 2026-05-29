@@ -34,6 +34,7 @@ import DiffModal from "@/components/admin/DiffModal";
 
 const SECTION_LABELS: Record<string, string> = {
   intro: "Intro",
+  impact: "Impact (under hero)",
   experience: "Experience",
   skills: "Skills",
   projects: "Projects",
@@ -114,10 +115,22 @@ export default function LayoutManagerPage() {
     if (!data?.section_order) return;
     const entries = Object.entries(data.section_order) as [string, SectionOrder][];
     const sorted = entries.sort(([, a], [, b]) => a.order - b.order);
-    setOrder(sorted.map(([k]) => k));
-    setEnabledMap(
-      Object.fromEntries(entries.map(([k, v]) => [k, v.enabled])),
+    const keys = sorted.map(([k]) => k);
+    const enabled: Record<string, boolean> = Object.fromEntries(
+      entries.map(([k, v]) => [k, v.enabled]),
     );
+
+    // The impact strip is a visibility-only pseudo-section. Inject a row for it
+    // (default on, just after Intro) when a portfolio predates the feature, so
+    // the toggle is always available and persists on the next save.
+    if (!keys.includes("impact")) {
+      const introIdx = keys.indexOf("intro");
+      keys.splice(introIdx >= 0 ? introIdx + 1 : 0, 0, "impact");
+      enabled["impact"] = true;
+    }
+
+    setOrder(keys);
+    setEnabledMap(enabled);
   }, [data]);
 
   const handleDragEnd = (event: DragEndEvent) => {

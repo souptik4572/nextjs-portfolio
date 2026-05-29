@@ -56,6 +56,54 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
+/* ── Ambient atmosphere — faint indigo grid + top glow (editorial dark) ──
+   A fixed grid masked to fade out below the fold, plus a soft accent glow
+   bleeding down from the top. Sits above the page background fill but behind
+   all content (negative z-index). Toned down in light mode. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 5%, transparent 72%);
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 5%, transparent 72%);
+}
+.dark body::before {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: -25%;
+  left: 50%;
+  width: min(1200px, 120vw);
+  height: 620px;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08), transparent 60%);
+}
+.dark body::after {
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.13), transparent 60%);
+}
+
+/* Pulsing "live" dot used in the hero eyebrow pill. */
+@keyframes intro-pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-pulse-dot { animation: none !important; }
+}
+
 ::selection {
   background: var(--accent);
   color: #fff;

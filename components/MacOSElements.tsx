@@ -112,8 +112,10 @@ export function MacOSCard({
 }) {
   return (
     <div
-      className={`rounded-xl overflow-hidden bg-white/60 dark:bg-slate-800/40 backdrop-blur-lg border border-slate-200/60 dark:border-slate-700/40 macos-shadow ${
-        hoverEffect ? "hover:border-blue-400/60 dark:hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300" : "transition-all"
+      className={`relative rounded-xl overflow-hidden bg-white/60 dark:bg-slate-800/40 backdrop-blur-lg border border-slate-200/60 dark:border-slate-700/40 macos-shadow ${
+        hoverEffect
+          ? "hover:border-blue-400/60 dark:hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 before:content-[''] before:absolute before:inset-x-0 before:top-0 before:h-px before:z-10 before:bg-gradient-to-r before:from-transparent before:via-blue-500/70 dark:before:via-indigo-400/70 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+          : "transition-all"
       } ${className}`}
     >
       {/* macOS Window Chrome */}

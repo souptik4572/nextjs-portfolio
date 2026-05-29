@@ -87,6 +87,17 @@ export const PersonalSchema = z.object({
 
 export type PersonalForm = z.infer<typeof PersonalSchema>;
 
+// ── Impact ─────────────────────────────────────────────────────────────────
+
+export const ImpactStatSchema = z.object({
+  value: z.string().min(1, "Required"),
+  suffix: z.string(),
+  label: z.string().min(1, "Required"),
+  order: z.number().int().nonnegative().optional(),
+});
+
+export type ImpactStatForm = z.infer<typeof ImpactStatSchema>;
+
 // ── Meta ───────────────────────────────────────────────────────────────────
 
 export const MetaSchema = z.object({

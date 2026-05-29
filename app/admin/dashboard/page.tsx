@@ -10,6 +10,7 @@ import {
   Star,
   User,
   Zap,
+  Gauge,
   Settings2,
   FileText,
   AlertCircle,
@@ -19,6 +20,7 @@ import { useDashboard } from "@/hooks/admin/useDashboard";
 
 const QUICK_LINKS = [
   { label: "Intro", href: "/admin/intro", Icon: User, desc: "Personal info & bio" },
+  { label: "Impact", href: "/admin/impact", Icon: Gauge, desc: "Hero stat counters" },
   { label: "Experience", href: "/admin/experience", Icon: Briefcase, desc: "Work history" },
   { label: "Skills", href: "/admin/skills", Icon: Zap, desc: "Tech skills" },
   { label: "Projects", href: "/admin/projects", Icon: FolderOpen, desc: "Portfolio projects" },

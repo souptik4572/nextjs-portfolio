@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 import { MapPin, Mail, Linkedin, Eye, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
-import { DEFAULT_HERO_META } from "@/lib/data";
+import { buildDefaultHeroMeta } from "@/lib/data";
 import Modal from "@/components/Modal";
 import ContactForm from "@/components/ContactForm";
 
@@ -21,7 +21,9 @@ const fadeUp = {
 export default function Intro() {
   const { personal } = usePortfolioData();
   const codingProfiles = Object.values(personal.coding_profiles);
-  const heroMeta = personal.heroMeta?.length ? personal.heroMeta : DEFAULT_HERO_META;
+  const heroMeta = personal.heroMeta?.length
+    ? personal.heroMeta
+    : buildDefaultHeroMeta(personal.location);
   const [contactOpen, setContactOpen] = useState(false);
 
   return (

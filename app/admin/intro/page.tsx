@@ -17,7 +17,7 @@ import { PersonalSchema, type PersonalForm } from "@/lib/admin/validation";
 import { logger } from "@/lib/admin/logger";
 import type { SaveStatus } from "@/types/admin";
 import type { HeroMetaCell, PersonalConfig } from "@/types/portfolio";
-import { DEFAULT_HERO_META } from "@/lib/data";
+import { buildDefaultHeroMeta } from "@/lib/data";
 import { updateEntry } from "@/lib/admin/db";
 import DiffModal from "@/components/admin/DiffModal";
 
@@ -119,7 +119,9 @@ export default function IntroPage() {
         linkedin: data.linkedin ?? "",
         location: data.location ?? "",
         resume: data.resume ?? "",
-        heroMeta: data.heroMeta?.length ? data.heroMeta : DEFAULT_HERO_META,
+        heroMeta: data.heroMeta?.length
+          ? data.heroMeta
+          : buildDefaultHeroMeta(data.location ?? ""),
       });
     }
   }, [data, reset]);

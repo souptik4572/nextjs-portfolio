@@ -135,28 +135,35 @@ export interface PortfolioData {
 	impact?: Record<string, ImpactStat>;
 }
 
-export const DEFAULT_HERO_META: HeroMetaCell[] = [
-	{
-		label: "Role",
-		value: "Software Engineer",
-		detail: "Backend systems and product engineering",
-	},
-	{
-		label: "Experience",
-		value: "4+ Years",
-		detail: "Scalable microservices and APIs",
-	},
-	{
-		label: "Based in",
-		value: "Kolkata, West Bengal",
-		detail: "Open to remote and hybrid roles",
-	},
-	{
-		label: "Stack",
-		value: "Java · Go · Python",
-		detail: "TypeScript, React, Spring Boot",
-	},
-];
+/**
+ * Default hero-meta cells used when a portfolio has no `heroMeta` saved in
+ * Firebase yet. The "Based in" cell's value is always resolved from the
+ * configurable `personal.location` (Firestore) — it is never hardcoded here.
+ */
+export function buildDefaultHeroMeta(location: string): HeroMetaCell[] {
+	return [
+		{
+			label: "Role",
+			value: "Software Engineer",
+			detail: "Backend systems and product engineering",
+		},
+		{
+			label: "Experience",
+			value: "4+ Years",
+			detail: "Scalable microservices and APIs",
+		},
+		{
+			label: "Based in",
+			value: location,
+			detail: "Open to remote and hybrid roles",
+		},
+		{
+			label: "Stack",
+			value: "Java · Go · Python",
+			detail: "TypeScript, React, Spring Boot",
+		},
+	];
+}
 
 /**
  * Pseudo-section key for the under-hero impact strip. It participates in

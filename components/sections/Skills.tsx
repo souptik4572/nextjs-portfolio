@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { usePortfolioData } from "@/contexts/PortfolioDataContext";
+import SectionHeading from "@/components/SectionHeading";
 import type { SectionProps } from "@/app/page";
 
 export default function Skills({ sectionIndex }: SectionProps) {
@@ -9,34 +10,40 @@ export default function Skills({ sectionIndex }: SectionProps) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const portfolioData = usePortfolioData();
 
+  const groups = Object.values(portfolioData.skills);
+  const oddCount = groups.length % 2 !== 0;
+
   return (
     <section id="skills" className="px-6 md:px-16 lg:px-32 py-16">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-        className="mb-8"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100">
-          {sectionIndex !== undefined && (
-            <span className="text-blue-600 dark:text-indigo-400 font-mono text-2xl mr-3">{String(sectionIndex).padStart(2, '0')}.</span>
-          )}
-          Skills
-        </h2>
-        <div className="mt-2 h-px w-32 bg-blue-500/40 dark:bg-indigo-500/40" />
-      </motion.div>
+      <SectionHeading
+        index={sectionIndex}
+        title="Skills"
+        blurb="The stack I reach for, grouped by layer."
+      />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 max-w-3xl">
-        {Object.values(portfolioData.skills).map((group, gi) => (
+      {/* Bordered cell-grid — 1px dividers via a tinted background showing
+          through `gap-px`, each cell painted with the page background. */}
+      <div
+        ref={ref}
+        className="grid grid-cols-1 sm:grid-cols-2 gap-px border border-slate-200/70 dark:border-slate-700/50 bg-slate-200/70 dark:bg-slate-700/50 max-w-4xl overflow-hidden rounded-xl"
+      >
+        {groups.map((group, gi) => (
           <motion.div
             key={group.category}
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: gi * 0.1 }}
+            className={`bg-[var(--background)] p-6 md:p-7 ${
+              oddCount && gi === groups.length - 1 ? "sm:col-span-2" : ""
+            }`}
           >
-            <h3 className="text-blue-600 dark:text-indigo-400 font-mono text-base tracking-wider mb-3">
-              {group.category}
+            <h3 className="flex items-baseline gap-2.5 mb-4">
+              <span className="font-mono text-xs text-blue-600 dark:text-indigo-400 tracking-wider">
+                {String(gi + 1).padStart(2, "0")}
+              </span>
+              <span className="font-heading text-sm uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">
+                {group.category}
+              </span>
             </h3>
             <div className="flex flex-wrap gap-2">
               {group.items.map((skill) => (

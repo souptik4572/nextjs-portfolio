@@ -360,6 +360,10 @@ function TerminalCommands() {
 
 	/* ── Utility / Easter-egg commands (always available) ─────────── */
 	const utilityHelpEntries = [
+		{ cmd: "socials", desc: "Coding profiles & links" },
+		{ cmd: "resume", desc: "Open my résumé in a new tab" },
+		{ cmd: "contact", desc: "How to reach me" },
+		{ cmd: "ls", desc: "List available sections" },
 		{ cmd: "clear", desc: "Clear the terminal" },
 		{ cmd: "sudo", desc: "Try running as root 😏" },
 		{ cmd: "whoami", desc: "Who are you ?" },
@@ -383,6 +387,102 @@ function TerminalCommands() {
 					/>,
 				);
 			}),
+
+		socials: (
+			<div className="py-2">
+				{Object.values(personal.coding_profiles).map((profile) => (
+					<div
+						key={profile.title}
+						style={{ display: "flex", gap: "12px", padding: "2px 0" }}
+					>
+						<span
+							style={{
+								color: c.green,
+								fontFamily: "monospace",
+								minWidth: "120px",
+							}}
+						>
+							{profile.title}
+						</span>
+						<a
+							href={profile.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: c.blue, textDecoration: "underline" }}
+						>
+							{profile.url}
+						</a>
+					</div>
+				))}
+				<div style={{ display: "flex", gap: "12px", padding: "2px 0" }}>
+					<span
+						style={{
+							color: c.green,
+							fontFamily: "monospace",
+							minWidth: "120px",
+						}}
+					>
+						LinkedIn
+					</span>
+					<a
+						href={personal.linkedin}
+						target="_blank"
+						rel="noopener noreferrer"
+						style={{ color: c.blue, textDecoration: "underline" }}
+					>
+						{personal.linkedin}
+					</a>
+				</div>
+			</div>
+		),
+
+		resume: () => {
+			if (typeof window !== "undefined" && personal.resume) {
+				window.open(personal.resume, "_blank", "noopener,noreferrer");
+			}
+			return (
+				<div className="py-2">
+					<p style={{ color: c.text }}>
+						📄 Opening résumé in a new tab…{" "}
+						<a
+							href={personal.resume}
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{ color: c.blue, textDecoration: "underline" }}
+						>
+							(or click here)
+						</a>
+					</p>
+				</div>
+			);
+		},
+
+		contact: (
+			<div className="py-2">
+				<p style={{ color: c.text, marginBottom: "6px" }}>
+					Drop a line about the role, the team, or the problem you&apos;re
+					solving — I read everything and reply quickly.
+				</p>
+				<p style={{ color: c.text }}>
+					<span style={{ color: c.yellow }}>📧 </span>
+					<a
+						href={`mailto:${personal.email}`}
+						style={{ color: c.blue, textDecoration: "underline" }}
+					>
+						{personal.email}
+					</a>
+				</p>
+			</div>
+		),
+
+		ls: (
+			<div className="py-2">
+				<span style={{ color: c.text, fontFamily: "monospace" }}>
+					about  experience  skills  projects  offers  education
+					achievements  socials  resume.pdf
+				</span>
+			</div>
+		),
 
 		sudo: (arg: string) => (
 			<div className="py-2">

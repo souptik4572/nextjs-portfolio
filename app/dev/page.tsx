@@ -34,7 +34,7 @@ export default function DevPage() {
 
         {/* Footer hint */}
         <p className="mt-4 text-center text-xs text-slate-400 dark:text-slate-500">
-          Tip: Try commands like <code className="text-slate-500 dark:text-slate-400">intro</code>, <code className="text-slate-500 dark:text-slate-400">experience</code>, <code className="text-slate-500 dark:text-slate-400">skills</code>, <code className="text-slate-500 dark:text-slate-400">projects</code>
+          Tip: Try <code className="text-slate-500 dark:text-slate-400">experience</code>, <code className="text-slate-500 dark:text-slate-400">projects</code>, <code className="text-slate-500 dark:text-slate-400">socials</code>, <code className="text-slate-500 dark:text-slate-400">resume</code> or <code className="text-slate-500 dark:text-slate-400">contact</code>
         </p>
       </div>
     </div>

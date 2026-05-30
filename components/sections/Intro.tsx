@@ -27,7 +27,7 @@ export default function Intro() {
   return (
     <section
       id="intro"
-      className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-32 py-16"
+      className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-32 pt-28 pb-16"
     >
       <motion.div
         custom={0}

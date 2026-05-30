@@ -79,12 +79,16 @@ export default function NotableOffers({ sectionIndex }: SectionProps) {
 
   if (offers.length === 0) return null;
 
+  
+  const leadInOffer = offers.find((offer) => offer.order === 6);
+  const displayOrder = leadInOffer ? [leadInOffer, ...offers] : offers;
+
   // Scale the loop duration to the card count so the scroll speed stays
   // roughly constant no matter how many offers there are (design: ~36s / 8).
-  const durationSeconds = Math.max(24, offers.length * 5);
+  const durationSeconds = Math.max(24, displayOrder.length * 5);
 
   // Duplicate the list so a -50% translateX lands on the second copy → seamless.
-  const looped = [...offers, ...offers];
+  const looped = [...displayOrder, ...displayOrder];
 
   return (
     <section ref={ref} id="notable_offers" className="px-6 md:px-16 lg:px-32 py-16 overflow-hidden">
@@ -115,7 +119,11 @@ export default function NotableOffers({ sectionIndex }: SectionProps) {
           className="group relative -mx-6 md:-mx-16 lg:-mx-32 overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
         >
           <div
-            className="flex w-max gap-5 [animation:notable-offers-marquee-left_var(--marquee-duration)_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:[animation:none]"
+            className={`flex w-max gap-5 [animation:notable-offers-marquee-left_var(--marquee-duration)_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:[animation:none] ${
+              // Park on the top-ranked offers (orders 1–4 lead the sorted list)
+              // until the section scrolls into view, then resume from the start.
+              inView ? "" : "[animation-play-state:paused]"
+            }`}
             style={{ "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties}
           >
             {looped.map((offer, i) => (
